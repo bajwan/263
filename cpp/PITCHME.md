@@ -5,698 +5,233 @@ Ira Woodring
 
 ***
 
-**The C Programming Language**
+**The C++ Programming Language**
 ---
 **History**
 ***
 
-You can read this history, from the author!
-https://www.bell-labs.com/usr/dmr/www/chist.html
+Is an extension to C.  If you don't know C, you may wish to practice here:
+
+[C Programming Exercises and Info](http://www.learn-c.org/ "Learn to program in C")
+
+C++ was created to add objects to C, as Object Oriented coding results in better program structure and organization.
 ---
 **History**
 ***
 
-- Was written in the early 70's by Dennis Ritchie at Bell Labs.
+Created by Bjarne Stroustrup ([Pronunciation](http://www.stroustrup.com/pronounciation.wav "Pronunciation of Bjarne Stroustrup")).
 
-- Was written for Unix development (original Unix was written in Assembly)
-
-- Was based on BCPL, a language with no types, and B.  C added types and other features.
----
-**History**
-***
-
-Contrary to what we think now, it was not written for portability!
-
-Interest in portability came later.
----
-**History**
-***
-
-- Popularized syntax we use still today, such as brackets for array accesses (which was uncommon at the time!).
-
-- Introduced the operators ```++``` and ```--``` (invented by Ken Thompson, also at Bell Labs).
----
-**History**
-***
-
-- It is an imperative procedural language
-
-  - Imperative means it gives commands to change state
-
-  - Procedural means it provides the ability to structure code and call procedures
----
-**History**
-***
-
-- By around 1973 the basics were complete enough to rewrite the Unix kernel in the language.
-
-- Toward the end of the 70's work began on making it portable.
-
-  - This means we can take the same code and compile it on different architectures to the same effect.
----
-**History**
-***
-
-- After it became portable the popularity soared (mostly due to the popularity of Unix).
-
-- During the 80's compilers were written for nearly every architecture and OS.
-
-- In 1983 work began on standardizing the language.
+He worked with Simula during his Ph.D. time and wanted to bring some of those facilities to C.  He went to Bell Labs and created "C with Objects".  C++ came soon after.
 ---
 **Overview**
 ***
 
-C is a high-level language that provides very low level capabilities.
+C++ is a compiled, statically typed language.  In some simple syntactic ways it is similar to Java, but that is really where the similarities end.
 
-Data types are very closely related to underlying hardware.
-
-Many higher-level languages don't provide the capabilities that C has for interacting so closely with hardware.  This makes C a better choice for systems programming and speed-intensive tasks.
+Whereas Java is compiled into an intermediate form called Java Bytecode that runs on the Java Virtual Machine (JVM), C++ compiles to object code that can be executed by a processor (though this is a somewhat of a trivialization).
 ---
-**Compilation**
+**Overview**
 ***
 
-Every computer processor has an instruction set.  This set of instructions are the ONLY things a processor knows how to do.  Different brands and types of processors have different instruction sets.
-
-C requires the use of a compiler to create the libraries and executables needed to run a program.
-
-The compiler translates higher-level C code into machine code that a processor can understand.
+Unlike Java, C++ is a multi-paradigm language.  While Java restricts us to an Object Oriented (OO) programming approach, C++ allows OO but does not require it.  This means we can write stand-alone functions that don't need to exist in the context of a class or object.
 ---
-**Compilation**
+**Overview**
 ***
 
-In this class we will use either the Clang compiler or the GCC compiler.  Both are on EOS, and freely available should you wish to install them on your own machines.
+Since we are coming from a Java background, let's look at a piece of Java code and compare it to C++.  Suppose we need to create a Car class to hold Car information.  It may look something like this:
 ---
-**Compilation**
-***
+```Java
+/*
+ * Java file.  MUST be named Car.Java
+ */
 
-A program written in C is some executable code (usually) linked to other libraries.
+public class Car {
 
-These libraries are usually pieces of code written by a community of advanced programmers, and provide facilities such as I/O, memory management, etc.
+  private String make;
+  private String model;
+  private int year;
+  private double mileage;
 
-Usually these libraries have been in development for many years, are very robust, efficient, and secure code.  We should use them.
+  public Car (String make, String model, int year, double mileage){
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.mileage = mileage;
+  }
 
-But, we can write libraries as well (and should!).
----
-**Compilation**
-***
+  public String getMake(){
+    return this.make;
+  }
 
-C gives us facilities to separate out our code into interface and implementation files.
+  public void setMake(String make){
+    this.make = make;
+  }
 
-Interface files describe data types, functions, etc. that may be used in a library.  The do not usually provide the implementation.  Interface files are \*.h files.
+  private void internalFunction(){
+        .... does something private ...
+      }
 
-Implementation files are the actual code files that provide the instructions needed to complete some task.  They are provided in \*.c files.
----
-**Compilation**
-***
-
-The C compiler compiles every file separately.  So if we write a program that makes use of a library, we need to tell C that we are using the library correctly.  For instance:
----
-Say I have a file called ```my_prog.c```.  I wish to use a function called ```handyFunction(42);```.
-
-While compiling ```my_prog.c``` the compiler needs to know if I am using ```handyFunction()``` correctly.  Am I providing the correct type and number of parameters?  Does it return the expected type?
-
-The compiler is given this information from the \*.h file.
----
-We will say my library is called ```library```.  So I should have ```library.h``` and ```library.c``` files.  The \*.h file, the interface, might look like this:
-
-```C
-int handyFunction(int num);
-```
-
-This tells the compiler that there is a definition for ```handyFunction``` that takes an ```int``` and returns an ```int```.
----
-At the top of my ```my_prog.c``` file, I can tell the compiler about the library file with the command:
-
-```C
-#include "library.h"
-```
-
-**Note**: when importing libraries we use "" around personal libraries.  If we were importing a system library we would use <> such as:
-
-```C
-#include <library.h>
-```
----
-So... we know that each file is compiled separately.
-
-We provide the interfaces via the ```#include``` statements.
-
-This causes the code to be pulled into the project.
-
-Can anyone see a potential problem?
----
-What happens if we ```#include``` a library, and then a library ```#include```s the same library?
-
-The code would be sourced into the project more than once.
-
-Bloats the code.  Not good.
----
-Enter **include guards**.
-
-Include guards allow us to define some name in memory.  If it has already been defined, we don't redefine it.  So we surround our \*.h file code with something like this:
-
-```C
-#ifndef     __H_OUR_NAME__
-#define     __H_OUR_NAME__
-
-... *interface code* ...
-
-#endif
-
-```
----?code=./c-lectures/samples/my_prog.c
----?code=./c-lectures/samples/library.h
----?code=./c-lectures/samples/library.c
----
-We compile this code with the command
-
-```
-clang my_prog.c library.c
-```
-
-or
-
-```
-gcc my_prog.c library.c
-```
-
-This will output a file called ```a.out```.  We run that with the command
-
-```
-./a.out
-```
----
-By the way, ```a.out``` stands for "assembly out".  It is a holdover from the early days at Bell Labs.  It was kept through the B, BCPL, and early C phases because folks were used to it.
-
-You can provide an optional executable name with the ```-o FILENAME``` flag such as:
-
-```
-clang my_prog.c library.c -o my_executable
-```
-
-Same syntax applies to GCC.
----
-**Compilation**
-***
-
-Notice that on the command-line we pass the names of ALL the \*.c files to the compiler.  We DO NOT pass the \*.h files!
-
-However, there is no need to pass the name of the system libraries.  The <> around their names indicate to the compiler to search through the system library path.
-
-It turns out that most systems pre-compile common libraries.  This gives us multiple benefits:
----
-**Compilation**
-***
-
-- We save disk space by not having to include these libraries in our own projects.
-
-- We save compilation time by not having to re-compile these prebuilt libraries.
----
-**Compilation**
-***
-
-Which brings us to a very important point:
-
-The compiler doesn't actually create executable files.  It creates object files.  The **linker** links together the files into an executable.
----
-**Compilation**
-***
-
-The linker is often automatically called by the compiler (the commands provided earlier will automatically cause this to happen).
-
-It turns out though, there are two types of linking:
-
-**Static Linking** and **Dynamic Linking**.
----
-**Compilation**
-***
-
-Static linking pulls in all of the code needed for a program to run.  This results in a larger executable, but guarantees that the program can run on the target system.
----
-**Compilation**
-***
-
-Dynamic linking uses **method stubs** when linking to a system library.  These executables are not as portable.  The target system must provide the required libraries the stubs point to or the program can't run.  This is the default linking method.
----
-**Compilation**
-***
-
-**When should I use each method?**
-
-Most of the time you will just want to link dynamically.  This keeps the executable small and relies upon the system libraries.  Since system libraries are patched often to fix bugs/security holes, this is a good practice.
----
-**Compilation**
-***
-
-If you happen to be coding and need very specific versions of a library for your code to work correctly, you may wish to compile statically.  This will pull in all of the code and libraries needed for the executable to run on the target system.
----
-**Program Layout**
-***
-
-Every C program has an entry point called ```main```.  This function should look like this:
-
-```C
-int main(int argc, char** argv){
-  ...
+  ... etc. ...
 }
 ```
-
-Note that you may see programmers write similar but different function signatures for ```main```, but those are not best practice.
 ---
-**Program Layout**
+**Overview**
 ***
 
-Let's dissect the signature a bit.
+In Java the "Syntactic Unit" (enclosure) for the class is the ```.java``` file.  In C++ we would likely have two files for this same class (*Important!* note that when we program generically this is likely not the case!).
 
-```C
-int main(int argc, char** argv){
-  ...
-}
-```
-
-The first ```int``` is the return type.  The ```int argc``` is a parameter to the function ```main``` of type ```int```, and the ```char** argv``` is a parameter to the function ```main``` of type pointer to a pointer to a ```char```.
+By contrast, in C++ we would likely have a ```*.h``` file for the interface and a ```*.cpp``` file for the implementation.  The previous class might look something like this:
 ---
-**Program Layout**
-***
+```C++
+/*
+ * Header (*.h) file.  Might be named
+ * Car.h but doesn't have to be.  (Does need the *.h though!)
+ */
 
-The return type of ```int``` means that a C program will return a numeric value.  This value corresponds to an error code.  This allows us to tell the operating system if the program exited cleanly, or if it exited due to some error state.
+// Must include string library; not built in!
+#include <string>
 
-This allows us to automate program runs!
----?code=./c-lectures/samples/errno-base.h
-```errno-base.h```
----?code=./c-lectures/samples/errno.h
-```errno.h```
----
-**Program Layout**
-***
+class Car {
 
-The two parameters sent to the ```main``` function are an ```int``` telling the program how many command-line arguments were passed to the program, and a pointer to a pointer to a ```char```.  As we will see shortly, this is how C creates an array of strings.  These strings are the command-line arguments.
+  public:
+    // Constructor!
+    Car(std::string make, std::string model, int year, double mileage);
 
-**NOTE:** the first argument, argv[0] is the program name!
----?code=./c-lectures/samples/args.c
----
-**Program Layout**
-***
+    // Accessor
+    std::string getMake();
 
-If we compile and run this program with different input, we get the following outputs:
----
-```
-Iras-MacBook-Pro:samples woodriir$ ./a.out
-Howdy all!
+    // Mutator
+    void setMake(std::string make);
 
-This program was provided with 1 command-line arguments.
+  private:
 
-These arguments are:
-====================
+    std::string make;
+    std::string model;
+    int year;
+    double mileage;
 
-	./a.out
-```
----
-```
-Iras-MacBook-Pro:samples woodriir$ ./a.out Hi there everybody
-Howdy all!
+    void internalFunction();
 
-This program was provided with 4 command-line arguments.
-
-These arguments are:
-====================
-
-	./a.out
-	Hi
-	there
-	everybody
-```
----
-```
-Iras-MacBook-Pro:samples woodriir$ ./a.out "Hi there everybody"
-Howdy all!
-
-This program was provided with 2 command-line arguments.
-
-These arguments are:
-====================
-
-	./a.out
-	Hi there everybody
-```
----
-**Program Layout**
-***
-
-So, a few notes.  There is always 1 command-line argument provided.  It is the executable's name.
-
-If we wish to group arguments together we need to place them inside of quotes.
----
-**Program Layout**
-***
-
-C programs are collections of statements that change state of some memory.
-
-Commonly used collections of statements may be abstracted out and placed into units called functions.
----
-**Program Layout**
-***
-
-A function must be declared before it is used.
-
-We can do that multiple ways:
-
-- By placing the function's declaration before the code that calls that function in the same file
-
-- Or by placing the declaration in an interface file (\*.h) and ```#include```ing it.
----
-**Program Layout**
-***
-
-We will often talk about a function's *signature*.  This is the return type, name, and parameters a function takes.
-
-```C
-return_type function_name(parameter_type parameter_name, ...repeat as needed...)
-```
-
-For example:
-
-```C
-double calc_tax(float amount, double tax_rate);
-```
----
-**Program Layout**
-***
-
-Functions may take different parameters.  This means they have different signatures:
-
-```C
-double calc_tax(float amount, double tax_rate);
-```
-
-is a different signature from
-
-```C
-double calc_tax(float amount, float tax_rate);
-```
----
-**Data Types**
-***
-
-C provides a few basic data types.
-
-These can be separated into categories:
-
-**Void**
-
-**Integer Types**
-
-**Floating Point Types**
----
-**Data Types**
-***
-
-When no type is or can be supplied, the type is
-
-```void```
----
-**Data Types - Integer Types**
-***
-
-```char```, ```short```, ```int```, ```long``` types hold integer (non-floating point) values.  These types may also be ```unsigned```, which increases the maximum value they can hold, but removes the ability to store a negative value.
-
-Note that there are quite a few more types than listed here; types such as ```long long```, ```long long int```, ```signed``` and ```unsigned``` ```long long int```s, etc.  
----
-**Data Types - Integer Types**
-***
-
-Wikipedia has a nicely tabled list, including format specifiers for how to print these values:
-
-https://en.wikipedia.org/wiki/C_data_types
----
-**Data Types - Integer Types**
-***
-
-The C standard does not dictate how many bytes each data type must occupy; it DOES however provide minimum numbers of bytes and relationships between types.
----
-**Data Types - Floating Point Types**
-***
-
-C provides for ```float```, ```double```, and ```long double``` data types.  These data types are stored via the IEEE 754 standard (we will talk about this later; hardware class will study it in depth.)
----
-**Data Types - Record Types**
-***
-
-C provides two mechanisms for storing record types, the ```struct``` and the ```union```.
-
-Both a ```struct``` and a ```union``` are aggregate types, meaning they are types made up of other types.  For instance, if you wanted to create a data type that could hold student information, you may define a ```struct``` as follows:
----
-```
-struct student {
-  int g_number;
-  float gpa;
-  char class;
+    ... etc. ...
 };
 ```
-
-You would declare one as such:
-
-```
-struct student s;
-```
 ---
-Alternatively, you can define the struct as a type using the ```typedef``` keyword:
-
-```
-typedef struct student_type {
-  int g_number;
-  float gpa;
-  char class;
-} student;
-```
-
-And declare it:
-
-```
-student s;
-```
----
-Either way, you would then be able to use ```s``` by accessing its members:
-
-```
-s.g_number = 300746283;
-s.gpa = 3.874;
-s.class = 's';
-```
----
-**Data Types - Record Types**
+**Overview**
 ***
 
-```union``` types are very similar to ```struct``` types, except ```union```s only store one member at a time.  These are usually only useful to embedded system programmers with lower memory requirements.  This is because the ```union``` only allocates enough memory for the largest of its members.
+Notice that the ```*.h``` file included *symbols* - function signatures and variable declarations.  It didn't really include any code.
 
-For instance, if a union held a member for an ```int``` and a ```float```, it would only occupy enough space for a float (the larger data type).
+Code may change depending on the hardware we are running it on.  Even though C++ is portable it also has very low level capabilities.  This means it is not out of the ordinary for us to be working on a project that needs different, or perhaps optimized code that is different depending on the hardware.
 ---
-**Data Types - Pointers**
+**Overview**
 ***
 
-Pointers are data types that store a memory location.  They are extremely useful but often confusing to new programmers in the language.
+By separating our code into these two syntactic units, we can provide a common interface for the users, regardless of the type of hardware they are ultimately running on.
 
-A pointer may be of type ```void*``` but will usually be typed the same as the type of data its memory points to.
+This is really the crux of what an Abstract Data Type is - a piece of code we can use that doesn't require us to understand the underlying implementation.  Much like a floating point variable, we don't need to know how it is stored or manipulated behind the scenes; we just need to know how to use it.
 ---
-For instance:
-
-```C
-int x;
-int* y;
-```
-
-These are two COMPLETELY DIFFERENT data types.  The first declares an ```int``` variable.  The second declares a variable that holds a memory address.  It just so happens that the memory address this value points to is an ```int```.
----
-This allows us to do something like this:
-
-```C
-int x = 42;
-int* y = &x;
-```
-
-The ```&``` symbol here can be read as "address of".  We are saying that ```y``` is a pointer variable that points to an ```int```.  We are setting the value of ```y``` to the memory address of where ```x``` is stored.
----
-Additionally, we can access the data in the memory location that the pointer points to.  We can do this by using the ```*``` (called the dereferencing) operator:
-
-```C
-int x = 42;
-int* y = &x;
-*y = 45;          // If we printed x it would now print 45!
-```
----
-**Data Types - Pointers**
+**Overview**
 ***
 
-But... why do we need pointers?
+A ```*.cpp``` file is used for source code.  Our ```*.cpp``` file might look like this:
 ---
-**Data Types - Pointers**
-***
+```C++
+#include "Car.h"
+#include <string>
 
-C can only return a data type's value.
+Car::Car (){
+  this.make = make;
+  this.model = model;
+  this.year = year;
+  this.mileage = mileage;
+}
 
-We are used to passing by reference in Java (for the most part).
+std::string Car::getMake(){
+  return this.make;
+}
 
-Passing by reference means that we don't pass a data structure to or from a function - we pass a reference to that structure.  This keeps things fast as the size of the data structure increases.  But C doesn't have this ability.
----
-**Data Types - Pointers**
-***
+void Car::setMake(std::string make){
+  this.make = make;
+}
 
-C passes the value of the data type to and from functions.  So, if we have the following code:
-
-```C
-int doStuff(int x){ ... }
-int main(int argc, char** argv){
-  int x = 42;
-  int y = doStuff(x);
+void Car::internalFunction(){
+  ...
 }
 ```
-
-```x``` is not passed to the function.  ```42``` is passed to the function.
 ---
-**Data Types - Pointers**
+**Overview**
 ***
 
-What is actually happening is that a new area of memory is setup for the function to work in.  In that new area of memory the function gets a copy of the data to work on.  All work occurs in the function's memory space, on the function's variables.  This means any change you make to ```x``` only changes the function's local copy.
----
-**Data Types - Pointers**
-***
+You may have noticed that both files contained the line:
 
-It is sometimes easier to think of this by adding to the variable's name.  We can think of the first ```x``` as ```main's x``` or ```main.x``` and the second ```x``` as ```doStuff's x``` or ```doStuff.x```.
-
-This helps us to remember they are two distinct variables.
----
-**Data Types - Pointers**
-***
-
-Seriously though... this sounds like a stupid pain in the butt.
-
-What's the point? (no pun intended...)
----
-**Data Types - Pointers**
-***
-
-Imagine using a large data structure, perhaps an array with millions of elements.  If C didn't have pointers, since it must pass by value it would have to produce a copy of the entire array for a function to work on it.
-
-Pointers are much, much faster.
----
-**Data Types - Pointers**
-***
-
-They also allow us to do some neat things like pass functions as parameters to other functions!
----
-**Data Types - Pointers**
-***
-
-I have provided some tutorial code for help in understanding pointers.  Clone the project here:
-
-https://github.com/irawoodring/pointer_perils
-
-Compile it, and step through it until you understand what is happening.
-
-Your first C assignment will be made VASTLY easier if you understand this code.
----
-**Data Types - Arrays**
-***
-
-Any data type can also be declared as an array:
-
-```C
-int my_int_array[100];
-student my_student_array[1000];
+```C++
+#include <string>
 ```
 
-However!  This is static creation of the array (compile-time).  This means that the array is on the stack and cannot grow during the program's run-time.
+We needed to include this file in **both** files, because both files referenced it.  C++ allows separately compilation of code.  This means that we can separate our code out into many files.  This is useful for organization and code reuse, but we must remember that every file is compiled separately and thus needs all the references it uses defined.
 ---
-**Memory Management**
+**Overview**
 ***
 
-Recall from our architecture lecture that there are two memory areas our programs make use of, the **stack** and the **heap**.
-
-When C is compiled, space is allocated for all static variables (variables whose sizes will not change) on the stack.  
-
-But what if we need a data structure of changing size?
+You may also have noticed that our ```*.cpp``` file ```included``` the file ```Car.h```.  This is because our function signatures were declared in the ```*.h``` file.  Since any symbol we use needs to be declared before use, we needed to include the ```*.h``` file before we could define the rest of the code for our Car class.
 ---
-**Memory Management**
+**Overview**
 ***
 
-Can't go on the stack...
+You may also have noticed the ```::``` operator.  This is the **namespace** operator.  Think of it as telling us where some symbol *lives*.  In the above code we are saying something like "the setMake(std::string make)" function "exists", or "lives" inside the Car namespace.
+
+Had we not prefaced our function definition names with ```Car::``` those functions would not have been included in the Car class; they would have just been global functions.
 ---
-**Memory Management**
+**Overview**
 ***
 
-Therefore we have to declare the space on the heap.  We do that via the ```malloc``` or ```calloc``` (part of ```stdlib.h```).
+Namespaces exist to help us keep our code separate and to avoid **namespace collisions**.  It is not uncommon for programmers to want to reuse common names in their code.  For instance, a programmer may want to use a function called ```max()``` to find the Car object with the largest odometer reading.  However, a math library may want to include a ```max()``` function to help in determining the largest of two integer or floating point numbers.
 
-```void *malloc(size_t size)```
-```void *calloc(size_t nitems, size_t size)```
+To prevent these collisions we use the namespace operator.  Then, programmers could call the ```max()``` they know they want.
 
-Note that both of these functions return a pointer!
----
-**Memory Management**
-***
-
-We use malloc as follows:
-
-```C
-int* my_memory = (int*)malloc(50 * sizeof(int));
-```
-
-This line asks the system to reserve a segment of memory big enough to hold 50 integers.  Since ```malloc``` returns a ```void*``` we must perform an implicit cast to change the type to ```int*```.
----
-**Memory Management**
-***
-
-We can now use this segment of memory just as we would a normal array!
-
-```C
-my_memory[0] = 42;
-my_memory[42] = 100;
-```
-
-This works because an array in C is really just a pointer to the first element in an array!
----
-**Memory Management**
-***
-
-Note that this doesn't just work for basic types.  Recall the ```struct student``` we had earlier?
-
-```C
-typedef struct student_type {
-  int student_number;
-  float gpa;
-  char class;
-} student;
-```
-
-We could declare an array to hold 50 of these as such:
-
-```C
-student* my_students = (student*) malloc(50 * sizeof(student));
+```C++
+value = Car::max()
+Or
+value = Math::max()
 ```
 ---
-**Memory Management**
+**Overview**
 ***
 
-The problem?  Because we aren't dealing with data on the stack we have to manage the memory ourselves.
+Some programmers are lazy though.  They don't want to type the extra keystrokes whenever they are using some specific namespace.  They might "know" (or suspect) that they are only ever going to be using a single namespace in their code.    Because of this you might see a line such as
 
-This means it is up to us to return this memory when we are finished with it!
----
-**Memory Management**
-***
-
-Traditionally not doing so resulted in memory leaks.  This can still happen on many operating systems, but most modern ones have protections against this.
-
-Still... it is good practice to clean up after yourself.  You may not always know on what type of system your code will run.
----
-**Memory Management**
-***
-
-We return the memory to the heap with the ```free()``` function.
-
-```C
-free(my_students);
-free(my_memory);
+```C++
+using namespace std;
+OR
+using namespace Car;
 ```
-
-Seriously, always ```free``` any memory you allocate.
 ---
-This is by no means a comprehensive tutorial of C.  It is quite a complex and powerful language.  This is enough for you to begin learning, and to complete many basic and intermediate C tasks.
+**Overview**
+***
+
+What this allows a programmer to do is to get by without typing the ```std::``` in front of every symbol that comes from the std namespace (or whichever other namespace(s) are referenced).
+
+However, this is generally a BAD idea.
+---
+**Overview**
+***
+
+In this class, we are **NEVER** going to use the ```using ...``` code.  Besides being lazy it allows namespace collisions to occur (which defeats the entire purpose of having namespaces), and it harms the readability of your code (which function does the programmer really wish to call?).
+
+As you progress in the Computer Science field you will hear some programmers tell you it is ok to do so, as long as you are careful.  While I disagree that is your decision.  However, there is one thing that you should never, ever do.
+---
+DON'T PUT A ```using namespace...``` statement in a ```*.h``` file.
+
+EVER.
+
+SERIOUSLY.  If they do it in their code, don't use their libraries.
+---
+**Overview**
+***
+
+```*.h``` files are the files we include in our code to allow us access to another library.  By putting a ```using namespace``` line in a file that is included in someone else's code we pollute their namespace, resulting in unexpected behavior (at best) for the end user.  We can essentially break someone else's code through our laziness.
+
+DON'T pollute the namespace.
+---
+**Overview**
+***
