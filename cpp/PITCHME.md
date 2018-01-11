@@ -299,7 +299,11 @@ Though you should have noted that the stream operator is reversed.  Here we are 
 
 At this point, we can write a "Hello World" program.
 
+This is a small program so we will put it all in one file.
+
 Let's do so together.
 ---
 **Overview**
 ***
+
+[Source](./code_samples/hello_world_all_in_one.cpp "All in one hello_world code").
