@@ -28,7 +28,7 @@ He worked with Simula during his Ph.D. time and wanted to bring some of those fa
 
 C++ is a compiled, statically typed language.  In some simple syntactic ways it is similar to Java, but that is really where the similarities end.
 
-Whereas Java is compiled into an intermediate form called Java Bytecode that runs on the Java Virtual Machine (JVM), C++ compiles to object code that can be executed by a processor (though this is a somewhat of a trivialization).
+Whereas Java is compiled into an intermediate form called Java Bytecode that runs on the Java Virtual Machine (JVM), C++ compiles to object code that can be executed by a processor (though this is somewhat of a trivialization).
 ---
 **Overview**
 ***
@@ -52,6 +52,7 @@ public class Car {
   private int year;
   private double mileage;
 
+  // Constructor
   public Car (String make, String model, int year, double mileage){
     this.make = make;
     this.model = model;
@@ -59,17 +60,19 @@ public class Car {
     this.mileage = mileage;
   }
 
+  // Accessor
   public String getMake(){
     return this.make;
   }
 
+  // Mutator
   public void setMake(String make){
     this.make = make;
   }
 
   private void internalFunction(){
-        .... does something private ...
-      }
+    .... does something private ...
+  }
 
   ... etc. ...
 }
@@ -120,6 +123,9 @@ class Car {
 ***
 
 Notice that the ```*.h``` file included *symbols* - function signatures and variable declarations.  It didn't really include any code.
+---
+**Overview**
+***
 
 Code may change depending on the hardware we are running it on.  Even though C++ is portable it also has very low level capabilities.  This means it is not out of the ordinary for us to be working on a project that needs different, or perhaps optimized code that is different depending on the hardware.
 ---
@@ -127,8 +133,12 @@ Code may change depending on the hardware we are running it on.  Even though C++
 ***
 
 By separating our code into these two syntactic units, we can provide a common interface for the users, regardless of the type of hardware they are ultimately running on.
+---
+**Overview**
+***
+This is really the crux of what an Abstract Data Type is - a piece of code we can use that doesn't require us to understand the underlying implementation.
 
-This is really the crux of what an Abstract Data Type is - a piece of code we can use that doesn't require us to understand the underlying implementation.  Much like a floating point variable, we don't need to know how it is stored or manipulated behind the scenes; we just need to know how to use it.
+Much like a floating point variable, we don't need to know how it is stored or manipulated behind the scenes; we just need to know how to use it.
 ---
 **Overview**
 ***
@@ -168,7 +178,12 @@ You may have noticed that both files contained the line:
 #include <string>
 ```
 
-We needed to include this file in **both** files, because both files referenced it.  C++ allows separately compilation of code.  This means that we can separate our code out into many files.  This is useful for organization and code reuse, but we must remember that every file is compiled separately and thus needs all the references it uses defined.
+We needed to include this statement in **both** files, because both files reference the symbols defined in it.
+---
+**Overview**
+***
+
+C++ allows separately compilation of code.  This means that we can separate our code out into many files.  This is useful for organization and code reuse, but we must remember that every file is compiled separately and thus needs all the references it uses defined.
 ---
 **Overview**
 ***
@@ -178,7 +193,10 @@ You may also have noticed that our ```*.cpp``` file ```included``` the file ```C
 **Overview**
 ***
 
-You may also have noticed the ```::``` operator.  This is the **namespace** operator.  Think of it as telling us where some symbol *lives*.  In the above code we are saying something like "the setMake(std::string make)" function "exists", or "lives" inside the Car namespace.
+The ```::``` operator is new to many programmers.  This is the **namespace** operator.  Think of it as telling us where some symbol *lives*.  In the above code we are saying something like "the setMake(std::string make)" function "exists", or "lives" inside the Car namespace.
+---
+**Overview**
+***
 
 Had we not prefaced our function definition names with ```Car::``` those functions would not have been included in the Car class; they would have just been global functions.
 ---
@@ -186,6 +204,9 @@ Had we not prefaced our function definition names with ```Car::``` those functio
 ***
 
 Namespaces exist to help us keep our code separate and to avoid **namespace collisions**.  It is not uncommon for programmers to want to reuse common names in their code.  For instance, a programmer may want to use a function called ```max()``` to find the Car object with the largest odometer reading.  However, a math library may want to include a ```max()``` function to help in determining the largest of two integer or floating point numbers.
+---
+**Overview**
+***
 
 To prevent these collisions we use the namespace operator.  Then, programmers could call the ```max()``` they know they want.
 
@@ -217,21 +238,68 @@ However, this is generally a BAD idea.
 ***
 
 In this class, we are **NEVER** going to use the ```using ...``` code.  Besides being lazy it allows namespace collisions to occur (which defeats the entire purpose of having namespaces), and it harms the readability of your code (which function does the programmer really wish to call?).
+---
+**Overview**
+***
 
 As you progress in the Computer Science field you will hear some programmers tell you it is ok to do so, as long as you are careful.  While I disagree that is your decision.  However, there is one thing that you should never, ever do.
 ---
-DON'T PUT A ```using namespace...``` statement in a ```*.h``` file.
+DON'T PUT A ""```using namespace...```"" statement in a ```*.h``` file.
 
-EVER.
+**EVER.**
 
-SERIOUSLY.  If they do it in their code, don't use their libraries.
+SERIOUSLY.  If they do it in their code, don't use their libraries, as they may not be safe.
 ---
 **Overview**
 ***
 
 ```*.h``` files are the files we include in our code to allow us access to another library.  By putting a ```using namespace``` line in a file that is included in someone else's code we pollute their namespace, resulting in unexpected behavior (at best) for the end user.  We can essentially break someone else's code through our laziness.
 
-DON'T pollute the namespace.
+**DON'T** pollute the namespace.
+---
+**Overview**
+***
+
+You will (likely) most often see people polluting the ```std::``` namespace.  This namespace is used for symbols that are in the C++ Standard Library.  These are collections of code that most programmers will need to make use of at one time or another, such as I/O, Data Structures, Common Functions, etc.
+---
+**Overview**
+***
+
+For instance, the ```std::cout``` function from ```iostream``` can be used for output (to a screen or other output device).  You may use it like this:
+
+```C++
+// Notice I preface cout with the namespace!
+std::cout << "Hello World!" << std::endl;
+int x=42;
+std::cout << x << std::endl;
+
+etc.
+```
+---
+**Overview**
+***
+
+The ```<<``` operator is a stream operator.  What we are saying above is that we are passing some objects into an output stream (here the stream is cout.  Could be a file or other output stream).
+
+We may handle input similarly:
+
+```C++
+std::cout << "Input a value: ";
+int x;
+std::cin >> x
+```
+---
+**Overview**
+***
+
+Though you should have noted that the stream operator is reversed.  Here we are passing what was coming from cin into x, whereas before we were passing some entity to cout.
+---
+**Overview**
+***
+
+At this point, we can write a "Hello World" program.
+
+Let's do so together.
 ---
 **Overview**
 ***
