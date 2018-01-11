@@ -301,9 +301,21 @@ At this point, we can write a "Hello World" program.
 
 This is a small program so we will put it all in one file.
 
-Let's do so together.
+Let's do so together.  **Code**
 ---
 **Overview**
 ***
 
 [Source](https://github.com/irawoodring/263/blob/master/cpp/code_samples/hello_world_all_in_one.cpp "All in one hello_world code").
+---
+**Overview**
+***
+
+Now, this is fine for a small project.  But for a project of any respectable size we need to separate our code into multiple "areas of concern".  Let's rewrite the previous code so that we have the following:
+
+  - a library that has a hello world function.
+    - it needs a ```hello_world.h``` and a ```hello_world.cpp```.
+  - a main file that has a main function.  It should import and call our function.  It should know about the function because we include the ```hello_world.h``` file.
+
+  **Code**
+---
