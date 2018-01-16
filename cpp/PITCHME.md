@@ -149,7 +149,7 @@ A ```*.cpp``` file is used for source code.  Our ```*.cpp``` file might look lik
 #include "Car.h"
 #include <string>
 
-Car::Car (){
+Car::Car (std::string make, std::string model, int year, int mileage){
   this.make = make;
   this.model = model;
   this.year = year;
@@ -342,6 +342,31 @@ clang++ hello_world.cpp main.cpp
 **Overview**
 ***
 
+It is very important to understand that even though I passed multiple files to the compiler in the above line, that each file is compiled separately.
+
+It is not the compiler's job to create an executable file.  The compiler creates executable code, but these must be combined together into an executable.  This is the linker's job.
+---
+**Overview**
+***
+
+Had we wanted, we could have compiled each file separately and linked them together:
+
+```
+clang++ -c hello_world.cpp
+clang++ -c main.cpp
+clang++ -o program hello_world.o main.o
+```
+---
+**Overview**
+***
+
+This is what we have on most systems.  Pre-compiled libraries for the system exist (DLL's [dynamically linked libraries] on Windows, .so [shared object], dylibs or frameworks on OSX).
+
+There is no need to recompile this common code each time a program wants to use it; we just need to link to it.
+---
+**Overview**
+***
+
 Also important you should have noticed that I did NOT include a \*.h file on the compiler line.  \*.h files will be sourced in when they are #included.  We should not be passing them to the compiler manually.
 ---
 **Overview**
@@ -366,7 +391,7 @@ These lines makeup an **include guard**.  Include guards make sure that code isn
 **Overview**
 ***
 
-Imagine we are need to print something to the screen, so we include the ```iostream``` library.  Perhaps we also include some other library code that gives us additional functionality, but this library also needs to print to the screen.  Include guards ensure that only one copy of ```iostream``` ends up in the final project.
+Imagine we need to print something to the screen, so we include the ```iostream``` library.  Perhaps we also include some other library code that gives us additional functionality, but this library also needs to print to the screen and also includes ```iostream```.  Include guards ensure that only one copy of ```iostream``` ends up in the final project.
 ---
 **Overview**
 ***
@@ -378,9 +403,56 @@ C++ has all the "normal" data types of C, such as
 **Overview**
 ***
 
-Just like programming in C, C++ relies upon Pass-by-Value when sending parameters to a function.  However, unlike C C++ has reference types.  Let's examine an example of each:
+Just like C, C++ uses Pass-by-Value.  Also like C we can "simulate" Pass-by-Reference with pointers (yes, C++ has references too, we will see those in a moment!).
+---
+**Overview**
+***
+
+Pointers in C++ work exactly the same way as they do in C.  For those of you who have never programmed in C before, a pointer is a variable that "points" to a memory address.
+---
+**Overview**
+***
+
+A few things to know about pointers:
+
+- they are a variable like any other
+- they merely hold a memory address
+- they can be confusing and dangerous, but are extremely powerful
+---
+**Overview**
+***
+
+In a language like C that only allows pass by value, we can simulate pass by reference with a pointer:
+---
+```C
+#include <iostream>
+
+void modify(int* x){
+  *x = *x * 2;
+}
+
+int main(int argc, char** argv){
+  int x = 21;
+  int* y = &x;  // y in a pointer to x
+  modify(y);
+  std::cout << x << std::endl;
+}
+```
+---
+**Overview**
+***
+
+Output from this program should have been ```42```.
+
+We were able to modify the value in the memory that y point to.
+---
+**Overview**
+***
+
+Unlike C, C++ has reference types.  References are much safer than pointers.  Let's examine how C++ let's us use references:
 ---
 ```C++
+// No references!
 #include <iostream>
 
 void changeMe(int x){
@@ -399,6 +471,7 @@ int main(int argc, char** argv){
 ```
 ---
 ```C++
+// With references!
 #include <iostream>
 
 void changeXa(int x){
@@ -419,3 +492,13 @@ int main(int argc, char** argv){
 
 }
 ```
+---
+**Overview**
+***
+
+In the first example the value of x was passed to the function.  Any change to that value is local to the function - it does not affect the original variable.
+
+With references though, the function can modify the original memory location.
+---
+**Overview**
+***
