@@ -319,3 +319,103 @@ Now, this is fine for a small project.  But for a project of any respectable siz
 
   **Code**
 ---
+**Overview**
+***
+
+[Source](https://github.com/irawoodring/263/blob/master/cpp/code_samples/hello_world.h "Separated files example of hello world.").
+[Source](https://github.com/irawoodring/263/blob/master/cpp/code_samples/hello_world.cpp "Separated files example of hello world.").
+[Source](https://github.com/irawoodring/263/blob/master/cpp/code_samples/hello_world_multi-file.cpp "Separated files example of hello world.").
+---
+**Overview**
+***
+
+You may have noticed the compile command I used:
+
+```
+// Single file
+clang++ hello_world.cpp
+
+// Multiple files
+clang++ hello_world.cpp main.cpp
+```
+---
+**Overview**
+***
+
+Also important you should have noticed that I did NOT include a \*.h file on the compiler line.  \*.h files will be sourced in when they are #included.  We should not be passing them to the compiler manually.
+---
+**Overview**
+***
+
+If you looked closely at our ```hello_world.h``` file you saw a few lines at the top that may be confusing:
+
+```C++
+#ifndef __H_HELLO_WORLD__
+#define __H_HELLO_WORLD__
+
+... Code ...
+
+#endif
+```
+---
+**Overview**
+***
+
+These lines makeup an **include guard**.  Include guards make sure that code isn't pulled into a project more than once.  How could that happen?
+---
+**Overview**
+***
+
+Imagine we are need to print something to the screen, so we include the ```iostream``` library.  Perhaps we also include some other library code that gives us additional functionality, but this library also needs to print to the screen.  Include guards ensure that only one copy of ```iostream``` ends up in the final project.
+---
+**Overview**
+***
+
+C++ has all the "normal" data types of C, such as
+
+```char```, ```short```, ```int```, ```float```, ```long```, etc. as well as pointer and reference types.
+---
+**Overview**
+***
+
+Just like programming in C, C++ relies upon Pass-by-Value when sending parameters to a function.  However, unlike C C++ has reference types.  Let's examine an example of each:
+---
+```C++
+#include <iostream>
+
+void changeMe(int x){
+  x = 42;
+  std::cout << "IN CHANGE ME! x = " << x << std::endl;
+
+}
+
+int main(int argc, char** argv){
+  int x = 0;
+  std::cout << "x = " << x << std::endl;
+  changeMe(x);
+  std::cout << "x = " << x << std::endl;
+
+}
+```
+---
+```C++
+#include <iostream>
+
+void changeXa(int x){
+  x = 42;
+}
+
+void changeXb(int &x){
+  x = 42;
+}
+
+int main(int argc, char** argv){
+  int x = 100;
+  changeXa(x);
+  std::cout << "x = " << x << std::endl;
+
+  changeXb(x);
+  std::cout << "x = " << x << std::endl;
+
+}
+```
