@@ -13,3 +13,4 @@ Data Structures and Algorithms
 |  1-3 | [C++](https://gitpitch.com/irawoodring/263/master?p=cpp "C++ notes") | [Homework 1](./assignments/setting_up_environment.md "Homework 1")            | Due January 17th at 8:00 a.m.       |
 |  2-1 | MLK Holiday, no class |             |       |
 |  2-2 | [C++](https://gitpitch.com/irawoodring/263/master?p=cpp "C++ notes") |             |       |
+|  2-2 | [C++](https://gitpitch.com/irawoodring/263/master?p=cpp "C++ notes") | [Understand this code](https://github.com/irawoodring/pointer_perils "Pointers repository")            |       |
