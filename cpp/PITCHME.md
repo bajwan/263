@@ -510,4 +510,4 @@ Speaking of memory locations, it is essential for us to understand that there ar
 
 The stack is where executing code lives.  Every function that is called (including main) has a size that is computed by the compiler.  As a additional functions are called, they are given a stack frame on top of the previously called function:
 ---
-![Image of the stack](./cpp/stack.png width=250)
+<img src="./cpp/stack.png" width="250px" alt="Image of stack">
