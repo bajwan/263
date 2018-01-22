@@ -511,3 +511,112 @@ Speaking of memory locations, it is essential for us to understand that there ar
 The stack is where executing code lives.  Every function that is called (including main) has a size that is computed by the compiler.  As a additional functions are called, they are given a stack frame on top of the previously called function:
 ---
 <img src="./cpp/stack.png" width="250px" alt="Image of stack">
+---
+**C++**
+***
+
+The important thing to notice about the stack is that we cannot have dynamically sized data.  If FunctionOne needed to grow it could not do so or it could potentially overwrite any function's space above it.
+---
+**C++**
+***
+
+This creates an interesting dilemma.  What if we need to have a piece of data that grows or shrinks?  Perhaps an array, that might start with 10 elements but later needs to hold 20?
+
+It can't go on the stack.  It must go somewhere else.
+---
+**C++**
+***
+
+You've probably guessed that the "somewhere else" is the heap.  The heap isn't nearly as structured as the stack; it can get very unruly.  If you are familiar with the concepts involved in disk defragmentation then you will probably understand the heap.
+---
+**C++**
+***
+
+There are two main uses for the heap.  We use it whenever
+
+  - we need to keep track of dynamically sizable data
+  - we wish to allow functions to operate on large pieces of information that is inefficient to pass around.
+---
+**C++**
+***
+
+While the heap is essential, it can be a bit complicated to use.  The stack is managed by the runtime system; all creation and release of memory is handled automatically.  When using the heap we need to manage the memory ourselves.
+---
+**C++**
+***
+
+When asking the system for heap space for dynamically sizable memory we need to specify two things - what type of data we wish to store and how much of it we need (note, we really don't *need* to tell it these things, we really just ask for a certain number of bytes.  But it is easier for us to think of it this way).
+---
+**C++**
+***
+
+For instance, let's pretend we need an array who's size may change in the future.
+
+In C, we would use the malloc call to ask for heap memory.  In C++ we tend to use the ```new``` syntax:
+---
+```C++
+// C method
+int* myData = (int*) malloc(50 * sizeof(int));
+
+// C++
+int* myData = new int[50];
+```
+---
+**C++**
+***
+
+Regardless of the call a pointer is returned.  This pointer holds the address of the first byte of memory allocated for us.
+
+We **must** give this memory back when we are finished with it.  In C we used the ```free``` call.  In C++ we use ```delete``` or ```delete[]```.
+---
+**C++**
+***
+
+```C++
+// C way
+free(myData);
+
+// C++ (Since this is an array we use delete[] and not delete)
+delete[] myData;
+```
+---
+**C++**
+***
+
+Now consider the following situation where we have a large object that we wish to operate on with other functions:
+---
+```
+#include <iostream>
+
+typedef struct Student {
+        int id;
+        float gpa;
+        ... 1000 other fields ...
+
+} Student;
+
+Student newStudent(){
+        Student a;
+        a.id = 12345;
+        a.gpa = 3.87;
+        ... Set other fields ...
+        return a;
+}
+
+int main(int argc, char** argv){
+        Student a = newStudent();
+        std::cout << a.id << std::endl;
+}
+```
+
+Will this code work?
+---
+Yes, it will work (though it pains me to even type it out!  In general never pass an object, always use a pointer or reference).
+---
+**C++**
+***
+
+Even though it will work, it isn't efficient.  It would be far easier for us to pass a pointer to the object (or in C++ a reference!).
+---
+**C++**
+***
