@@ -1,5 +1,5 @@
 ---
-CIS 343 - Structure of Programming Languages
+CIS 263 - Structure of Programming Languages
 
 Ira Woodring
 
@@ -671,7 +671,7 @@ When might we need a pointer?  Consider the following code:
 Car* newCar(std::string color){
   Car a;
   a.color = color;
-  
+
   // This can't work!
   return &a;
 }
@@ -689,7 +689,7 @@ Instead, we should do this:
 ```C++
 Car* newCar(std::string color){
   Car* a = new Car(color);
-  
+
   return a;
 }
 ```
@@ -705,4 +705,3 @@ However, ANYTIME we use the ```new``` keyword we are entering into a contract to
 ---
 **C++**
 ***
-
