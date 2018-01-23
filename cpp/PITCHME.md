@@ -713,15 +713,16 @@ If we are using classes this is (usually) rather easy.
 **C++**
 ***
 
-Besides the Constructor, a C++ class also has a "Destructor".  Where the constructor "builds" the initial state of an object the destructor "tears it down".  This is usually an ideal place to release any member we asked for.
+Besides the "Constructor", a C++ class also has a "Destructor".  Where the constructor "builds" the initial state of an object the destructor "tears it down".  This is usually an ideal place to release any members we asked for.
 ---
 ```C++
 class DynamicList{
 public:
+  // Constructor
   DynamicList(){
     int* items = new int[50];
   }
-
+  // Destructor
   ~DynamicList(){
     delete[] items;
   }
@@ -742,6 +743,22 @@ DynamicList a;    // Will be cleaned up by the system.
 DynamicList* b = new DynamicList();   // We must release!
 
 delete b;       // How we release it.
+```
+---
+**C++**
+***
+
+Note that we only have to create a destructor if our class is using memory that is unmanaged by the system.  Typically in C++ this occurs when you use the ```new``` keyword.
+---
+**C++**
+***
+
+Much like Java, C++ allows for generic programming.  A generic algorithm is one that operates the same regardless of data type it is operating on.  An ArrayList<> in Java is an example of a generic datatype; it doesn't matter what type of data it holds, it works the same.
+---
+**C++**
+***
+
+C++ provides capabilities for generic programming via **function templates** and **class templates**.
 ---
 **C++**
 ***
