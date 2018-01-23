@@ -635,7 +635,7 @@ At this point we should understand how to create basic imperative C++ programs. 
 **C++**
 ***
 
-We saw earlier how to create to define a class in C++.  But how do we instantiate one?  It turns out there are two ways.  If we have a Car object for instance:
+We saw earlier how to define a class in C++.  But how do we instantiate one?  It turns out there are two ways.  If we have a Car object for instance:
 
 ```C++
 Car a("Porsche", "911", "Yellow");
@@ -648,17 +648,61 @@ Car* a = new Car("Porsche", "911", "Yellow");
 **C++**
 ***
 
-The difference in these two methods of object creation is that one creates an object on the stack and one creates an object on the heap (which is which?  How can you tell?).
+The difference in these two methods of object creation is that when we create an object with the first syntax we don't have to manage the object's memory ourselves - it is automatically handled by the system.
+
+If we use the second method we must give the object's memory back to the system via the ```delete``` command.
 ---
 **C++**
 ***
 
-The interesting thing about the one created on the heap is that it is referred to via a pointer.  This means we need to use it differently than the other object, and means we must give the object's memory back when we are finished using it.
+The interesting thing about the one created with a pointer is that we need to use it differently than the other object, via a different syntax.
 ---
 **C++**
 ***
 
-When using a pointer we usually use an alternate syntax for accessing object members.  Instead of the ```.``` syntax (i.e. ```a.color = "white";``` we must use the ```->``` syntax (i.e. ```a->color = "white"```.  Note that you can access the members that a pointer's object contains if you dereference it first, i.e. ```(*a).color = "white"``` but this isn't very readable.
+Instead of the ```.``` syntax (i.e. ```a.color = "white";``` we must use the ```->``` syntax (i.e. ```a->color = "white"```.  Note that you can access the members that a pointer's object contains if you dereference it first, i.e. ```(*a).color = "white"``` but this isn't very readable.
 ---
 **C++**
 ***
+
+When might we need a pointer?  Consider the following code:
+---
+```C++
+Car* newCar(std::string color){
+  Car a;
+  a.color = color;
+  
+  // This can't work!
+  return &a;
+}
+```
+
+Why would this fail?
+---
+**C++**
+***
+
+It fails because a copy of the pointer is returned, but what the pointer points to is gone.
+
+Instead, we should do this:
+---
+```C++
+Car* newCar(std::string color){
+  Car* a = new Car(color);
+  
+  return a;
+}
+```
+
+Why does this work?
+---
+**C++**
+***
+
+This works because Car a is created on the heap.  A pointer to it is returned to the calling function.
+
+However, ANYTIME we use the ```new``` keyword we are entering into a contract to ultimately ```delete``` that object as well.  Don't forget to cleanup your memory!
+---
+**C++**
+***
+
