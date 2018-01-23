@@ -699,9 +699,49 @@ Why does this work?
 **C++**
 ***
 
-This works because Car a is created on the heap.  A pointer to it is returned to the calling function.
+This works because ```Car a``` is created on the heap.  A pointer to it is returned to the calling function.
 
-However, ANYTIME we use the ```new``` keyword we are entering into a contract to ultimately ```delete``` that object as well.  Don't forget to cleanup your memory!
+But remember! ANYTIME we use the ```new``` keyword we are entering into a contract to ultimately ```delete``` that object as well.  Don't forget to cleanup your memory!
+---
+**C++**
+***
+
+Being able to "be in charge" of memory ourselves is remarkably powerful, even though it can be dangerous to our code!  How do we remember to clean up our memory when we are finished with it?
+
+If we are using classes this is (usually) rather easy.
+---
+**C++**
+***
+
+Besides the Constructor, a C++ class also has a "Destructor".  Where the constructor "builds" the initial state of an object the destructor "tears it down".  This is usually an ideal place to release any member we asked for.
+---
+```C++
+class DynamicList{
+public:
+  DynamicList(){
+    int* items = new int[50];
+  }
+
+  ~DynamicList(){
+    delete[] items;
+  }
+  ...
+private:
+  int* items;
+  ...
+};
+```
+---
+**C++**
+***
+
+```~DynamicList()``` is the destructor for this class.  It will automatically be called by the system if the memory for it is managed, but if we create an object with the ```new``` keyword we need to call it manually.  We do this via the ```delete``` keyword.
+---
+```C++
+DynamicList a;    // Will be cleaned up by the system.
+DynamicList* b = new DynamicList();   // We must release!
+
+delete b;       // How we release it.
 ---
 **C++**
 ***
