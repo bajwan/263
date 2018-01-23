@@ -503,6 +503,15 @@ With references though, the function can modify the original memory location.
 **C++**
 ***
 
+Anytime we use a reference, and we know that the function should not change the reference, we should declare the reference to be ```const```.  This provides safety and reliability.
+
+```C++
+int methodThatShoudlntModify(const int & x)
+```
+---
+**C++**
+***
+
 Speaking of memory locations, it is essential for us to understand that there are two main areas in which our data is stored.  These two areas are called the **stack** and the **heap**.  They are used in very different ways.
 ---
 **C++**
@@ -617,6 +626,39 @@ Yes, it will work (though it pains me to even type it out!  In general never pas
 ***
 
 Even though it will work, it isn't efficient.  It would be far easier for us to pass a pointer to the object (or in C++ a reference!).
+---
+**C++**
+***
+
+At this point we should understand how to create basic imperative C++ programs.  It is now time to learn how to use objects with C++.
+---
+**C++**
+***
+
+We saw earlier how to create to define a class in C++.  But how do we instantiate one?  It turns out there are two ways.  If we have a Car object for instance:
+
+```C++
+Car a("Porsche", "911", "Yellow");
+
+or
+
+Car* a = new Car("Porsche", "911", "Yellow");
+```
+---
+**C++**
+***
+
+The difference in these two methods of object creation is that one creates an object on the stack and one creates an object on the heap (which is which?  How can you tell?).
+---
+**C++**
+***
+
+The interesting thing about the one created on the heap is that it is referred to via a pointer.  This means we need to use it differently than the other object, and means we must give the object's memory back when we are finished using it.
+---
+**C++**
+***
+
+When using a pointer we usually use an alternate syntax for accessing object members.  Instead of the ```.``` syntax (i.e. ```a.color = "white";``` we must use the ```->``` syntax (i.e. ```a->color = "white"```.  Note that you can access the members that a pointer's object contains if you dereference it first, i.e. ```(*a).color = "white"``` but this isn't very readable.
 ---
 **C++**
 ***
