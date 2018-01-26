@@ -1,5 +1,5 @@
 ---
-CIS 343 - Structure of Programming Languages
+CIS 263 - Structure of Programming Languages
 
 Ira Woodring
 
@@ -503,6 +503,15 @@ With references though, the function can modify the original memory location.
 **C++**
 ***
 
+Anytime we use a reference, and we know that the function should not change the reference, we should declare the reference to be ```const```.  This provides safety and reliability.
+
+```C++
+int methodThatShoudlntModify(const int & x)
+```
+---
+**C++**
+***
+
 Speaking of memory locations, it is essential for us to understand that there are two main areas in which our data is stored.  These two areas are called the **stack** and the **heap**.  They are used in very different ways.
 ---
 **C++**
@@ -617,6 +626,139 @@ Yes, it will work (though it pains me to even type it out!  In general never pas
 ***
 
 Even though it will work, it isn't efficient.  It would be far easier for us to pass a pointer to the object (or in C++ a reference!).
+---
+**C++**
+***
+
+At this point we should understand how to create basic imperative C++ programs.  It is now time to learn how to use objects with C++.
+---
+**C++**
+***
+
+We saw earlier how to define a class in C++.  But how do we instantiate one?  It turns out there are two ways.  If we have a Car object for instance:
+
+```C++
+Car a("Porsche", "911", "Yellow");
+
+or
+
+Car* a = new Car("Porsche", "911", "Yellow");
+```
+---
+**C++**
+***
+
+The difference in these two methods of object creation is that when we create an object with the first syntax we don't have to manage the object's memory ourselves - it is automatically handled by the system.
+
+If we use the second method we must give the object's memory back to the system via the ```delete``` command.
+---
+**C++**
+***
+
+The interesting thing about the one created with a pointer is that we need to use it differently than the other object, via a different syntax.
+---
+**C++**
+***
+
+Instead of the ```.``` syntax (i.e. ```a.color = "white";``` we must use the ```->``` syntax (i.e. ```a->color = "white"```.  Note that you can access the members that a pointer's object contains if you dereference it first, i.e. ```(*a).color = "white"``` but this isn't very readable.
+---
+**C++**
+***
+
+When might we need a pointer?  Consider the following code:
+---
+```C++
+Car* newCar(std::string color){
+  Car a;
+  a.color = color;
+
+  // This can't work!
+  return &a;
+}
+```
+
+Why would this fail?
+---
+**C++**
+***
+
+It fails because a copy of the pointer is returned, but what the pointer points to is gone.
+
+Instead, we should do this:
+---
+```C++
+Car* newCar(std::string color){
+  Car* a = new Car(color);
+
+  return a;
+}
+```
+
+Why does this work?
+---
+**C++**
+***
+
+This works because ```Car a``` is created on the heap.  A pointer to it is returned to the calling function.
+
+But remember! ANYTIME we use the ```new``` keyword we are entering into a contract to ultimately ```delete``` that object as well.  Don't forget to cleanup your memory!
+---
+**C++**
+***
+
+Being able to "be in charge" of memory ourselves is remarkably powerful, even though it can be dangerous to our code!  How do we remember to clean up our memory when we are finished with it?
+
+If we are using classes this is (usually) rather easy.
+---
+**C++**
+***
+
+Besides the "Constructor", a C++ class also has a "Destructor".  Where the constructor "builds" the initial state of an object the destructor "tears it down".  This is usually an ideal place to release any members we asked for.
+---
+```C++
+class DynamicList{
+public:
+  // Constructor
+  DynamicList(){
+    int* items = new int[50];
+  }
+  // Destructor
+  ~DynamicList(){
+    delete[] items;
+  }
+  ...
+private:
+  int* items;
+  ...
+};
+```
+---
+**C++**
+***
+
+```~DynamicList()``` is the destructor for this class.  It will automatically be called by the system if the memory for it is managed, but if we create an object with the ```new``` keyword we need to call it manually.  We do this via the ```delete``` keyword.
+---
+```C++
+DynamicList a;    // Will be cleaned up by the system.
+DynamicList* b = new DynamicList();   // We must release!
+
+delete b;       // How we release it.
+```
+---
+**C++**
+***
+
+Note that we only have to create a destructor if our class is using memory that is unmanaged by the system.  Typically in C++ this occurs when you use the ```new``` keyword.
+---
+**C++**
+***
+
+Much like Java, C++ allows for generic programming.  A generic algorithm is one that operates the same regardless of data type it is operating on.  An ArrayList<> in Java is an example of a generic datatype; it doesn't matter what type of data it holds, it works the same.
+---
+**C++**
+***
+
+C++ provides capabilities for generic programming via **function templates** and **class templates**.
 ---
 **C++**
 ***
