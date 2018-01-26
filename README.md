@@ -17,4 +17,4 @@ Data Structures and Algorithms
 |  2-2 | [C++](https://gitpitch.com/irawoodring/263/master?p=cpp "C++ notes") |             |       |
 |  3-1 | [C++](https://gitpitch.com/irawoodring/263/master?p=cpp "C++ notes") |             |       |
 |  3-2 | [C++](https://gitpitch.com/irawoodring/263/master?p=cpp "C++ notes") |             |       |
-|  3-3 | [C++](https://gitpitch.com/irawoodring/263/master?p=cpp "C++ notes") |  [Almost Useless Data Structure](https://github.com/irawoodring/CIS263-AUDS "AUDS Assignment")           |  Due 2/5/18 at 8:00 a.m.     |
+|  3-3 | [C++](https://gitpitch.com/irawoodring/263/master?p=cpp "C++ notes") |  [Almost Useless Data Structure](https://github.com/irawoodring/CIS263-AUDS "AUDS Assignment")           |  Due 2/5/18 at 8:00 a.m.      |
