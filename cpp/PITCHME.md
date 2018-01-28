@@ -879,6 +879,11 @@ FriendList& operator=(FriendList other){
 **C++**
 ***
 
+The 2011 C++ Standard introduced move operators as well.  We will not discuss these in class (no time...), but they provide the Move Constructor and the Move Operator=.  These make use of moving memory instead of copying or creating new memory.  This is often much faster.
+---
+**C++**
+***
+
 Much like Java, C++ allows for generic programming.  A generic algorithm is one that operates the same regardless of data type it is operating on.  An ArrayList<> in Java is an example of a generic datatype; it doesn't matter what type of data it holds, it works the same.
 ---
 **C++**
