@@ -753,12 +753,185 @@ Note that we only have to create a destructor if our class is using memory that 
 **C++**
 ***
 
+The destructor isn't the only function we (sometimes) need to create when we are making C++ classes.  Since we are on the hook for dealing with any dynamic memory we create, we must make sure our object works as expected in all circumstances.
+---
+**C++**
+***
+
+In general, when dealing with dynamic memory, we need to keep in mind **The Big Five**.
+
+- Destructor
+- Copy Constructor
+- Copy Operator=
+- Move Constructor
+- Move Operator=
+---
+**C++**
+***
+
+Each of these Big Five functions are provided to a class by default.  We only need to rewrite them if we are making use of dynamic memory or need some special functionality.
+---
+**C++**
+***
+
+The Copy Constructor is called whenever we pass an object to another object's constructor.  This should make an exact copy of an object:
+
+```C++
+Student a;      // Create a new object
+Student b(a);   // Make an identical copy of a
+```
+---
+**C++**
+***
+
+The problem here occurs when you copy an object that holds a pointer.  For instance, consider the following class (I'm going to put it all in the \*.h file for brevity):
+---
+```C++
+class FriendList {
+public:
+  // Constructor
+  FriendList(int numFriends){
+    this.numFriends = numFriends;
+    friends = new std::string[numFriends]
+  }
+  // Destructor
+  ~FriendList(){
+    delete[] friends;
+  }
+
+  // Code to add friends, etc.
+
+private:
+  std::string* friends;
+  int numFriends;
+};
+```
+---
+**C++**
+***
+
+This class makes a dynamic array of friends, sized whatever the user passes in when the FriendList is created.  This dynamic list is pointed to by the pointer friends.
+
+If we make an exact copy of this, then the new FriendList will have **exactly** the same friends.  If we make a change to one, it will change both.  Usually this is not what we want.
+---
+**C++**
+***
+
+This is what is called a **Shallow Copy**.  Usually we want to make a **Deep Copy**.
+---
+**C++**
+***
+
+The same thing occurs when we use the Copy Operator=.  Since C++ allows us to overload operators, we can define a custom meaning for what happens when we say this:
+
+```C++
+Student a;
+Student b;
+b = a;
+```
+---
+**C++**
+***
+
+This can also result in a shallow copy, when the user probably wants a deep copy.
+
+We can overcome this limitation by having the object create a new dynamic array (that we address with a pointer), and then copying the data over so there are two copies - one for each object.  Now changing one doesn't change them both.
+---
+**C++**
+***
+
+While we could have code that does this in two areas, the copy constructor and the copy operator=, in general we don't like repetitive code in Computer Science.  To get around this we use the **copy and swap** paradigm.
+---
+**C++**
+***
+
+This paradigm relies upon using a working copy constructor by the copy operator=.  This way, we only have one spot of "copy" code.  If we need to change or update it, it only needs to change in one place.
+---
+```C++
+// Copy Constructor
+FriendList(const FriendList& other){
+  numFriends = other.numFriends;
+  friends = new std::string[numFriends];
+  // These will be copied since std::string has a
+  // copy operator= defined.
+  for(int i=0; i<numFriends; i++){
+    friends[i] = other.friends[i];
+  }
+}
+
+FriendList& operator=(FriendList other){
+  // Notice!  other was passed by value.  This
+  // means that the copy constructor was passed.
+  // This is the copy we will use.
+
+  // We are using std::swap to efficiently swap the memory
+  // of these objects.  std::swap is optimized for many applications.
+  std::swap(friends, other.friends);
+  std::swap(numFriends, other.numFriends);
+
+  // Return this object (or a reference to it).  other
+  // will be consumed by garbage collection.  We have
+  // implicitly made use of the copy constructor.
+  return *this;
+}
+```
+---
+**C++**
+***
+
 Much like Java, C++ allows for generic programming.  A generic algorithm is one that operates the same regardless of data type it is operating on.  An ArrayList<> in Java is an example of a generic datatype; it doesn't matter what type of data it holds, it works the same.
 ---
 **C++**
 ***
 
 C++ provides capabilities for generic programming via **function templates** and **class templates**.
+---
+**C++**
+***
+
+The function template allows us to use a placeholder for any data type in our function.  For instance, we could do any of the following (not an exhaustive list):
+
+```C++
+template <typename T>
+void doSomething(T t);
+
+template <typename T>
+T doSomething(T t);
+
+template <typename T>
+T* doSomething(T* t);
+```
+---
+**C++**
+***
+
+Object templates work the same way, but we preface the class with the templating information:
+
+```C++
+
+template <typename T>
+class MyClass {
+public:
+  T getOurData();
+private:
+  T ourData;
+};
+```
+---
+**C++**
+***
+
+We could then create an object of this particular type by **parameterizing** the object creation call:
+
+```C++
+MyClass<int> nums;
+MyClass<std::string> strings;
+```
+---
+**C++**
+***
+
+Etc.  We will code more comprehensive examples of these in class, and I will demonstrate how they work.
 ---
 **C++**
 ***
