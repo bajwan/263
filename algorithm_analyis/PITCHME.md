@@ -8,6 +8,7 @@ Ira Woodring
 **Algorithmic Analysis**
 ---
 Consider the following code:
+
 ```C++
 #ifndef                 __H_BUBBLE_SORT
 #define                 __H_BUBBLE_SORT
