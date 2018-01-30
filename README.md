@@ -19,6 +19,6 @@ Data Structures and Algorithms
 |  3-2 | [C++](https://gitpitch.com/irawoodring/263/master?p=cpp "C++ notes") |             |       |
 |  3-3 | [C++](https://gitpitch.com/irawoodring/263/master?p=cpp "C++ notes") |  [Almost Useless Data Structure](https://github.com/irawoodring/CIS263-AUDS "AUDS Assignment")           |  Due 2/5/18 at 8:00 a.m.      |
 |  4-1 | [C++](https://gitpitch.com/irawoodring/263/master?p=cpp "C++ notes") |             |       |
-|  4-2 | [Algorithmic Analysis](https://gitpitch.com/irawoodring/263/master?p=algorithm_analysis) |             |       |
-|  4-3 | [Algorithmic Analysis](https://gitpitch.com/irawoodring/263/master?p=algorithm_analysis) |             |       |
+|  4-2 | [Algorithmic Analysis](https://gitpitch.com/irawoodring/263/master?p=algorithm_analysis "Algorithm Analysis") |             |       |
+|  4-3 | [Algorithmic Analysis](https://gitpitch.com/irawoodring/263/master?p=algorithm_analysis "Algorithm Analysis") |             |       |
 |  5-1 |  |             | Project 1 due by 8:00 a.m.   |
