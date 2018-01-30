@@ -39,3 +39,18 @@ void printArray(T* arr, size_t size){
 #endif
 ```
 ---
+**Algorithmic Analysis**
+
+How long does it take this code to run?
+---
+**Algorithmic Analysis**
+
+Actually, what does that question mean?
+
+Let's see how it runs on a few different machines.  EOS first:
+---
+**Algorithmic Analysis**
+
+Now my demo machine:
+---
+**Algorithmic Analysis**
