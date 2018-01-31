@@ -93,23 +93,23 @@ To find these upper bounds we typically take the highest order term of the equat
 ---
 **Algorithmic Analysis**
 
-To see why this is, consider the equation x^2+10x+3.  We will plot the individual pieces.
+To see why this is, consider the equation ```x^2+10x+3```.  We will plot the individual pieces.
 
 https://www.desmos.com/calculator
 ---
 **Algorithmic Analysis**
 
-We can readily see that the 10x starts out bigger than x^2 for lower values of x.  However, as x approaches infinity the growth of x^2 is drastically more than 10x.
+We can readily see that the ```10x``` starts out bigger than ```x^2``` for lower values of x.  However, as x approaches infinity the growth of ```x^2``` is drastically more than ```10x```.
 ---
 **Algorithmic Analysis**
 
 Let's take a small value of x and see what we get.  For instance, let's use 5.
 
-At x=5 x^2=25, but 10x=50.  So f(x)=75.
+At ```x=5 x^2=25```, but ```10x=50```.  So ```f(x)=75```.
 
 But at a larger value, for instance 10000:
 
-x=100,000 x^2=10,000,000,000 and 10x=100,000.  f(n) = 10,000,100,000.
+```x=100,000 x^2=10,000,000,000``` and ```10x=100,000```.  ```f(n) = 10,000,100,000```.
 ---
 **Algorithmic Analysis**
 
@@ -117,7 +117,7 @@ Really the 100,000 is negligible here.  It just doesn't add that much to the ove
 ---
 **Algorithmic Analysis**
 
-Notice that we can now say that x^2+10x is Big-O of x^2.  Why?  Well, due to the definition of Big-O we can pick some arbitrary c such as 3.  We will use g(n)=x^2.  We notice that at some point there is an n (here around 30) for which ALL values of 3x^2 are greater than all corresponding values of x^2 + 10x.
+Notice that we can now say that ```x^2+10x``` is Big-O of x^2.  Why?  Well, due to the definition of Big-O we can pick some arbitrary c such as 3.  We will use ```g(n)=x^2```.  We notice that at some point there is an n (here around 30) for which ALL values of ```3x^2``` are greater than all corresponding values of ```x^2 + 10x```.
 
 https://www.desmos.com/calculator
 ---
@@ -157,7 +157,7 @@ void bubble_sort(T* arr, size_t size){
 }
 ```
 
-So sum to 5n^2+n as the runtime, or O(n^2).
+So sum to ```5n^2+n``` as the runtime, or O(n^2).
 ---
 **Algorithmic Analysis**
 
