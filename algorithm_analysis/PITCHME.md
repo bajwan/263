@@ -114,3 +114,72 @@ Notice that we can now say that x^2+10x is Big-O of x^2.  Why?  Well, due to the
 https://www.desmos.com/calculator
 ---
 **Algorithmic Analysis**
+
+This seems weird... does that mean that just x is also Big-O of x^2?
+
+It turns out, yes it does.  This isn't a very precise bound, but it does fit the definition.  Usually we try to find a more precise bound.
+---
+**Algorithmic Analysis**
+
+Keep in mind - saying an algorithm has a smaller Big-O value does not mean that algorithm will run faster in every case.  It just means that as the size of the input to the two algorithms grows, at some point one becomes permanently faster than the other.
+---
+**Algorithmic Analysis**
+
+But how do we determine the functional runtime of some algorithm?
+
+- We look at every line in the algorithm
+- We assign a value based upon how many times that line runs, in terms of the input size
+- We sum the values together.  This will result in a polynomial.
+- The largest order term will be the Big-O value.
+---
+**Algorithmic Analysis**
+
+Consider our Bubble Sort code:
+```C++
+void bubble_sort(T* arr, size_t size){
+        for(int i=0; i<size; i++){                  // n
+                for(int j=i+1; j<size; j++){        // n * n
+                        if(arr[i] > arr[j]){        // n * n * 1
+                                T temp = arr[i];    // n * n * 1
+                                arr[i] = arr[j];    // n * n * 1
+                                arr[j] = temp;      // n * n * 1
+                        }
+                }
+        }
+}
+```
+
+So sum to 5n^2+n as the runtime, or O(n^2).
+---
+**Algorithmic Analysis**
+
+Let's compare that with this one:
+
+```C++
+// Insertion sort.  Modified from
+// https://www.geeksforgeeks.org/insertion-sort/
+
+void insertionSort(T* arr, int n)
+{
+   int i, key, j;
+   for (i = 1; i < n; i++)
+   {
+       key = arr[i];
+       j = i-1;
+
+       // What is the most number of times
+       // this will run?  We are concerned
+       // with the WORST case.
+       while (j >= 0 && arr[j] > key)
+       {
+           arr[j+1] = arr[j];
+           j = j-1;
+       }
+       arr[j+1] = key;
+   }
+}
+```
+---
+**Algorithmic Analysis**
+
+Once again we get a Big-O of O(n^2).  I thought Insertion Sort was better than Bubble Sort, what gives? (We will discuss this when we get to sorting.  For now, just theorize about it)..
