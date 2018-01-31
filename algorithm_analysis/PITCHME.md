@@ -190,4 +190,6 @@ void insertionSort(T* arr, int n)
 ---
 **Algorithmic Analysis**
 
-Once again we get a Big-O of O(n^2).  I thought Insertion Sort was better than Bubble Sort, what gives? (We will discuss this when we get to sorting.  For now, just theorize about it)..
+Once again we get a Big-O of O(n^2).
+
+(Isn't Insertion Sort  better than Bubble Sort?  What gives? We will discuss this when we get to sorting.  For now, just theorize about it!).
