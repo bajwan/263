@@ -73,13 +73,13 @@ Computer Scientists realized this and came up with platform agnostic ways to hel
 ---
 **Algorithmic Analysis**
 
-We call this **Asymptotic Analysis**, because they provide boundaries are algorithms never surpass.
+We call this **Asymptotic Analysis**, because they provide boundaries our algorithms never surpass.
 ---
 **Algorithmic Analysis**
 
 Big O is defined as
 
-f(x) = O(g(x)) if and only if there exists constants *c* and *k* such that 0≤f(n)≤cg(n) for all n≥k.
+```f(x) = O(g(x))``` if and only if there exists constants *c* and *k* such that ```0≤f(n)≤cg(n)``` for all n≥k.
 
 What does this mean?
 ---
