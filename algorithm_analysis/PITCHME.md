@@ -47,11 +47,15 @@ How long does it take this code to run?
 
 Actually, what does that question mean?
 
-Let's see how it runs on a few different machines.  EOS first:
+Let's see how it runs on a few different machines with different input sizes.  EOS first:
 ---
 **Algorithmic Analysis**
 
 Now my demo machine:
+---
+**Algorithmic Analysis**
+
+Let's graph the results.  What do we see?
 ---
 **Algorithmic Analysis**
 
@@ -66,6 +70,10 @@ Computer Scientists realized this and came up with platform agnostic ways to hel
 - Big O (Big O)
 - Big Ω (Big Omega)
 - Big Θ (Big Theta)
+---
+**Algorithmic Analysis**
+
+We call this **Asymptotic Analysis**, because they provide boundaries are algorithms never surpass.
 ---
 **Algorithmic Analysis**
 
