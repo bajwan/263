@@ -201,6 +201,9 @@ So what are the rules?  In general (from our text):
 - Time for a loop is the runtime of the statements * number iterations
 - Analyze nested loops from the inside out
 - Analyze functional calls first
+---
+**Algorithmic Analysis**
+
 - Consecutive statements just add; don't worry about the smaller one.  For instance, if we have an O(n) loop followed by an O(n^2) loop, the O(n) won't contribute that much the to algorithm's runtime so ignore it.
 - If/Else statements are the time to run the test plus the time to run the longest running possibility.
 ---
@@ -234,6 +237,7 @@ for(int i=0; i<n; i++){
     sum++;
   }
 }
+```
 ---
 **Algorithmic Analysis**
 
