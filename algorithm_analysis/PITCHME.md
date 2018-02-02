@@ -193,3 +193,91 @@ void insertionSort(T* arr, int n)
 Once again we get a Big-O of O(n^2).
 
 (Isn't Insertion Sort  better than Bubble Sort?  What gives? We will discuss this when we get to sorting.  For now, just theorize about it!).
+---
+**Algorithmic Analysis**
+
+So what are the rules?  In general (from our text):
+
+- Time for a loop is the runtime of the statements * number iterations
+- Analyze nested loops from the inside out
+- Analyze functional calls first
+- Consecutive statements just add; don't worry about the smaller one.  For instance, if we have an O(n) loop followed by an O(n^2) loop, the O(n) won't contribute that much the to algorithm's runtime so ignore it.
+- If/Else statements are the time to run the test plus the time to run the longest running possibility.
+---
+**Algorithmic Analysis**
+
+We also need to be very careful and logical.  Consider:
+
+```C++
+sum = 0;
+for(int i=0; i<n; i++){
+  for(int j=0; j<n*n; j++){
+    sum++;
+  }
+}
+```
+
+What is the runtime?
+---
+**Algorithmic Analysis**
+
+Hopefully you noticed the bounds of the second for-loop was ```n*n```.  This means our overall runtime is O(n^3).
+---
+**Algorithmic Analysis**
+
+How about this one:
+
+```C++
+sum = 0;
+for(int i=0; i<n; i++){
+  for(int j=0; j<i; j++){
+    sum++;
+  }
+}
+---
+**Algorithmic Analysis**
+
+This could be a tough one.  What we need to do is be clear about how many times that second for-loop is running.  The first time it will run 0 times, then 1, then 2, ..., n.  But at any given point how many times might it run?
+---
+**Algorithmic Analysis**
+
+Worst case it will run ```n``` times.  But this doesn't happen every iteration.  A more precise number would be n/2 times (remember, we are concerned with how long it takes *this* line to run), meaning the algorithm runs in n(n/2), or O(n^2) time.
+---
+**Algorithmic Analysis**
+
+```C++
+sum = 0;
+for(i = 0; i<n; i++){
+  for(j = 0;j<i*i; j++){
+    for(k = 0;k<j; k++){
+      sum++;
+    }
+  }
+}
+```
+---
+**Algorithmic Analysis**
+
+The i-loop will run ```n``` times.  The j-loop is similar to our last example, except instead of n/2 times it is going to run (n^2)/2 times.  Our k-loop will run around (n^2)/4 times.  ```sum``` ends up being incremented (n^5)/8 times, or O(n^5).
+---
+**Algorithmic Analysis**
+
+```C++
+sum = 0;
+for(int i=1; i<n; i++){
+  for(int j=1; j<i*i; j++){
+    if(j%i==0){
+      for(int k=0; k<j; k++){
+        sum++;
+      }
+    }
+  }
+}
+```
+---
+**Algorithmic Analysis**
+
+The i loop runs ```n``` times.
+The j loop runs ```(n^2)/2``` times.
+The if statement only allows the k loop to run if j is a multiple of i.
+The k loop only runs when j is a multiple of i, which happens i times; this effectively divides the number of times k is reached by i.  When the k loop does run, it runs ```(n^2)/4``` times.  Overall, we get O(n^4).
