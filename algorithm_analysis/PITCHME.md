@@ -206,6 +206,7 @@ So what are the rules?  In general (from our text):
 
 - Consecutive statements just add; don't worry about the smaller one.  For instance, if we have an O(n) loop followed by an O(n^2) loop, the O(n) won't contribute that much the to algorithm's runtime so ignore it.
 - If/Else statements are the time to run the test plus the time to run the longest running possibility.
+- Remember, we are estimating.  Sometimes our estimates may be high.
 ---
 **Algorithmic Analysis**
 
@@ -241,11 +242,11 @@ for(int i=0; i<n; i++){
 ---
 **Algorithmic Analysis**
 
-This could be a tough one.  What we need to do is be clear about how many times that second for-loop is running.  The first time it will run 0 times, then 1, then 2, ..., n.  But at any given point how many times might it run?
+This is a tough one.  What we need to do is be clear about how many times that second for-loop is running.  The first time it will run 0 times, then 1, then 2, ..., n.  How do we choose a value to assign?
 ---
 **Algorithmic Analysis**
 
-Worst case it will run ```n``` times.  But this doesn't happen every iteration.  A more precise number would be n/2 times (remember, we are concerned with how long it takes *this* line to run), meaning the algorithm runs in n(n/2), or O(n^2) time.
+Worst case it will run ```n``` times.  But this doesn't happen every iteration.  A more precise number would be n/2 times (remember, we are concerned with how long it takes *this* line to run - as n goes to infinity), meaning the algorithm runs in n(n/2), or O(n^2) time.
 ---
 **Algorithmic Analysis**
 
