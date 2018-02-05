@@ -77,13 +77,13 @@ We would need to move elements "to the right" to insert any new elements into th
 
 What is the worst possibility in this case?
 ---
-We could have completely reversed data coming in.  Then we would need to perform O(N) shifts.
+We could have completely reversed data coming in.  Then we would need to perform the array shift operation O(N) times (with an average of N/2 shifts each time).
 ---
 Also, if we deleted an element from anywhere other than the last element, and wished to remove any gaps we would need to "shift left" each time.
 
-This could also result in O(N) shifts, if we needed to get the first element each time.
+This could also result in needing to re-shift the array O(N) times (with N/2 shifts each time), if we needed to get the first element each time.
 ---
-So it looks like insertions and deletions are not good for array.
+So it seems if we are doing a lot of insertions and deletions arrays aren't the thing to use.
 
 To solve those issues Computer Scientists created the **linked list**.
 ---
@@ -126,3 +126,46 @@ We do that recursively until we find the element we are looking for.
 If we are using a linked list, this could end up being very costly.  O(N) is possible.
 
 However, if we have an array the time is O(log n).
+---
+C++ has something called the Standard Template Library (STL).
+
+The STL provides both of these implementations.  The array based data structure is the ```vector<>``` class.
+
+The list is the ```list<>``` class.
+
+We choose the one that suits our needs the best, based on how we are going to use our data.
+---
+Both of these data **containers** or **collections** provide some similar methods.  For instance,
+
+```
+int size() const;
+void clear();
+bool empty() const;
+void push_back(const Object & x);
+void pop_back();
+const Object & back() const;
+const Object & front() const;
+```
+---
+The list also provides
+
+```
+void push_front(const Object & x);
+void pop_front();
+```
+---
+Vector also gives us
+
+```
+Object & operator[] (int idx);
+Object & at(int idx);
+int capacity();
+void reserve(int newCapacity);
+```
+---
+So now we see something interesting...
+
+We gain access to these two types of lists in different ways.  Vector provides us with index operators, list does not.
+
+It would be nice if we had a way to gain access to the data in a uniform way.
+---
