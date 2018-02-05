@@ -21,4 +21,4 @@ Data Structures and Algorithms
 |  4-1 | [C++](https://gitpitch.com/irawoodring/263/master?p=cpp "C++ notes") |             |       |
 |  4-2 | [Algorithmic Analysis](https://gitpitch.com/irawoodring/263/master?p=algorithm_analysis "Algorithm Analysis") |             |       |
 |  4-3 | [Algorithmic Analysis](https://gitpitch.com/irawoodring/263/master?p=algorithm_analysis "Algorithm Analysis") |             |       |
-|  5-1 |  |             | Project 1 due by 8:00 a.m.   |
+|  5-1 | [Lists, Stacks, and Queues](https://gitpitch.com/irawoodring/263/master?p=lists_stacks_queues "Lists, Stacks, and Queues") |             | Project 1 due by 8:00 a.m.   |
