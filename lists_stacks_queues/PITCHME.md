@@ -13,7 +13,7 @@ Ira Woodring
 ---
 First thing, remember that an Abstract Data Type (an ADT) is some grouping of other objects combined with a set of functions that can be performed on those objects.
 ---
-For instance, in our AUDS data structure we created the set of objects we held may have included our data and objects that held state information about the data such as the size (number of elements we were housing).
+For instance, in our AUDS data structure we created, the set of objects we held may have included our data and objects that held state information about the data such as the size (number of elements we were housing).
 ---
 In this chapter we will be talking about the List ADT.  This is an ADT because we have no idea how the data is stored (that is hidden!).  It could be an array, a list, etc.
 
@@ -31,10 +31,18 @@ We can easily create a fixed size list with an array.  This type of list has the
 ---
 This is what the indices operator usually does for us.
 
-```
-int array[100];
-arr[10] = 6; // This is the same as
-*(arr + 10) = 6;
+```C++
+#include <iostream>
+
+int main(int argc, char** argv){
+        int a[1000];
+        for(int i=0; i<1000; i++){
+                a[i] = i;
+        }
+
+        std::cout << a[9] << std::endl;
+        std::cout << *(a+9) << std::endl;
+}
 ```
 ---
 Thus it is extremely fast to access some area of memory for a lookup or a storage.  As a matter of fact, there is no faster access.
