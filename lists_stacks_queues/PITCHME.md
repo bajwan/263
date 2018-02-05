@@ -40,12 +40,13 @@ int main(int argc, char** argv){
                 a[i] = i;
         }
 
+        // These next two are equivalent
         std::cout << a[9] << std::endl;
         std::cout << *(a+9) << std::endl;
 }
 ```
 ---
-Thus it is extremely fast to access some area of memory for a lookup or a storage.  As a matter of fact, there is no faster access.
+Thus it is extremely fast to access some area of memory for a lookup or a storage.  It is O(1), and there is no faster access.
 
 But arrays aren't perfect.
 ---
@@ -55,7 +56,9 @@ How long does it take to copy one array to another?
 ---
 ```C++
 T arrayOne = new T[N];
+
 ... Fill it up ...
+
 T arrayTwo = new T[N * 1.5];
 for(int i=0; i<N; i++){
   arrayTwo[i] = arrayOne[i];
@@ -70,9 +73,15 @@ What this implies is that if we are using our list in a way that causes us to ad
 ---
 Additionally, what if we are trying to keep information in sorted order?  If we are using an array and data is coming in completely randomly what problem might we run into?
 ---
-We would need to move elements "to the right" to insert any new elements into the list.  If the data is coming in a completely random way we will need to "shift right" N/2 times.
+We would need to move elements "to the right" to insert any new elements into the list.
+
+What is the worst possibility in this case?
+---
+We could have completely reversed data coming in.  Then we would need to perform O(N) shifts.
 ---
 Also, if we deleted an element from anywhere other than the last element, and wished to remove any gaps we would need to "shift left" each time.
+
+This could also result in O(N) shifts, if we needed to get the first element each time.
 ---
 So it looks like insertions and deletions are not good for array.
 
