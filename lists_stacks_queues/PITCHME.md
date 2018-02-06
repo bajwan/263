@@ -169,6 +169,6 @@ We gain access to these two types of lists in different ways.  Vector provides u
 
 It would be nice if we had a way to gain access to the data in a uniform way...
 ---
-![Enter the Dragon](./lists_stacks_queues/images/enter_the_dragon.jpg)
+![Enter the Dragon](./lists_stacks_queues/images/enter_the_dragon.jpg&size=auto)
 ---
 ![Enter the Iterator](./images/eti.png)
