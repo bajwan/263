@@ -168,6 +168,6 @@ So now we see something interesting...
 We gain access to these two types of lists in different ways.  Vector provides us with index operators, list does not.
 
 It would be nice if we had a way to gain access to the data in a uniform way...
----?image=./lists_stacks_queues/images/enter_the_dragon.jpg?size=auto
+---?image=./lists_stacks_queues/images/enter_the_dragon.jpg?size=auto 90%
 ---
 ![Enter the Iterator](./images/eti.png)
