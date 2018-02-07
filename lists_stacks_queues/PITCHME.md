@@ -170,3 +170,98 @@ We gain access to these two types of lists in different ways.  Vector provides u
 It would be nice if we had a way to gain access to the data in a uniform way...
 ---?image=./lists_stacks_queues/images/enter_the_dragon.jpg?size=80% auto
 ---?image=./lists_stacks_queues/images/eti.png?size=80% auto
+Not all collections have the same interfaces - for good reasons.  We use collections in different ways, to solve different problems.
+
+For instance, consider the Map container from the C++ STL.
+---
+Map<> stores key,value pairs.  For instance, we might hold
+
+```C++
+std::map<int, Citizen> citizens;
+citizens['198339485'] = citizenOne;
+citizens['983773282'] = citizenTwo;
+```
+
+If we wanted to index some Citizen objects by Social Security Number.
+---
+But what if we wanted to have generic, re-usable code that can operate on any kind of collection?  For instance, what if we wanted to search through all the elements and find the max one?
+
+In this particular instance we are going to pretend that the Citizen class has an overloaded operator> and some comparison has been defined by the programmer (maybe we are looking for the oldest Citizen).
+---
+The way we are used to doing something like that is this:
+
+```C++
+Citizen largest = citizens[0];  // Uh-oh...
+for(int i=0; i<citizens.size; i++){
+  if(citizens[i] > largest){    // Not going
+    largest = citizens[i];      // to work...
+  }
+}
+```
+
+Why won't this work?
+---
+Indices operators for maps don't work that way...
+
+We can't ask for the i-th element.
+
+We need something that is collection agnostic.  C++ provides iterators.
+---
+An iterator provides position information in a collection.  Iterators must be typed the same as the data they point to:
+
+```C++
+vector<int> nums;
+vector<int>::iterator nums_it;
+
+map<int, Citizen> citizens;
+map<int, Citizen>::iterator citizens_it = citizens.begin();
+```
+---
+Since C++11 we have the auto keyword that automatically determines data type information for us:
+
+```C++
+vector<int> nums;
+auto citizens_it = citizens.begin();
+```
+---
+To get an iterator, we ask for one that points to either the beginning or ending of a collection:
+
+```C++
+auto citizens_it = citizens.begin();
+auto nums_it = nums.end();
+```
+
+These give us the first and last elements, respectively.
+---
+Once we have an iterator we can use the increment and decrement operators to move forward and backward through a collection:
+
+```C++
+nums_it--;    //Goes back one position
+citizens_it++;  //Goes forward one position
+```
+---
+Iterators are references to objects stored at certain locations.  If we want to access the object at that position we do so with the ```*``` operator:
+
+```C++
+int age = *(citizens_it).age;
+```
+---
+Iterators may be compared to see if they point to the same location.  So if we have multiple iterators we could ask:
+
+```C++
+if(nums_it == nums_it2){
+  ... Do something ...
+}
+```
+---
+Now that we know what an iterator is, how can we use one to solve the aforementioned problem?  How can we find the largest object?
+---
+```C++
+Citizen largest = *(citizens).begin();
+for(auto citizens_it = citizens.begin(); citizens_it != citizens.end(); ++citizens_it){
+  if(*(citizens_it) > largest){
+    largest = *(citizens_it);
+  }
+}
+```
+---
