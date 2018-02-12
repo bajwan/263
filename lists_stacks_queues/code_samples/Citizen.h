@@ -24,12 +24,12 @@ class Citizen {
 			return this->ssn;
 		}
 
-		bool operator< (const Citizen& other){
+		bool operator< (const Citizen& other) const{
 			return this->age < other.age;
 		}
 
-		bool operator> (const Citizen& other){
-			return other.age < this->age;
+		bool operator> (const Citizen& other) const{
+			return other < *this;
 		}
 	private:
 		int ssn;

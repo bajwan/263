@@ -266,3 +266,9 @@ for(auto citizens_it = citizens.begin(); citizens_it != citizens.end(); ++citize
 }
 ```
 ---
+The next two data structures we talk about are Stacks and Queues.  They are included in this section on lists because that is all they are.  They are just lists that have a forced access pattern.
+---
+*Stacks* are lists that enforce a Last-in-first-out (LIFO) access pattern.  Much like a stack of plates, the first item removed is the last one put in (or on...) the stack.
+---
+We tend to view stacks as such:
+![Stacks](./images/stack.png)
