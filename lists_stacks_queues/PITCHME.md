@@ -268,7 +268,118 @@ for(auto citizens_it = citizens.begin(); citizens_it != citizens.end(); ++citize
 ---
 The next two data structures we talk about are Stacks and Queues.  They are included in this section on lists because that is all they are.  They are just lists that have a forced access pattern.
 ---
+According to our text it is the most fundamental data structure in Computer Science, next to arrays.  It is so important that many machines have stack instructions in their instruction set.
+---
 *Stacks* are lists that enforce a Last-in-first-out (LIFO) access pattern.  Much like a stack of plates, the first item removed is the last one put in (or on...) the stack.
 ---
 We tend to view stacks as such:
 ![Stacks](./lists_stacks_queues/images/stack.png)
+---
+C++ provides a Stack as an *adapter* class.  An adapter is a front-end interface for an existing data structure. The stack adapter houses a collection object and provides the following functionality:
+---
+```C++
+top() - Accesses the "top" element (does not remove it)
+empty() - Checks if the stack is empty
+size() - Number of elements in the stack
+push() - Places an element on the stack
+pop() - Removes the top element (note this function returns void!)
+```
+---
+The stack adapter has this signature:
+
+```C++
+template <class T, class Container = std::deque<T> > class stack;
+```
+
+It is double parameterized; it needs a data type and a collection type that holds that type of data as well.  The type of container can be vector, deque (double ended queue), or list (deque is used if nothing is specified).
+---
+To create a stack, we do something like this:
+
+```C++
+#include <iostream>
+#include <stack>
+#include <vector>
+
+int main(int argc, char** argv){
+  std::stack<int, std::vector<int> > num_stack;
+
+  for(int i=0; i<10; i++){
+    num_stack.push(i);
+  }
+
+  std::cout << "Number of elements: " << num_stack.size() << std::endl;
+
+  for(int i=0; i<10; i++){
+    std::cout << num_stack.top() << std::endl;
+    num_stack.pop();
+  }
+
+  std::cout << "Number of elements: " << num_stack.size() << std::endl;
+}
+```
+
+What is the output?
+---
+Stacks are used for all sorts of things in computing, both in hardware and software.  Some things we could use a stack for are
+
+  - Balance symbols
+  - Evaluate postfix expressions
+  - Convert infix expressions to postfix
+  - Keeping track of function calls
+---
+We've seen stacks usefulness in our memory management lectures.  Our book provides some excellent insight into how the above mentioned uses can work.
+---
+Queues, much like stacks, are adapters as well.  There signature is very similar to the stack:
+
+```C++
+template <class T, class Container = deque<T> > class queue;
+```
+---
+A queue is a First-in-first-out (FIFO) data structure.
+
+Queues are remarkably common, as many of real-life examples of queues exist and often need to be modeled.  Consider,
+
+  - call centers place calls on a queue
+  - printers put jobs on a queue
+  - networks place requests on a queue
+---
+In general, a queue must support the enqueue and dequeue operations.  Enqueue places an item on the queue and dequeue removes an item.
+---
+The C++ STL queue supports these operations:
+
+```C++
+size() - the number of elements in the queue
+empty() - checks if the queue is an empty queue
+push() - adds an element to the queue (enqueue)
+pop() - removes the element at the front of the queue (dequeue)
+front() - a reference to the item in the front of the queue
+back() - a reference to the item at the back of the queue
+```
+---
+We can use a queue as such:
+
+```C++
+#include <iostream>
+#include <queue>
+#include <deque>
+
+int main(int argc, char** argv){
+  std::queue<int, std::deque<int> > num_queue;
+
+  for(int i=0; i<10; i++){
+    num_queue.push(i);
+  }
+
+  std::cout << "Number of elements: " << num_queue.size() << std::endl;
+
+  for(int i=0; i<10; i++){
+    std::cout << num_queue.front() << std::endl;
+    num_queue.pop();
+  }
+
+  std::cout << "Number of elements: " << num_queue.size() << std::endl;
+}
+```
+
+What is the output?
+---
