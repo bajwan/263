@@ -28,4 +28,4 @@ These seem like good exam questions...
 
 ## Submission
 
-Turn this in on Blackboard by Wednesday, February 23rd at 8:00 a.m.
+Turn this in on Blackboard by Friday, February 23rd at 8:00 a.m.
