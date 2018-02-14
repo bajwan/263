@@ -53,3 +53,13 @@ struct TreeNode {
   TreeNode* nextSibling;
 };
 ```
+---
+**Binary Trees** are trees with special properties.  A binary tree enforces the rule that a node never has more than 2 children.
+
+Note there is no rule for a generic binary tree that we keep the tree balanced.
+
+This means we can (in a worst case scenario) end up with a tree that devolves into a linked list.
+---
+One thing we might do with a generic binary tree is evaluate expressions.  An **expression tree** puts an operator at each root node and operands at the leaves:
+---?images=./trees/images/expression_tree.png
+---
