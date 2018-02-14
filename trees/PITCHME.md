@@ -17,6 +17,7 @@ Many of our "better options" are based on the idea of trees.
 ---
 **Trees** can be viewed as a collection of nodes, where one node serves as a **root**.  From this root there are 0 or more nonempty subtrees, each that connect to the root.
 ---?image=./trees/images/trees.png
+---
 At the "bottom" of the tree are nodes with no children; these nodes are known as **leaves**.
 
 Any node that has the same parent node as another node is a **sibling** node to that node.  All the "normal" familial relationships are there; nodes can have aunts, nephews, grandparents, etc.
@@ -41,4 +42,5 @@ We can implement a simple tree (note we are NOT talking about binary trees at th
   - holds a pointer to our nextSibling
 
 - We get to our children and siblings through links (we've basically created two linked lists).
----?image=./trees/images/possible_tree.png 
+---?image=./trees/images/possible_tree.png
+---
