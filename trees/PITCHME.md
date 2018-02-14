@@ -44,3 +44,12 @@ We can implement a simple tree (note we are NOT talking about binary trees at th
 - We get to our children and siblings through links (we've basically created two linked lists).
 ---?image=./trees/images/possible_tree.png
 ---
+In code this might look like this (from our book):
+
+```C++
+struct TreeNode {
+  Object data;
+  TreeNode* firstChild;
+  TreeNode* nextSibling;
+};
+```
