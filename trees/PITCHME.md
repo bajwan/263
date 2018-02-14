@@ -69,14 +69,34 @@ When we have a large amount of data and we are concerned with searching we often
 
 A BST is a binary tree with a very important additional property; every left child is smaller than its parent and every right child is larger than its parent.
 
-Here we have a binary tree and a binary search tree:
+Here we have a binary search tree and a binary tree:
 ---?image=./trees/images/binary_tree_and_bst.png
 ---
-Note that the property of the BST assumes that our data can be ordered, so we need to have data that is comparable.
+Note that the second tree cannot be a BST because 7 is greater than 6 but is located on the left subtree of 6.
+---
+So the most important property of the BST assumes that our data can be ordered; we need to have data that is comparable.
 
 In C++ this likely means we will want to be using data that has the ```operator<``` overridden.
 ---
 Our book has an excellent example of a BST.  You can look at it here:
 
+(Though please be aware that he includes the "using namespace std" in this file ONLY to make it easier for students to read.  This should **NEVER** happen in production code, and he notes that in the book).
+
 [BST](https://github.com/irawoodring/263/tree/master/trees/code_samples/BinarySearchTree.h "BST code from Weiss book")
+---
+Spend a few minutes looking at this code.  In particular look at the ```findMin()``` and ```findMax()``` functions.  Describe in English what they are doing.
+---
+Hopefully you can see that the minimum value in a BST is the leftmost leaf, and the maximum value is the rightmost leaf.
+---
+A note...
+
+I particularly like this piece of code.  So much so in fact, that I would be shocked if it didn't end up on some assessment in the future...
+
+You should probably ask a lot of questions about it.
+---
+It is not uncommon for us to wish to completely traverse a tree.  Perhaps we want to evaluate an expression tree we saw earlier, perhaps for some other reason.  Regardless, there are multiple ways to go about tree traversal.
+---
+**Preorder traversal** occurs when a node is evaluated before its children.
+**Inorder traversal** occurs when we evaluate the left child, ourselves, and then the right child.
+**Postorder traversal** occurs when we evaluate the left and right children first, then the current node.
 ---
