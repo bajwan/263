@@ -24,6 +24,6 @@ Data Structures and Algorithms
 |  5-1 | [Lists, Stacks, and Queues](https://gitpitch.com/irawoodring/263/master?p=lists_stacks_queues "Lists, Stacks, and Queues") |             | Project 1 due by 8:00 a.m.   |
 |  5-2 | [Lists, Stacks, and Queues](https://gitpitch.com/irawoodring/263/master?p=lists_stacks_queues "Lists, Stacks, and Queues") |             |   |
 |  5-3 | Substitute teacher  |             |  |
-|  6-1 | [Lists, Stacks, and Queues](https://gitpitch.com/irawoodring/263/master?p=lists_stacks_queues "Lists, Stacks, and Queues") |             | Project 1 due by 8:00 a.m.   |
+|  6-1 | [Lists, Stacks, and Queues](https://gitpitch.com/irawoodring/263/master?p=lists_stacks_queues "Lists, Stacks, and Queues") |             |  |
 |  6-2 | [Trees](https://gitpitch.com/irawoodring/263/master?p=trees "Trees") | [Stacks and Queues Assignment](./assignments/stacks_and_queues.md "Stacks and Queues") | Due February 23 by 8:00 a.m.  |
-|  6-3 | [Trees](https://gitpitch.com/irawoodring/263/master?p=trees "Trees") |      | Project 1 due by 8:00 a.m.   |
+|  6-3 | [Trees](https://gitpitch.com/irawoodring/263/master?p=trees "Trees") |      |   |
