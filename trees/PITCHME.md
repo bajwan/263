@@ -42,7 +42,7 @@ We can implement a simple tree (note we are NOT talking about binary trees at th
   - holds a pointer to our nextSibling
 
 - We get to our children and siblings through links (we've basically created two linked lists).
----?image=./trees/images/possible_tree.png
+---?image=./trees/images/possible_tree.png?size=auto
 ---
 In code this might look like this (from our book):
 
