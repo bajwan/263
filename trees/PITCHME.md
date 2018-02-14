@@ -63,3 +63,20 @@ This means we can (in a worst case scenario) end up with a tree that devolves in
 One thing we might do with a generic binary tree is evaluate expressions.  An **expression tree** puts an operator at each root node and operands at the leaves:
 ---?image=./trees/images/expression_tree.png
 ---
+To evaluate this expression tree we would then recursively evaluate the left and right subtrees.
+---
+When we have a large amount of data and we are concerned with searching we often use the **Binary Search Tree** ADT (BST).
+
+A BST is a binary tree with a very important additional property; every left child is smaller than its parent and every right child is larger than its parent.
+
+Here we have a binary tree and a binary search tree:
+---?image=./trees/images/binary_tree_and_bst.png
+---
+Note that the property of the BST assumes that our data can be ordered, so we need to have data that is comparable.
+
+In C++ this likely means we will want to be using data that has the ```operator<``` overridden.
+---
+Our book has an excellent example of a BST.  You can look at it here:
+
+[BST](https://github.com/irawoodring/263/tree/master/trees/code_samples/BinarySearchTree.h "BST code from Weiss book")
+---
