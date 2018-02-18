@@ -100,3 +100,8 @@ It is not uncommon for us to wish to completely traverse a tree.  Perhaps we wan
 **Inorder traversal** occurs when we evaluate the left child, ourselves, and then the right child.
 **Postorder traversal** occurs when we evaluate the left and right children first, then the current node.
 ---
+**In-class work on Weiss BST code, and creating traversal algorithms.**
+---
+Binary Search Trees are not perfect.  It is easy for a BST to become unbalanced:
+---?image=./trees/images/unbalanced_bst.png&size=50% auto
+---
