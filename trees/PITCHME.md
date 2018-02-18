@@ -16,7 +16,7 @@ For a large amount of data though, that is changing rapidly, we need a better op
 Many of our "better options" are based on the idea of trees.
 ---
 **Trees** can be viewed as a collection of nodes, where one node serves as a **root**.  From this root there are 0 or more nonempty subtrees, each that connect to the root.
----?image=./trees/images/trees.png
+---?image=./trees/images/trees.png&size=50% auto
 ---
 At the "bottom" of the tree are nodes with no children; these nodes are known as **leaves**.
 
@@ -42,7 +42,7 @@ We can implement a simple tree (note we are NOT talking about binary trees at th
   - holds a pointer to our nextSibling
 
 - We get to our children and siblings through links (we've basically created two linked lists).
----?image=./trees/images/possible_tree.png?size=auto
+---?image=./trees/images/possible_tree.png&size=50% auto
 ---
 In code this might look like this (from our book):
 
@@ -61,7 +61,7 @@ Note there is no rule for a generic binary tree that we keep the tree balanced.
 This means we can (in a worst case scenario) end up with a tree that devolves into a linked list.
 ---
 One thing we might do with a generic binary tree is evaluate expressions.  An **expression tree** puts an operator at each root node and operands at the leaves:
----?image=./trees/images/expression_tree.png
+---?image=./trees/images/expression_tree.png&size=50% auto
 ---
 To evaluate this expression tree we would then recursively evaluate the left and right subtrees.
 ---
@@ -70,7 +70,7 @@ When we have a large amount of data and we are concerned with searching we often
 A BST is a binary tree with a very important additional property; every left child is smaller than its parent and every right child is larger than its parent.
 
 Here we have a binary search tree and a binary tree:
----?image=./trees/images/binary_tree_and_bst.png
+---?image=./trees/images/binary_tree_and_bst.png&size=50% auto
 ---
 Note that the second tree cannot be a BST because 7 is greater than 6 but is located on the left subtree of 6.
 ---
