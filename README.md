@@ -26,4 +26,7 @@ Data Structures and Algorithms
 |  5-3 | Substitute teacher  |             |  |
 |  6-1 | [Lists, Stacks, and Queues](https://gitpitch.com/irawoodring/263/master?p=lists_stacks_queues "Lists, Stacks, and Queues") |             |  |
 |  6-2 | [Trees](https://gitpitch.com/irawoodring/263/master?p=trees "Trees") | [Stacks and Queues Assignment](./assignments/stacks_and_queues.md "Stacks and Queues") | Due February 23 by 8:00 a.m.  |
-|  6-3 | [Trees](https://gitpitch.com/irawoodring/263/master?p=trees "Trees") |      |   |
+|  6-3 | [Trees](https://gitpitch.com/irawoodring/263/master?p=trees "Trees") - Binary Search Trees |      |  In class work; creating tree traversal algorithms. |
+| 7-1 | [Trees](https://gitpitch.com/irawoodring/263/master?p=trees "Trees") - AVL Trees | | |
+| 7-2 | [Trees](https://gitpitch.com/irawoodring/263/master?p=trees "Trees") - Red-Black Trees | | |
+| 7-3 | [Trees](https://gitpitch.com/irawoodring/263/master?p=trees "Trees")  | | |
