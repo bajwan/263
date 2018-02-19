@@ -130,3 +130,14 @@ The height of any left and right subtree can differ by at most 1.
 <br /><br /><br /><br /><br /><br /><br />
 Which of these is an AVL?
 ---
+The left tree is the AVL; the right tree is a BST only, as the left subtree of root has a height of 3 while the right subtree has a height of 1.
+
+An AVL tree always has a height a bit larger than log(N) (see figure 4.33 in book of an AVL with height 9).
+---
+An AVL relies upon **rotations** to maintain balance.  There are four operations that can cause an imbalance and must therefore result in a rotation: (with \alpha being the node that needs to be rebalanced):
+---
+  - An insertion to the left subtree of the left child of \alpha
+  - An insertion to the right subtree of the left child of \alpha
+  - An insertion to the left subtree of the right child of \alpha
+  - An insertion to the right subtree of the right child of \alpha
+---
