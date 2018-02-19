@@ -134,10 +134,16 @@ The left tree is the AVL; the right tree is a BST only, as the left subtree of r
 
 An AVL tree always has a height a bit larger than log(N) (see figure 4.33 in book of an AVL with height 9).
 ---
-An AVL relies upon **rotations** to maintain balance.  There are four operations that can cause an imbalance and must therefore result in a rotation: (with \alpha being the node that needs to be rebalanced):
+An AVL relies upon **rotations** to maintain balance.  There are four operations that can cause an imbalance and must therefore result in a rotation: (with α being the node that needs to be rebalanced):
 ---
-  - An insertion to the left subtree of the left child of \alpha
-  - An insertion to the right subtree of the left child of \alpha
-  - An insertion to the left subtree of the right child of \alpha
-  - An insertion to the right subtree of the right child of \alpha
+  - An insertion to the left subtree of the left child of α
+  - An insertion to the right subtree of the left child of α
+  - An insertion to the left subtree of the right child of α
+  - An insertion to the right subtree of the right child of α
 ---
+Cases 1 and 4 result in a single rotation, while cases 2 and 3 result in a double rotation.  Note that these rotations are used not just in AVL trees, but in many other self-adjusting trees as well.
+---
+In general a single rotation is needed whenever an insertion is made on the outside of the tree (when we are working on the left-of-the left or the right-of-the right) while double rotations are needed inside the tree.
+---?image=./trees/images/single_rotation_case_1.png&size=50% auto
+---
+In this case we 
