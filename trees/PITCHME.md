@@ -124,5 +124,5 @@ We need to prevent this from happening.
 **AVL Trees** are a self-adjusting (or self-balancing) tree.  They are BSTs, but they have an additional property that must be maintained -
 
 The height of any left and right subtree can differ by at most 1.
----?image=./trees/images/bst_and_avl.png&=size=50% auto
+---?image=./trees/images/bst_and_avl.png&size=50% auto
 ---
