@@ -102,6 +102,27 @@ It is not uncommon for us to wish to completely traverse a tree.  Perhaps we wan
 ---
 **In-class work on Weiss BST code, and creating traversal algorithms.**
 ---
+Inserting an element in a BST is easy without any real caveats (the only real issue is do we store duplicates.  We can, but is usually better to just keep a counter variable of the number "in" that node).
+---
+Deletions are more complex (this tends to be true for a lot of data structures, according to Weiss).
+
+If we are deleting a leaf node then the operation is easy.  If a node to delete has once child, no problem.  But what do we do if the node has two children?
+---
+The normal strategy is to remove the node and replace it with the smallest node in the right subtree (which will be a leaf).  This can result in a tree that is deeper on the left than the right, since this algorithm "steals" nodes from the right subtree to fill the left.
+---
+If we don't expect to have very many deletions we sometimes merely mark an element as deleted and leave it in the tree.  This is called **lazy deletion**.  This
+---
 Binary Search Trees are not perfect.  It is easy for a BST to become unbalanced:
 ---?image=./trees/images/unbalanced_bst.png&size=50% auto
+---
+The previous tree is very unbalanced (possibly from too many deletions).
+
+As a BST becomes more and more unbalanced, the search behavior can devolve into an O(N) operation (basically the tree becomes a linked list).
+
+We need to prevent this from happening.
+---
+**AVL Trees** are a self-adjusting (or self-balancing) tree.  They are BSTs, but they have an additional property that must be maintained -
+
+The height of any left and right subtree can differ by at most 1.
+---?image=./trees/images/bst_and_avl.png?=size=50% auto
 ---
