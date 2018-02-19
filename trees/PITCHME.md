@@ -156,4 +156,17 @@ Let's see another example:
 ---?image=./trees/images/single_rotation_1.png&size=50% auto
 ---
 In this example there was no Y subtree, but the result is the same.  Connect k2 to k1, rehang, and "gravity" balances.
+
+The following is case 4, which is also a single rotation but the opposite direction:
+---?image=./trees/images/single_rotation_case_4.png&size=50% auto
 ---
+Cases 2 and 3 are much more complex than cases 1 and 4, though.  In these two cases a single rotation doesn't bring the tree into balance:
+---?image=./trees/images/single_rotation_fail.png&size=50% auto
+---
+In this case, what we must do is a double rotation:
+---?image=./trees/images/double_rotation.png&size=50% auto
+---
+We needed to make k2 the root (k1 and k3 both fail as the root...).  We first perform a left rotation to move k2 to k1's spot.  Then we perform a right rotation to move k2 to k3's spot.  "Rehang", and we have balance.
+---
+In case 3 we must rotate right and then left to perform our double rotation:
+---?image=./trees/images/right_left_double_rotation.png&size=50% auto
