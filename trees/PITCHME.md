@@ -170,3 +170,9 @@ We needed to make k2 the root (k1 and k3 both fail as the root...).  We first pe
 ---
 In case 3 we must rotate right and then left to perform our double rotation:
 ---?image=./trees/images/right_left_double_rotation.png&size=50% auto
+---
+Just because the local subtree has been balanced doesn't mean that the entire tree is balanced.  We can have a situation where an insertion affects more than the local subtrees.
+
+The solution is to recursively rebalance.
+---
+**In-class work: show the steps of inserting the numbers 0-10 into an AVL tree.**
