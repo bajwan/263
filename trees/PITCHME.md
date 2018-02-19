@@ -125,9 +125,8 @@ We need to prevent this from happening.
 
 The height of any left and right subtree can differ by at most 1.
 ---?image=./trees/images/bst_and_avl.png&size=50% auto
+<br />
+<br />
+<br />
 Which of these is an AVL?
-
-
-
-
 ---
