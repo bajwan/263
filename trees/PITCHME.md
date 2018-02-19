@@ -146,4 +146,14 @@ Cases 1 and 4 result in a single rotation, while cases 2 and 3 result in a doubl
 In general a single rotation is needed whenever an insertion is made on the outside of the tree (when we are working on the left-of-the left or the right-of-the right) while double rotations are needed inside the tree.
 ---?image=./trees/images/single_rotation_case_1.png&size=50% auto
 ---
-In this case we 
+It is often helpful to imagine tree balancing rotations visually or mentally by thinking of the nodes as "hanging" and balanced via gravity.  Let's see an example:
+---
+In this case we added to the X tree which caused an imbalance to k2.  To perform the rotation we remove Y from k1 and attach it to k2 (if it exists).  We then connect k2 to k1 where Y was previously connected.  We then "hang" k1 where k2 was previously and allow "gravity" to balance the nodes.
+
+k1 and k2 "rotate" to the right resulting in balance.
+---
+Let's see another example:
+---?image=./trees/images/single_rotation_1.png&size=50% auto
+---
+In this example there was no Y subtree, but the result is the same.  Connect k2 to k1, rehang, and "gravity" balances.
+---
