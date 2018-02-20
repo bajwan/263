@@ -30,3 +30,6 @@ Data Structures and Algorithms
 | 7-1 | [Trees](https://gitpitch.com/irawoodring/263/master?p=trees "Trees") - AVL Trees | | |
 | 7-2 | [Trees](https://gitpitch.com/irawoodring/263/master?p=trees "Trees") - Red-Black Trees | | |
 | 7-3 | [Trees](https://gitpitch.com/irawoodring/263/master?p=trees "Trees")  | | |
+| 8-1 | | | |
+| 8-2 | | | |
+| 8-3 | Midterm | | |
