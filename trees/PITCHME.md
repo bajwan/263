@@ -226,7 +226,7 @@ It is safe to color the root black because it merely adds one black node to ever
 This is the toughest case and will require some reorganization.  As it turns out, there are two possibilities here:
 
 Subcase 1: our node is on the "outside" of the subtree.
----?image=./tree/images/inserting-5.png&size=50% auto
+---?image=./trees/images/inserting-5.png&size=50% auto
 ---
 We can fix this very simply with a rotation and recolor:
 ---?image=./trees/images/inserting-5-fixed.png&size=50% auto
