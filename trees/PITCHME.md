@@ -196,15 +196,15 @@ To "fix" a RB tree's imbalance or coloring issues we can use rotations (just lik
 
 Once again, after inserting a new node (which will be at a leaf), we have four possibilities:
 ---
-1.  Our node is the root.
+1)  Our node is the root.
 
 If this is the case we repaint the node black.
 ---
-2.  The parent of the node we inserted is black.
+2)  The parent of the node we inserted is black.
 
 Not a problem; nothing needs to happen.
 ---
-3.  The parent is red, but so is our aunt.
+3)  The parent is red, but so is our aunt.
 
 Recolor our parent and uncle black, and repaint our grandparent red (so we haven't added any additional black nodes in the path through this subtree).
 
@@ -212,6 +212,6 @@ Consider inserting 10 into this tree:
 ---?image=./trees/images/inserting_10_invalid.png&size=50% auto
 INVALID STATE!<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 ---
-4.  Our parent node is red but our aunt is black.
+4)  Our parent node is red but our aunt is black.
 
 This is the toughest case and will require some reorganization.
