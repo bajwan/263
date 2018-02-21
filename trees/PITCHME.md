@@ -211,6 +211,8 @@ Recolor our parent and uncle black, and repaint our grandparent red (so we haven
 Consider inserting 10 into this tree:
 ---?image=./trees/images/inserting_10_invalid.png&size=50% auto
 INVALID STATE!<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+---?image=./trees/better_but_not_done.png&size=50% auto
+Better, but still not complete...<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 ---
 4)  Our parent node is red but our aunt is black.
 
