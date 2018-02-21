@@ -227,6 +227,7 @@ This is the toughest case and will require some reorganization.  As it turns out
 
 Subcase 1: our node is on the "outside" of the subtree.
 ---?image=./trees/images/inserting-5.png&size=50% auto
+Inserting 5:<br /><br /><br /><br /><br /><br /><br /><br /><br />
 ---
 We can fix this very simply with a rotation and recolor:
 ---?image=./trees/images/inserting-5-fixed.png&size=50% auto
