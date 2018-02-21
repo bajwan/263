@@ -176,3 +176,41 @@ Just because the local subtree has been balanced doesn't mean that the entire tr
 The solution is to recursively rebalance.
 ---
 **In-class work: show the steps of inserting the numbers 0-10 into an AVL tree.**
+---
+AVL trees are not the only self-adjusting or self-balancing trees.  A similar structure (that is more widely used) is the **Red-Black Tree**.
+
+Just like AVL trees, Red-Black trees are also BSTs.  They have the following properties:
+---
+1. Every node is either red or black
+2. The root is black (also the null-pointers)
+3. Children of a red node must be black
+4. Every path from a node to a null pointer must have the same number of black nodes
+---
+When inserting into a RB tree the new elements will go at the root (just like an AVL).  If we color this node black we have a problem (what is it?).
+---
+If we color it black then a path ending at this node will have more black nodes than another path.  This violates rule 4.  Therefore we have to color this node red.
+
+If it so happens that our parent is black we can leave the tree like this.  Otherwise, we violate rule 3.
+---
+To "fix" a RB tree's imbalance or coloring issues we can use rotations (just like AVL trees), or we can recolor.
+
+Once again, after inserting a new node (which will be at a leaf), we have four possibilities:
+---
+1.  Our node is the root.
+
+If this is the case we repaint the node black.
+---
+2.  The parent of the node we inserted is black.
+
+Not a problem; nothing needs to happen.
+---
+3.  The parent is red, but so is our aunt.
+
+Recolor our parent and uncle black, and repaint our grandparent red (so we haven't added any additional black nodes in the path through this subtree).
+
+Consider inserting 10 into this tree:
+---?image=./trees/images/inserting_10_invalid.png&size=90% auto
+---
+4.  Our parent node is red but our aunt is black.
+
+This is the toughest case and will require some reorganization.
