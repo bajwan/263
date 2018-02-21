@@ -212,8 +212,14 @@ Consider inserting 10 into this tree:
 ---?image=./trees/images/inserting_10_invalid.png&size=50% auto
 INVALID STATE!<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 ---?image=./trees/images/better_but_not_done.png&size=50% auto
-Better, but still not complete...<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+Better, but still not complete...<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 ---
+Hopefully you noticed the problem: the root is red.
+
+If this were a subtree though, this would be ok.  Since it is the root we can safely just color it black.  Why?
+---
+It is safe to color the root black because it merely adds one black node to every path.  Since every path updates by one, no big deal.
+---?image=./trees/images/fixed_case_3.png&size=50% auto
 4)  Our parent node is red but our aunt is black.
 
 This is the toughest case and will require some reorganization.
