@@ -220,6 +220,30 @@ If this were a subtree though, this would be ok.  Since it is the root we can sa
 ---
 It is safe to color the root black because it merely adds one black node to every path.  Since every path updates by one, no big deal.
 ---?image=./trees/images/fixed_case_3.png&size=50% auto
+---
 4)  Our parent node is red but our aunt is black.
 
-This is the toughest case and will require some reorganization.
+This is the toughest case and will require some reorganization.  As it turns out, there are two possibilities here:
+
+Subcase 1: our node is on the "outside" of the subtree.
+---?image=./tree/images/inserting-5.png&size=50% auto
+---
+We can fix this very simply with a rotation and recolor:
+---?image=./trees/images/inserting-5-fixed.png&size=50% auto
+---
+We merely rotated 12 and 25 and recolored 12 black.  All properties are now satisfied.
+
+However, we could have this:
+
+Subcase 2: our node is on the "inside" of the subtee.
+---iamge=./trees/images/inserting-30.png&size=50% auto
+---
+If this is the case we must first perform a rotation to "percolate" our inserted node upward:
+---image=./trees/images/inserting-30-2.png&size=50% auto
+---
+Now we can have the same situation from Subcase 1, and can solve this problem the same way - with a rotation:
+---./image=./trees/images/inserting-30-3.png&size=50% auto
+---
+We recolor 30 to bring adhere to our properties and we are complete.
+---./image=./trees/images/inserting-30-4.png&size=50% auto
+---
