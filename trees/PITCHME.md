@@ -209,7 +209,7 @@ Not a problem; nothing needs to happen.
 Recolor our parent and uncle black, and repaint our grandparent red (so we haven't added any additional black nodes in the path through this subtree).
 
 Consider inserting 10 into this tree:
----?image=./trees/images/inserting_10_invalid.png&size=90% auto
+---?image=./trees/images/inserting_10_invalid.png&size=50% auto
 ---
 4.  Our parent node is red but our aunt is black.
 
