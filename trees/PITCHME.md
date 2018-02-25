@@ -245,6 +245,6 @@ If this is the case we must first perform a rotation to "percolate" our inserted
 Now we can have the same situation from Subcase 1, and can solve this problem the same way - with a rotation:
 ---?image=./trees/images/inserting-30-3.png&size=50% auto
 ---
-We recolor 30 to bring adhere to our properties and we are complete.
+We recolor 30 to adhere to our properties and we are complete.
 ---?image=./trees/images/inserting-30-4.png&size=50% auto
 ---
