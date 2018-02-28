@@ -148,3 +148,54 @@ Separate chaining is the idea of creating a vector (or some other similar struct
 
 When we are looking up an element, we first hash its key and then iterate over the added chain until we find the element we desire.
 ---?image=./hashing/images/separate_chaining.jpeg&size=50% auto
+Often it is the case that the most recent data requested is the most recent data added, so in general it is a good idea to place the new element at the front of the chain.
+
+This implies we should use a data structure like a linked list and not an array (why?).
+---
+If you remember our earlier lectures on arrays you should remember that placing an element at the front of an array causes all of the other elements to shift right - which is very slow.
+---
+Ultimately though, we chose a hash because we want fast searching based on a key.  Preferably we want O(1) lookups; if we are using separate chaining this may not be possible.
+
+What is the worst possible situation that could happen with separate chaining?
+---
+The worst case scenario occurs if all of our keys hash to the same spot, and the element we are looking for is at the end of the chain.  In this case, what is the runtime?
+---
+It is an O(n) operation to go through the entire list; if our hashing function was an O(1) operation then the minimum possible runtime in this scenario is as bad as a regular array (and much worse than a tree...).
+---
+So, we need some methods of chaining that don't involve using separate lists.
+
+The first of these methods is something we call **linear probing**.
+---
+To hash via linear probing we first calculate our hash and navigate to that index.  If the index is full, we go to the next available spot.
+
+What problems might we have with this method?
+---
+You probably realized fairly quickly that this can be slow.  What you might not have realized is that besides the slow speed we start to see something called **primary clustering** begin to happen.
+---
+Primary clustering refers to the situation where we have blocks of clustered elements in the array.
+
+Given the elements {89, 18, 49, 58, 69} for instance, we could run into a situation like this:
+---?image=./hashing/images/linear_probing.jpeg&size=50% auto
+---
+Notice the clustering that occurred between 8-2 (with wraparound).
+
+The rest of the table remained empty; we didn't do a good job of distributing our data.
+---
+**Quadratic probing** is another method of handling collisions.  Where linear probing sequentially proceeds until an empty spot is found in the array, quadratic probing uses a quadratic function.  For instance, f(i) = i^2.
+---
+It works like this; we hash the key and navigate to that array index.  If the index is full we check the next spot.  If that one is full we navigate to 4 spots past (the initial index).  If that spot is full, we navigate to 9 spots past, etc.
+---
+It turns out that if we are using quadratic probing and the table size is prime that we can guarantee to find a spot this way if the table is always half empty (Theorem 5.1 in the book).
+---
+Can you see any issues with quadratic hashing?
+---
+It turns out that when we are using quadratic hashing elements with keys that cause collisions also will attempt to fill the same subsequent cells (since they are using the same collision function).
+
+This is called **secondary clustering**.
+---
+What we need is function that makes a decision about how to resolve a collision based upon the properties of the the current data.
+
+One way we do this is by **double hashing**.
+---
+Double hashing works like this:  we calculate an index from the key.  We find the current index is full so hash again and go that distance past the original index.  As long as we choose a good hash function this should help distribute our data fairly well!
+---
