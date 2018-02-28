@@ -148,6 +148,7 @@ Separate chaining is the idea of creating a vector (or some other similar struct
 
 When we are looking up an element, we first hash its key and then iterate over the added chain until we find the element we desire.
 ---?image=./hashing/images/separate_chaining.jpeg&size=50% auto
+---
 Often it is the case that the most recent data requested is the most recent data added, so in general it is a good idea to place the new element at the front of the chain.
 
 This implies we should use a data structure like a linked list and not an array (why?).
