@@ -140,3 +140,11 @@ So we must be careful when creating hashing functions.  We must be aware of our 
 
 Unfortunately it turns out that (except in special cases) there are no perfect hashing functions.  So we have to deal with collisions eventually.
 ---
+So how do we deal with these collisions?
+
+It turns out there are several methods that are commonly used.  The first one we are going to look at is called **separate chaining**.
+---
+Separate chaining is the idea of creating a vector (or some other similar structure) to store elements that hash to the same spot.
+
+When we are looking up an element, we first hash its key and then iterate over the added chain until we find the element we desire.
+---?image=./hashing/images/separate_chaining.jpeg&size=50% auto
