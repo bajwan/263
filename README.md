@@ -33,3 +33,6 @@ Data Structures and Algorithms
 | 8-1 | [Hashing](https://gitpitch.com/irawoodring/263/master?p=hashing "Hashing") | | |
 | 8-2 | [Hashing](https://gitpitch.com/irawoodring/263/master?p=hashing "Hashing") | | |
 | 8-3 | Midterm | | |
+| 9-1 | Spring Break | | |
+| 9-1 | Spring Break | | |
+| 9-1 | Spring Break | | |
