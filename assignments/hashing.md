@@ -45,7 +45,7 @@ You should have a ```my_hash.h``` file that includes all of your hashmap code.  
 
 You should have a ```superhero.h``` in the ```include``` directory that provides the interface for the ```Superhero``` class, and a ```superhero.cpp``` file in ```src``` that provides the implementation.
 
-You will need this database file: [Superheros Database](./assignments/marvel-wikia-data.csv "Superhero DB").
+You will need this database file: [Superheros Database](./marvel-wikia-data.csv "Superhero DB").
 
 ## Notes
 
