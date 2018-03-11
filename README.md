@@ -36,6 +36,6 @@ Data Structures and Algorithms
 | 9-1 | Spring Break | | |
 | 9-1 | Spring Break | | |
 | 9-1 | Spring Break | | |
-| 10-1 | Priority Queues | | |
+| 10-1 | [Priority Queues](https://gitpitch.com/irawoodring/263/master?p=priority_queues "Priority queues") | | |
 | 10-2 | | | |
 | 10-3 | | | |
