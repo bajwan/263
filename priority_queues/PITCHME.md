@@ -5,7 +5,8 @@ Ira Woodring
 
 ***
 
-**Priority Queues (a.k.a. Heaps)**
+**Priority Queues**
+
 **Follows Sebesta Chapter 6**
 ---
 We previously talked about the idea of a queue - a first-in-first-out (FIFO) data structure.
@@ -16,7 +17,7 @@ One of the situations we talked about was a printer queue, where a user generall
 ---
 Consider an operating system for instance.  It makes little sense for all jobs in an OS to have equal priority; certain jobs are simply more important than others.  I/O for instance - if we are simply writing something to disk that we don't anticipate needing for awhile there is no real hurry.
 ---
-In a situation like this we need some new data structure that allows us to assign priority to data.  The ADT we will be discussing here is called a **priority queue** or **heap**.
+In a situation like this we need some new data structure that allows us to assign priority to data.  The ADT we will be discussing here is called a **priority queue**.
 ---
 It is important to note that we can have a minimum priority queue or a maximum priority queue, meaning we sometimes we consider the smallest weight the most important and sometimes the largest.  In these notes (and the book) we will generally be talking about minimum priority queues unless specifically stated otherwise.
 ---
@@ -51,6 +52,8 @@ We must provide the two functions listed above, ```insert``` and ```deleteMin```
 
 - insert at the front of the linked list - an O(1) operation
 - traverse through the entire list to find the min for deleteMin - an O(N) operation
+
+Or:
 ---
 We could keep our list in sorted order.  This implies the following:
 
@@ -66,4 +69,5 @@ An array-based implementation of a binary tree is easy because we can quickly ca
 - the left child can be found in index 2*i*.
 - the right child can be found in index 2*i* + 1.
 - The parent is in index floor(*i*/2).
+---?image=./priority_queues/images/priority_queue.png&size=50% auto
 ---
