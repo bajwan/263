@@ -71,3 +71,13 @@ An array-based implementation of a binary tree is easy because we can quickly ca
 - The parent is in index floor(*i*/2).
 ---?image=./priority_queues/images/priority_queue.png&size=50% auto
 ---
+Remember, even though this is an array-based method, it is holding a tree.  We are going to impose some properties on this tree to create a new data structure, called a **heap**.  The properties are:
+
+- the tree will be filled from left to right
+- the tree will be filled completely (except possibly the bottom row)
+- tree will maintain the **heap-order property**, meaning every node is smaller than any of its descendants.
+---
+The first two properties ensure that the tree has a shape that can be stored in an array.
+
+The third property ensures that for any subtree the minimum value is at the root.  This means that findMin is a constant, or O(1) operation.
+---
