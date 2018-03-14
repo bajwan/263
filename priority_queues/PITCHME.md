@@ -81,3 +81,45 @@ The first two properties ensure that the tree has a shape that can be stored in 
 
 The third property ensures that for any subtree the minimum value is at the root.  This means that findMin is a constant, or O(1) operation.
 ---
+So we always want our smallest value to be at the top of the "tree" (at the front of the array in position 1).  We maintain this property through an action called **percolating**.
+---
+We first see this action take place when we insert a new element into the priority queue.  To insert, we add the element to the tree, and then let it rise or percolate up the tree until it is in a spot that maintains the heap order property.
+
+But how do we know where to insert it at first?
+---
+We always insert into the tree from left-to-right, and never start a new row until the previous row is full.  So we insert the node in the first available spot.
+---
+If it so happens that inserting into the first available spot doesn't cause the heap to violate the heap order property, we are done.  Otherwise we move the element up the tree by pushing the parent node into the current spot and putting the current node in the parent's spot:
+---?image=./priority_queues/images/percolate_up_1.png&size=50% auto
+---?image=./priority_queues/images/percolate_up_2.png&size=50% auto
+---
+The worst case scenario is that we have just inserted the minimum element.  If that is the case, the Big-O time is O(log n).
+---
+Deleting the minimum element is a very similar operation.  We remove the first element which leaves a hole at the root. We remove the last element in the array, making the overall array one element smaller.
+---
+If the last element can be put in the root spot, we are done.  More likely though, we need to then percolate that element down until the heap order property is not violated.
+---?image=./priority_queues/images/percolate_down_1.png&size=50% auto
+---?image=./priority_queues/images/percolate_down_2.png&size=50% auto
+---?image=./priority_queues/images/percolate_down_3.png&size=50% auto
+---
+Once again, the worst case scenario is an O(log n) operation, meaning that all operations on the priority queue will be relatively fast.  Contrasted with the linked list approach we see that the array based method is much better, since at least one operation in the linked list approach would have to run in O(n) time.
+---
+It turns out that an implementation for a priority queue is fairly simple (though rather beautiful I think!).
+---
+In C++, the .h file for this class might look something like this (notice that since this is generic we would likely need to put it all in the .h file.  I have separated them out in these notes simply to make it easier to understand):
+
+```C++
+// Simplified from Weiss Example in book.
+template <typename Comparable>
+class BinaryHeap{
+public:
+  BinaryHeap(int capacity = 100);
+  bool isEmpty() const;
+  void insert(const Comparable & x);
+  const Comparable & deleteMin();
+
+private:
+  int currentSize;
+  vector<Comparable> array;
+};
+```
