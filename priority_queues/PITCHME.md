@@ -107,19 +107,92 @@ Once again, the worst case scenario is an O(log n) operation, meaning that all o
 It turns out that an implementation for a priority queue is fairly simple (though rather beautiful I think!).
 ---
 In C++, the .h file for this class might look something like this (notice that since this is generic we would likely need to put it all in the .h file.  I have separated them out in these notes simply to make it easier to understand):
-
+---
 ```C++
 // Simplified from Weiss Example in book.
 template <typename Comparable>
 class BinaryHeap{
 public:
-  BinaryHeap(int capacity = 100);
+  BinaryHeap();
   bool isEmpty() const;
   void insert(const Comparable & x);
-  const Comparable & deleteMin();
+  const Comparable & findMin() const;
+  void deleteMin();
 
 private:
   int currentSize;
   vector<Comparable> array;
 };
 ```
+---
+The interesting functions here are insert() and deleteMin(), as well as a private function called percolateDown.  Let's examine these now.
+---
+```C++
+void insert( const Comparable & x )
+   {
+       if( currentSize == array.size( ) - 1 )
+           array.resize( array.size( ) * 2 );
+
+           // Percolate up
+       int hole = ++currentSize;
+       Comparable copy = x;
+
+       array[ 0 ] = std::move( copy );
+       for( ; x < array[ hole / 2 ]; hole /= 2 )
+           array[ hole ] = std::move( array[ hole / 2 ] );
+       array[ hole ] = std::move( array[ 0 ] );
+   }
+```
+---
+The code is fairly straightforward, except possibly the last few lines.  The function
+
+- checks if the array is at its max size and doubles the size if it is
+- creates a new spot (here done by increasing the current size by 1)
+- percolates the new, currently empty spot up by moving the spot's parent if the value of our new element is less than the parent
+- ultimately puts the new element in the spot
+---
+```findMin()``` is trivial as it just returns the array[0] spot so we won't go into it.  ```deleteMin()``` though, is interesting.  All it does is this:
+
+```C++
+array[ 1 ] = std::move( array[ currentSize-- ] );
+percolateDown( 1 );
+```
+
+Move the last element into the first spot, and percolate down.
+---
+The ```percolateDown(int hole)``` function is very similar to the percolation code that we used in our ```insert()``` function:
+
+```C++
+void percolateDown( int hole )
+    {
+        int child;
+        Comparable tmp = std::move( array[ hole ] );
+
+        for( ; hole * 2 <= currentSize; hole = child )
+        {
+            child = hole * 2;
+            if( child != currentSize && array[ child + 1 ] < array[ child ] )
+                ++child;
+            if( array[ child ] < tmp )
+                array[ hole ] = std::move( array[ child ] );
+            else
+                break;
+        }
+        array[ hole ] = std::move( tmp );
+    }
+```
+---
+Here, we merely checked if one of our children was smaller than us, and if so moved the hole down (percolated).  Ultimately, when we can progress down no further, we fill the hole with what was in the hole to begin with.
+---
+Something interesting to notice is that we can build a heap very simply.  If we are given an array that is does not adhere to the heap order property, we can start at the halfway point (why?), and moving backward through the array to the root percolateDown each index:
+---
+```C++
+void buildHeap( )
+   {
+       for( int i = currentSize / 2; i > 0; --i )
+           percolateDown( i );
+   }
+```
+---
+Keep this in mind as we progress into sorting algorithms later in the semester, as this is similar to how we perform a heap-sort.
+    

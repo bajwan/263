@@ -1,0 +1,57 @@
+#include <vector>
+#include <iostream>
+
+template <typename Comparable>
+class BinaryHeap{
+	public:
+		BinaryHeap(int capacity = 100){
+			currentSize = 0;
+			std::vector<Comparable> data(capacity + 1);
+		}
+
+		bool isEmpty() const {
+			return currentSize = 0;
+		}
+
+		void insert(const Comparable & x){
+			if( currentSize == data.size( ) - 1 )
+				data.resize( data.size( ) * 2 );
+
+			// Percolate up
+			int hole = ++currentSize;
+			Comparable copy = x;
+
+			data[ 0 ] = std::move( copy );
+			for( ; x < data[ hole / 2 ]; hole /= 2 )
+				data[ hole ] = std::move( data[ hole / 2 ] );
+			data[ hole ] = std::move( data[ 0 ] );
+		}
+
+		const Comparable & deleteMin(){
+			Comparable & tmp = data[1];
+			data[ 1 ] = std::move( data[ currentSize-- ] );
+			percolateDown( 1 );
+			return tmp;
+		}
+
+	private:
+		int currentSize;
+		std::vector<Comparable> data;
+
+		void percolateDown(int hole){
+			int child;
+			Comparable tmp = std::move( data[ hole ] );
+
+			for( ; hole * 2 <= currentSize; hole = child )
+			{
+				child = hole * 2;
+				if( child != currentSize && data[ child + 1 ] < data[ child ] )
+					++child;
+				if( data[ child ] < tmp )
+					data[ hole ] = std::move( data[ child ] );
+				else
+					break;
+			}
+			data[ hole ] = std::move( tmp );
+		}
+};
