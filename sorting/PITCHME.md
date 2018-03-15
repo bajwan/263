@@ -41,4 +41,28 @@ I believe that it is easier to learn when we are exposed to a topic in a variety
 ---
 Seriously, yes dance.  You're going to love it.
 ---
-Our first 
+The first sorting algorithm we will learn about is Bubble Sort.
+
+It isn't very good.  We will be studying it anyway though, to provide insight into some of the issues and possible optimizations available in sorting.
+---
+Bubble Sort might remind you of the percolating we did with priority queues.  The basic idea is that for each element in the array we are going to let it rise, bubble, percolate (whatever your favorite term is for it) to where it belongs.
+---
+An algorithm for Bubble Sort might look like the following:
+
+```C++
+template <typename Comparable>
+void bubble_sort( std::vector<Comparable> & a){
+        for(int i=0; i<a.size(); i++){
+                for(int j=0; j<a.size(); j++){
+                        if(a[i] < a[j]){
+                                std::swap(a[i], a[j]);
+                        }
+                }
+        }
+}
+```
+
+What is the Big-O of this algorithm?
+---
+Hopefully you noticed that the run-time is O(n^2).  Even as O(n^2) algorithms go though, this one is bad.  Regardless of what happens it will always run O(n^2) times.  We *could* make it slightly better by checking after each iteration of j to see if something changed.  It nothing changed we can be done.
+---
