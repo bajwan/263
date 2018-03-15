@@ -37,5 +37,21 @@ Data Structures and Algorithms
 | 9-1 | Spring Break | | |
 | 9-1 | Spring Break | | |
 | 10-1 | [Priority Queues](https://gitpitch.com/irawoodring/263/master?p=priority_queues "Priority queues") | | |
-| 10-2 | | | |
-| 10-3 | | | |
+| 10-2 | [Priority Queues](https://gitpitch.com/irawoodring/263/master?p=priority_queues "Priority queues") | | |
+| 10-3 | [Sorting](https://gitpitch.com/irawoodring/263/master?p=sorting "Sorting")| | |
+| 11-1 | [Sorting](https://gitpitch.com/irawoodring/263/master?p=sorting "Sorting")| | |
+| 11-2 | [Sorting](https://gitpitch.com/irawoodring/263/master?p=sorting "Sorting")| | |
+| 11-3 | [Sorting](https://gitpitch.com/irawoodring/263/master?p=sorting "Sorting")| | |
+| 12-1 | | | |
+| 12-2 | | | |
+| 12-3 | | | |
+| 13-1 | | | |
+| 13-2 | | | |
+| 13-3 | | | |
+| 14-1 | | | |
+| 14-2 | | | |
+| 14-3 | | | |
+| 15-1 | | | |
+| 15-2 | | | |
+| 15-3 | | | |
+| 16 | Final Exam (not cumulative). | | |

@@ -7,7 +7,7 @@ Ira Woodring
 
 **Priority Queues**
 
-**Follows Sebesta Chapter 6**
+**Follows Weiss Chapter 6**
 ---
 We previously talked about the idea of a queue - a first-in-first-out (FIFO) data structure.
 
@@ -195,4 +195,3 @@ void buildHeap( )
 ```
 ---
 Keep this in mind as we progress into sorting algorithms later in the semester, as this is similar to how we perform a heap-sort.
-    
