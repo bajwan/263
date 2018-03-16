@@ -64,5 +64,55 @@ void bubble_sort( std::vector<Comparable> & a){
 
 What is the Big-O of this algorithm?
 ---
-Hopefully you noticed that the run-time is O(n^2).  Even as O(n^2) algorithms go though, this one is bad.  Regardless of what happens it will always run O(n^2) times.  We *could* make it slightly better by checking after each iteration of j to see if something changed.  It nothing changed we can be done.
+Hopefully you noticed that the run-time is O(n^2).  Even as O(n^2) algorithms go though, this one is bad.  Regardless of what happens it will always run O(n^2) times.  We *could* make it slightly better by checking after each iteration of ```j``` to see if something changed.  If nothing changed then we can be done.
+---
+Visually, the algorithm looks (and sounds!) something like this (notice that this demo is the more optimized Bubble Sort version):
+
+[Play sound-of-sorting demo]
+---
+Let's practice it!
+
+[Cards](https://deck-of-cards.js.org/)
+---
+Or, if you learn better via dance:
+
+https://www.youtube.com/watch?v=lyZQPjUT5B4
+---
+Wow, that is a long video.  We need a faster sorting algorithm.
+
+Let's consider Insertion Sort.
+---
+The idea of Insertion Sort is that we will move one element each iteration and insert it into the array where it needs to go.  After each iteration ```p``` we know that 0-```p``` elements are in sorted order.
+---
+One implementation (from our book) of this algorithm is as follows:
+
+```C++
+template <typename Comparable>
+void insertion_sort( std::vector<Comparable> & a ){
+        for( int p = 1; p < a.size( ); ++p ){
+                Comparable tmp = std::move( a[ p ] );
+                int j;
+                for( j = p; j > 0 && tmp < a[ j - 1 ]; --j ){
+                        a[ j ] = std::move( a[ j - 1 ] );
+                }
+                a[ j ] = std::move( tmp );
+        }
+}
+```
+---
+A visual/auditory example:
+
+[Play sound-of-sorting demo]
+---
+And let's not forget the AlgoRythmics!
+
+https://www.youtube.com/watch?v=ROalU379l3U
+---
+Now, let's practice.
+
+[Cards](https://deck-of-cards.js.org/)
+---
+Once again, this algorithm is not particularly fast.  In fact, it still runs in O(n^2) time.  However, the O(n^2) time for Insertion Sort is much better than the O(n^2) time for Bubble Sort, since Insertion Sort is able to stop when it discovers the correct spot to place the element, and Bubble Sort must finish the iteration.
+---
+It might seem weird to think that the two have the same run time, yet one is faster.  We may need to remind ourselves that Big-O is about rate of growth - not about speed.  Both of these algorithms have the same rate of growth, even though one is faster.
 ---

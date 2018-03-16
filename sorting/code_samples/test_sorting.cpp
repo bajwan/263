@@ -9,7 +9,7 @@ int main(int argc, char** argv){
 	}
 	std::cout << std::endl;
 
-	bubble_sort(nums);
+	insertion_sort(nums);
 
 	for(auto num:nums){
 		std::cout << num << ", ";
