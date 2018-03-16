@@ -116,3 +116,62 @@ Once again, this algorithm is not particularly fast.  In fact, it still runs in 
 ---
 It might seem weird to think that the two have the same run time, yet one is faster.  We may need to remind ourselves that Big-O is about rate of growth - not about speed.  Both of these algorithms have the same rate of growth, even though one is faster.
 ---
+For those of you interested, the Computer Scientist Jon L. Bentley at Bell Labs showed you could write an insertion sort in 3 lines:
+
+```C
+void iisort(int *a, int n)
+{
+  int i, j;
+  for (i = 1; i < n; i++)
+    for (j = i; j > 0 && a[j-1] > a[j]; j--)
+      iswap(j, j-1, a);
+}
+```
+---
+If you like, you can read his paper here:
+
+http://cs.fit.edu/~pkc/classes/writing/samples/bentley93engineering.pdf
+---
+What this three line version shows is just how simple Insertion Sort can be.  Due to the simplicity and lack of overhead, for small collections and small sub-collections it is often still used.
+
+In fact, some heavy duty sorting functions often resort to Insertion Sort to optimize sorting of smaller lists.
+---
+Selection Sort is the third sorting algorithm we will discuss.
+
+Selection Sort works by searching the collection for the next largest element at each iteration, and then moving that element to the current spot.
+---
+```C++
+template <typename Comparable>
+void selection_sort( std::vector<Comparable> & a){
+        for( int i=0; i<a.size()-1; i++){
+                for(int j=i+1; j<a.size(); j++){
+                        int min_index = i;
+                        if(a[j] < a[min_index]){
+                                min_index = j;
+                        }
+                        std::swap(a[min_index], a[i]);
+                }
+        }
+}
+```
+
+Big-O anyone?
+---
+You guessed it; once again we have an O(n^2) algorithm (we're going to get better, just wait!).
+
+Selection Sort is considered slower than Insertion Sort though.  Can you see why?
+---
+For the same reason that Insertion Sort is faster than Bubble Sort, it is faster than Selection Sort.  Selection Sort must always finish the iteration it is on; Insertion Sort stops the current iteration when it finds the correct spot.
+---
+Here is our demo:
+
+[Play sound-of-sorting demo]
+---
+We can't forget our dance:
+
+https://www.youtube.com/watch?v=Ns4TPTC8whw
+---
+And let's practice!
+
+[Cards](https://deck-of-cards.js.org/)
+---

@@ -22,3 +22,16 @@ void insertion_sort( std::vector<Comparable> & a ){
 		a[ j ] = std::move( tmp );
 	}
 }
+
+template <typename Comparable>
+void selection_sort( std::vector<Comparable> & a){
+	for( int i=0; i<a.size()-1; i++){
+		for(int j=i+1; j<a.size(); j++){
+			int min_index = i;
+			if(a[j] < a[min_index]){
+				min_index = j;
+			}
+			std::swap(a[min_index], a[i]);
+		}
+	}
+}

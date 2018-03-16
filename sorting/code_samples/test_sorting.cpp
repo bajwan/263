@@ -9,7 +9,7 @@ int main(int argc, char** argv){
 	}
 	std::cout << std::endl;
 
-	insertion_sort(nums);
+	selection_sort(nums);
 
 	for(auto num:nums){
 		std::cout << num << ", ";
