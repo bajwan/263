@@ -185,7 +185,7 @@ For instance, given the example from the book of the list ```34,8,64,51,32,21```
 ---
 We view a sorted array as an array that doesn't have any inversions.  Swapping two elements that are out of place in an array gets rid of one inversion.
 
-So if we must go through an *n* elements in list and perform *i* inversions, we would end up with a runtime of O(n+i).
+So if we must go through *n* elements in a list and perform *i* inversions, we would end up with a runtime of O(n+i).
 ---
 Let's consider Insertion Sort.
 
@@ -195,7 +195,7 @@ Let's also consider what could happen if the list is already in sorted order.
 
 Then we must go through *n* elements in our list.  We have 0 inversions in our list, so our run time is O(n+0) = O(n).  This means that to sort an already sorted list with insertion sort gives us O(n), or linear time.
 ---
-It turns out that most simple sorting algorithms perform a single inversion at a time.  To get a better runtime we have to find ways to perform more than one inversion at a time.
+It turns out that most simple sorting algorithms perform a single inversion at a time.  We want faster algorithms.
 
 This means we need to remove more than one inversion each time.
 ---
@@ -203,12 +203,12 @@ Shellsort is the first algorithm that runs in less than O(n^2) - quadratic - tim
 
 Shellsort is a **diminishing increment sort**.  It uses some sequence *h1, h2, ..., ht*.  The sequence is not important as long as *h1=1*.  The algorithm then works as follows:
 ---
-- For each *hk* from *ht* to *h1* we will sort all elements *hk* from one another using an insertion sort.  This is called a phase.
+- For each *hk* from *ht* to *h1* we will sort all elements *hk* indices from one another using an insertion sort.  This is called a phase.
 - When a phase completes we are *hk-sorted*.
 - Once we finish an *hk* sort, the *hk-1* sort doesn't undo any work from the early phases.
 ---?image=./sorting/images/shellsort.png&size=50% auto
 ---
-It is probably pretty obvious to you that different increments result in different runtimes for this type of sort.  Oddly enough, the increments Shell himself (it was created by a programmer names Donald Shell) are very bad.
+It is probably pretty obvious to you that different increments result in different runtimes for this type of sort.  Oddly enough, the increments Shell himself put forth (it was created by a programmer names Donald Shell) are very bad.
 ---
 Shell suggested the sequence *ht=floor(n/2)* and *hk=floor(h[k+1]/2)*.  This sequence results in a quadratic algorithm in the worst case.
 
@@ -240,7 +240,7 @@ void shell_sort( std::vector<Comparable> & a ){
 
 Notice this is using the poorly chosen increments that Shell suggested.
 ---
-This one might be a bit confusing to some of you.  No worries, AlgoRhythmics to the rescue!
+This one might be a bit confusing to some of you.  No worries, AlgoRythmics to the rescue!
 
 https://www.youtube.com/watch?v=CmPA7zE8mx0
 ---
@@ -250,7 +250,7 @@ And then we should practice a bit ourselves:
 
 [Cards](https://deck-of-cards.js.org/)
 ---
-We will go through Heapsort fairly quickly, since we discussed the concepts of a heap in depth while learning about Priority Queues.  Heapsort works by building a heap, which is an O(n) operation and then performing n ```deleteMin()``` operations which take O(log n) each.
+We will go through Heapsort fairly quickly, since we discussed the concepts of a heap in depth while learning about Priority Queues.  Heapsort works by building a heap, which is an O(n) operation, and then performing n ```deleteMin()``` operations which take O(log n) each.
 ---
 Our natural inclination is to create a new array to store the sorted elements as we delete them from the heap.  It turns out we don't need to do this.  Each call to ```deleteMin()``` is going to reduce the size of the heap by one; we can store the element removed in that spot.
 ---
@@ -262,7 +262,7 @@ Let's practice a bit.
 
 [Cards](https://deck-of-cards.js.org/)
 ---
-And even though this algorithm looks a bit different then some of our others (since we are visualizing a tree), the AlgoRhythmics dance this algo for us as well:
+And even though this algorithm looks a bit different then some of our others (since we are visualizing a tree), the AlgoRythmics dance this algo for us as well:
 
 https://www.youtube.com/watch?v=Xw2D9aJRBY4
 ---
@@ -330,6 +330,7 @@ void merge( std::vector<Comparable> & a, std::vector<Comparable> & tmpArray, int
 Sound of Sorting demo to get a feel for this in action.
 ---
 AlgoRythmics!
+
 https://www.youtube.com/watch?v=XaqR3G_NVoo
 ---
 This one requires a bit of practice as well:
