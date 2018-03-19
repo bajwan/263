@@ -175,3 +175,164 @@ And let's practice!
 
 [Cards](https://deck-of-cards.js.org/)
 ---
+Those are all of the O(n^2) algorithms we will be discussing in depth.  From here on we will be discussing more efficient algorithms.
+---
+But first, we need to talk about the concept of **inversions**.  An inversion is an ordered pair *(i,j)* in a collection such that *i<j* but *a[i] > a[j]*.
+
+For instance, given the example from the book of the list ```34,8,64,51,32,21``` we have 9 inversions:
+
+- (34, 8), (34, 32), (34,21), (64, 51), (64, 32), (64, 21), (51, 32), (51, 21), and (32, 21)
+---
+We view a sorted array as an array that doesn't have any inversions.  Swapping two elements that are out of place in an array gets rid of one inversion.
+
+So if we must go through an *n* elements in list and perform *i* inversions, we would end up with a runtime of O(n+i).
+---
+Let's consider Insertion Sort.
+
+In a worst-case scenario we would have an array in reverse order.  Then we would have *(n(n-1))/2* inversions in the list.  We must check each element which takes O(n) time, so our runtime is O(n + (n(n-1))/2) or O(n^2).
+---
+Let's also consider what could happen if the list is already in sorted order.
+
+Then we must go through *n* elements in our list.  We have 0 inversions in our list, so our run time is O(n+0) = O(n).  This means that to sort an already sorted list with insertion sort gives us O(n), or linear time.
+---
+It turns out that most simple sorting algorithms perform a single inversion at a time.  To get a better runtime we have to find ways to perform more than one inversion at a time.
+
+This means we need to remove more than one inversion each time.
+---
+Shellsort is the first algorithm that runs in less than O(n^2) - quadratic - time.
+
+Shellsort is a **diminishing increment sort**.  It uses some sequence *h1, h2, ..., ht*.  The sequence is not important as long as *h1=1*.  The algorithm then works as follows:
+---
+- For each *hk* from *ht* to *h1* we will sort all elements *hk* from one another using an insertion sort.  This is called a phase.
+- When a phase completes we are *hk-sorted*.
+- Once we finish an *hk* sort, the *hk-1* sort doesn't undo any work from the early phases.
+---?image=./sorting/images/shellsort.png&size=50% auto
+---
+It is probably pretty obvious to you that different increments result in different runtimes for this type of sort.  Oddly enough, the increments Shell himself (it was created by a programmer names Donald Shell) are very bad.
+---
+Shell suggested the sequence *ht=floor(n/2)* and *hk=floor(h[k+1]/2)*.  This sequence results in a quadratic algorithm in the worst case.
+
+Another sequence, called the Hibbard sequence, gives us an O(n^[3/2]) time.
+
+The Hibbard sequence is ```1,3,7,...,2^k-1```.
+---
+We are not going to go through proofs of these runtimes in class.  They are quite complicated.  If you are interested you can look them up in the book.
+
+The code looks something like this though:
+---
+```C++
+template <typename Comparable>
+void shell_sort( std::vector<Comparable> & a ){
+        for( int gap = a.size( ) / 2; gap > 0; gap /= 2 ){
+                for( int i = gap; i < a.size( ); ++i ){
+                        Comparable tmp = std::move( a[ i ] );
+                        int j=i;
+
+                        for(;j>=gap&&tmp<a[j-gap];j-=gap){
+                                a[ j ] = std::move( a[ j - gap ] );
+                        }
+
+                        a[ j ] = std::move( tmp );
+                }
+        }
+}
+```
+
+Notice this is using the poorly chosen increments that Shell suggested.
+---
+This one might be a bit confusing to some of you.  No worries, AlgoRhythmics to the rescue!
+
+https://www.youtube.com/watch?v=CmPA7zE8mx0
+---
+Sound of Sorting demo
+---
+And then we should practice a bit ourselves:
+
+[Cards](https://deck-of-cards.js.org/)
+---
+We will go through Heapsort fairly quickly, since we discussed the concepts of a heap in depth while learning about Priority Queues.  Heapsort works by building a heap, which is an O(n) operation and then performing n ```deleteMin()``` operations which take O(log n) each.
+---
+Our natural inclination is to create a new array to store the sorted elements as we delete them from the heap.  It turns out we don't need to do this.  Each call to ```deleteMin()``` is going to reduce the size of the heap by one; we can store the element removed in that spot.
+---
+Unfortunately that will result in a reverse-sorted list.  We can avoid this by using a max heap with a ```deleteMax()``` function instead of a min heap.
+---?image=./sorting/images/heapsort-1.png&size=50% auto
+---?image=./sorting/images/heapsort-2.png&size=50% auto
+---
+Let's practice a bit.
+
+[Cards](https://deck-of-cards.js.org/)
+---
+And even though this algorithm looks a bit different then some of our others (since we are visualizing a tree), the AlgoRhythmics dance this algo for us as well:
+
+https://www.youtube.com/watch?v=Xw2D9aJRBY4
+---
+Next we will discuss Mergesort.  This is one of our most optimal sorting algorithms, and the first recursive sorting algorithm we will discuss.
+---
+Mergesort works by continuously splitting a list, then merging the lists together in order.
+
+This sounds a little vague; let's look at the code:
+---
+This function is just an entry point or "driver" function:
+
+```C++
+template <typename Comparable>
+void mergeSort( std::vector<Comparable> & a ){
+        std::vector<Comparable> tmpArray( a.size( ));
+        mergeSort( a, tmpArray, 0, a.size( ) - 1);
+}
+```
+---
+This function splits the list into a left and right list:
+
+```C++
+template <typename Comparable>
+void mergeSort( std::vector<Comparable> & a, std::vector<Comparable> & tmpArray, int left, int right ){
+        if(left < right){
+                int center = (left + right) / 2;
+                mergeSort( a, tmpArray, left, center );
+                mergeSort( a, tmpArray, center+1, right );
+                merge( a, tmpArray, left, center + 1, right );
+        }
+}
+```
+---
+This function merges the lists back together in order:
+
+```C++
+template <typename Comparable>
+void merge( std::vector<Comparable> & a, std::vector<Comparable> & tmpArray, int leftPos, int rightPos, int rightEnd ){
+        int leftEnd = rightPos - 1;
+        int tmpPos = leftPos;
+        int numElements = rightEnd - leftPos + 1;
+
+        while( leftPos <= leftEnd && rightPos <= rightEnd ){
+                if( a[ leftPos ] <= a[ rightPos ] ){
+                        tmpArray[ tmpPos++ ] = std::move( a[ leftPos++ ] );
+                } else {
+                        tmpArray[ tmpPos++ ] = std::move( a[ rightPos++ ] );
+                }
+        }
+
+        while( leftPos <= leftEnd ){
+                tmpArray[tmpPos++] = std::move(a[ leftPos++ ]);
+        }
+
+        while( rightPos <= rightEnd ){
+                tmpArray[tmpPos++] = std::move(a[ rightPos++ ] );
+        }
+
+        for(int i=0;i < numElements; ++i, --rightEnd ){
+                a[ rightEnd ] = std::move( tmpArray[ rightEnd ] );
+        }
+}
+```
+---
+Sound of Sorting demo to get a feel for this in action.
+---
+AlgoRythmics!
+https://www.youtube.com/watch?v=XaqR3G_NVoo
+---
+This one requires a bit of practice as well:
+
+[Cards](https://deck-of-cards.js.org/)
+---
