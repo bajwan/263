@@ -9,7 +9,7 @@ int main(int argc, char** argv){
 	}
 	std::cout << std::endl;
 
-	mergeSort(nums);
+	quicksort(nums);
 
 	for(auto num:nums){
 		std::cout << num << ", ";

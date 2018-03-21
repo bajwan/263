@@ -42,16 +42,16 @@ Data Structures and Algorithms
 | 11-1 | [Sorting](https://gitpitch.com/irawoodring/263/master?p=sorting "Sorting")| | |
 | 11-2 | [Sorting](https://gitpitch.com/irawoodring/263/master?p=sorting "Sorting")| | |
 | 11-3 | [Sorting](https://gitpitch.com/irawoodring/263/master?p=sorting "Sorting")| | |
-| 12-1 | | | |
-| 12-2 | | | |
-| 12-3 | | | |
-| 13-1 | | | |
-| 13-2 | | | |
-| 13-3 | | | |
-| 14-1 | | | |
+| 12-1 | Greedy Algorithms | | |
+| 12-2 | Greedy Algorithms | | |
+| 12-3 | Divide and Conquer | | |
+| 13-1 | Dynamic Programming | | |
+| 13-2 | Dynamic Programming | | |
+| 13-3 | Backtracking | | |
+| 14-1 | Backtracking | | |
 | 14-2 | | | |
 | 14-3 | | | |
 | 15-1 | | | |
 | 15-2 | | | |
-| 15-3 | | | |
+| 15-3 | Random Numbers | | |
 | 16 | Final Exam (not cumulative). | | |

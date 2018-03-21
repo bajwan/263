@@ -337,3 +337,110 @@ This one requires a bit of practice as well:
 
 [Cards](https://deck-of-cards.js.org/)
 ---
+Mergesort is pretty great, though better in some languages than others due to how memory is handled, comparisons are made, objects are passed around, etc.
+
+Mergesort does require extra work space though, so this can be an issue.
+---
+Quicksort has, for many years, been the sorting algorithm of choice for generic sorting tasks.  It doesn't require the extra memory that Mergesort does, and it has a Big-O of O(n log n).
+---
+The basic idea behind Quicksort is that we pick some element in the list, then create two sets - the items in the list smaller than the chosen element, and those that are bigger.  We then recursively call the Quicksort function on the sublists.
+---
+We will have a driver (or entry) function since we will be calling the main algorithm recursively:
+
+```C++
+template <typename Comparable>
+void quicksort( std::vector<Comparable> & a ){
+        quicksort( a, 0, a.size( ) - 1 );
+}
+```
+---
+And a method to find our pivot point:
+
+```C++
+template <typename Comparable>
+const Comparable & median3( std::vector<Comparable> & a, int left, int right ){
+        int center = (left + right) / 2;
+        if(a[center] < a[left] ){
+                std::swap( a[left], a[center] );
+        }
+        if(a[right] < a[left] ) {
+                std::swap( a[left], a[right]);
+        }
+        if(a[right] < a[center]){
+                std::swap(a[center], a[right]);
+        }
+
+        std::swap(a[center], a[right - 1]);
+        return a[right - 1];
+}
+```
+---
+And finally our core sorting code:
+
+```C++
+void quicksort( std::vector<Comparable> & a, int left, int right){
+        if(left + 10 <= right){
+                const Comparable & pivot = median3(a, left, right);
+
+                int i = left, j = right - 1;
+                for(;;){
+                        while(a[++i] < pivot){}
+                        while(pivot<a[--j]){}
+                        if(i<j){
+                                std::swap(a[i], a[j]);
+                        } else {
+                                break;
+                        }
+                }
+
+                std::swap(a[i], a[right - 1]);
+
+                quicksort(a, left, i-1);
+                quicksort(a, i+1, right);
+        } else {
+                insertion_sort(a, left, right);
+        }
+}
+```
+---
+One more time for the AlgoRythmics!
+
+https://www.youtube.com/watch?v=ywWBy6J5gz8
+---
+And let's listen to the Sound of Sorting...
+---
+And practice!
+
+https://deck-of-cards.js.org/
+---
+Here's the thing with quicksort.  Picking the pivot is really, really important.
+
+A fairly natural inclination for some programmers is to use the first element in the list as the pivot.
+---
+Picking the first element might work ok if the data is in a perfectly random order.  But, what happens if it is not?  For instance, what could happen if the list is already sorted?
+---
+If we have this list:
+
+10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+
+And we pick the first element as the pivot, we end up with the two sets:
+
+S1 = 9, 8, 7, 6, 5, 4, 3, 2, 1
+S2 =
+Pivot = 10
+---
+Well this isn't good...
+
+Since we are recursively calling our function on the two sets the same thing continues to happen.  This results in an O(n^2) algorithm.
+---
+The best (safest at least) way to pick a pivot is to pick it randomly.  Unfortunately, random number generators can be a bit slow.  Still, if you've got the time do it.
+---
+Our book details a different strategy though, called the median-of-three.  It relies upon the fact that an ideal pivot point would be the median of the list (this would result in two equally sized sublists).
+
+It would be too slow to figure out the median each time though.
+---
+Instead, we can estimate the median.  We can do this by choosing the left-most element, the right-most element, and the center element and choosing the median of those.  It has been shown that this strategy gives pretty good results (and requires very little overhead).
+---
+You probably also noticed that when the sublists got less than a size of 20 (10 per sublist) that the algorithm calls insertion sort.  This is an optimization that can help a good deal, since insertion sort requires much less overhead than quicksort.
+---
+Since the list is continuously split into sublists in Quicksort, it turns out we get less than 20 elements that need to be sorted quite frequently.  This explains why experiments have shown that using this method speeds up our sorting by about 15%.
