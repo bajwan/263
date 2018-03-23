@@ -444,3 +444,49 @@ Instead, we can estimate the median.  We can do this by choosing the left-most e
 You probably also noticed that when the sublists got less than a size of 20 (10 per sublist) that the algorithm calls insertion sort.  This is an optimization that can help a good deal, since insertion sort requires much less overhead than quicksort.
 ---
 Since the list is continuously split into sublists in Quicksort, it turns out we get less than 20 elements that need to be sorted quite frequently.  This explains why experiments have shown that using this method speeds up our sorting by about 15%.
+---
+To this point we've seen some O(n^2) algorithms, an O(n^(3/2)) algorithm, and a few O(n log n) algorithms.  It turns out that for general purpose sorting we can't do better than O(n log n).  However, if we know some things about our data we can do better in specific scenarios.
+---
+For instance, there are a few linear - O(n) - sorting algorithms.  They only work in very special cases though.  The first of these is called **Counting Sort**.
+---
+Counting Sort works when we know the entire range of our data.  We create an array that holds each possible value in the range, and store the number of times each of the elements occurred in the original list.  We then do some math to determine the final indices for the values.
+---
+Say we have this list:
+
+{9, 3, 4, 5, 8, 6, 1, 2, 4 }
+
+We can see that we have 8 elements ranging from 1-9, so we will create an array goes up to index 9.  Then we count the number of times each element occurred:
+---
+{9, 3, 4, 5, 8, 6, 1, 2, 4 }
+
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|---|---|---|---|---|---|---|---|---|---|
+|   | 1 | 1 | 1 | 2 | 1 | 1 | 0 | 1 | 1 |
+---
+Now we do some math.  For each index *k* the value of array[k] = array[k] + array[k-1]:
+
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|---|---|---|---|---|---|---|---|---|---|
+|   | 1 | 1 | 1 | 2 | 1 | 1 | 0 | 1 | 1 |
+|   | 1 | 2 | 3 | 5 | 6 | 7 | 7 | 8 | 9 |
+---
+For each number *i* in the list we look at array[i].  The value at array[i] is the index for where to put this value from the list.  Put the element in that spot and decrement the count by 1.
+---
+{9, 3, 4, 5, 8, 6, 1, 2, 4 }
+
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|---|---|---|---|---|---|---|---|---|---|
+|   | 1 | 2 | 3 | 5 | 6 | 7 | 7 | 8 | 9̶ 8 |
+
+Sorted array:
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|---|---|---|---|---|---|---|---|---|---|
+|   |   |   |   |   |   |   |   |   | 9 |
+---
+Continuing the process we get:
+
+{9, 3, 4, 5, 8, 6, 1, 2, 4 }
+
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|---|---|---|---|---|---|---|---|---|---|
+|   | 1 | 2 | 3 | 4 | 4 | 5 | 6 | 8 | 9 |
