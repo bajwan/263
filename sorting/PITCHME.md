@@ -491,3 +491,33 @@ Continuing the process we get:
 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 |---|---|---|---|---|---|---|---|---|---|
 |   | 1 | 2 | 3 | 4 | 4 | 5 | 6 | 8 | 9 |
+---
+Another O(n) algorithm is **Bucket Sort**.  Bucket Sort requires that we have the following properties for our data:
+
+- we have a fairly evenly distributed range of data
+- we know the range of the data
+- we can divide the range up into N equal parts
+- we can easily tell which part any element is in
+---
+Suppose we have the following values in a list:
+
+{ 86, 44, 55, 32, 97, 83, 20, 3, 39, 25 }
+
+We have 10 numbers so we'll create 10 "bins".  In our example instead of dividing the the bins up we will just assume they are linked lists.
+---
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|---|---|---|---|---|---|---|---|---|---|
+|   | 3 | 20 | 32 | 44 | 55 | | | 83 | 97 |
+|   |   | 25 | 39 |    |    | | | 86 |   |
+---
+Now we simply go through the array and print the ordered sublists from each bucket.
+
+{3, 20, 25, 32, 39, 44, 55, 83, 86, 97 }
+---
+The final O(n) algorithm we will see is the **Radix Sort**.
+
+For Radix Sort we need
+
+- the lengths of all the keys to be the same; we'll say the length is *k*
+- each element in *k* must be between some min and max value
+---?image=./sorting/images/radix.png&size=auto
