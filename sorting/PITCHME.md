@@ -479,6 +479,7 @@ For each number *i* in the list we look at array[i].  The value at array[i] is t
 |   | 1 | 2 | 3 | 5 | 6 | 7 | 7 | 8 | 9̶ 8 |
 
 Sorted array:
+
 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 |---|---|---|---|---|---|---|---|---|---|
 |   |   |   |   |   |   |   |   |   | 9 |
