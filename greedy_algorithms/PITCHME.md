@@ -80,3 +80,6 @@ If we have:
 We could do this:
 
 ![Possible schedule image](./greedy_algorithms/images/job_scheduling-1.png)
+
+What is the average run time for each job?
+---
