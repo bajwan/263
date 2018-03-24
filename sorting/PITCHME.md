@@ -520,4 +520,8 @@ For Radix Sort we need
 
 - the lengths of all the keys to be the same; we'll say the length is *k*
 - each element in *k* must be between some min and max value
+---
+The algorithm works in phases; at each phase it sorts via the "digits" of *k*, going from least significant to most significant.  The following image illustrates on integers:
 ---?image=./sorting/images/radix.png&size=auto
+---
+Of interest is that we can sort strings this way as well, if they are the same length (or if we pad them to be).  This works since each character in the string has as underlying value that is within a fixed range.
