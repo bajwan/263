@@ -77,9 +77,17 @@ If we have:
 | j3  | 3    |
 | j4  | 10   |
 ---
-We could do this:
+We could complete them in order:
 
 ![Possible schedule image](./greedy_algorithms/images/job_scheduling-1.png)
 
 What is the average run time for each job?
+---
+The average completion time here is 25.
+
+We can do better though; if we decided to take the greedy approach of always completing the shortest job first, we would have this:
+
+![Possible schedule image](./greedy_algorithms/images/job_scheduling-2.png)
+
+What is the average run time now?
 ---
