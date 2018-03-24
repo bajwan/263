@@ -85,9 +85,15 @@ What is the average run time for each job?
 ---
 The average completion time here is 25.
 
-We can do better though; if we decided to take the greedy approach of always completing the shortest job first, we would have this:
+Can we do better?
+
+Work on that with partners for a minute.
+---
+We can do better; if we decided to take the greedy approach of always completing the shortest job first, we would have this:
 
 ![Possible schedule image](./greedy_algorithms/images/job_scheduling-2.png)
 
 What is the average run time now?
+---
+Now the average completion time is 17.75.  This works because this problem has optimal substructure.  To compute completion time for some job *i* we have to add how long it waited; *i-1* + *i-2* + ... + *i-(i-1)*.  By minimizing the wait time for each job we minimized the overall value.
 ---
