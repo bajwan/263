@@ -152,5 +152,17 @@ Continuing on:
 ---?image=./greedy_algorithms/images/huffman_6.png&size=50% auto
 ---?image=./greedy_algorithms/images/huffman_7.png&size=50% auto
 ---?image=./greedy_algorithms/images/huffman_8.png&size=50% auto
+---
 Now we have a complete tree.  With this tree we have the following table of characters and the number of bits required to represent them:
 ---?image=./greedy_algorithms/images/huffman_9.png&size=50% auto
+---
+Wow!  Instead of 179 bits we are down to 146!
+
+179-146 = 33.  179/33 = 0.18.  That is an 18% savings!
+---
+Let's practice a bit!
+
+Let's assume we have a file that contains only colons, spaces, newlines, commas, and digits in the following frequency: colon (100), space (605), newline (100), comma (705), 0 (431), 1 (242), 2 (176), 3 (59), 4 (185), 5 (250), 6 (174), 7 (199), 8 (205), 9 (217). Construct the Huffman code.
+
+(Exercise from the book if you'd like to look at it there)
+---
