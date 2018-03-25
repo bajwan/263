@@ -110,4 +110,6 @@ However, do all characters appear with the same frequency in a file?  For instan
 
 Probably not that often...
 ---
-Let's assume we have a file that only includes the characters *a, e, i, s, t, space, and newline*.
+Let's assume we have a file that only includes the characters *a, e, i, s, t, space,* and* newline*.  We will assume they occur in the file as such:
+
+![Table](./greedy_algorithms/images/huffman_1.png)
