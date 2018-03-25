@@ -37,7 +37,13 @@ You can time your code run (on EOS) with the command:
 time ./myProgram
 ```
 
-```time``` will output three values; we will use the real time value.
+```time``` will output three values; we will use the real time value:
+
+```
+real	0m0.005s
+user	0m0.001s
+sys	0m0.003s
+```
 
 ## Real Timing Tests
 
