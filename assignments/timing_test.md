@@ -61,8 +61,10 @@ For each of the sorts listed above run your program 5 times for each of the foll
 - 100
 - 1000
 - 10000
-- 100000
-- 1000000
+- 100000 \*
+- 1000000\ *
+
+* = not Bubble Sort
 
 Post your results in a table and plot them with a line graph (very simple in Excel).
 
