@@ -97,3 +97,17 @@ What is the average run time now?
 ---
 Now the average completion time is 17.75.  This works because this problem has optimal substructure.  To compute completion time for some job *i* we have to add how long it waited; *i-1* + *i-2* + ... + *i-(i-1)*.  By minimizing the wait time for each job we minimized the overall value.
 ---
+Huffman Codes are another example of a greedy algorithm.  Huffman Codes are a type of compression.
+
+Recall the ASCII character set?
+---?image=./greedy_algorithms/images/ascii_table.png&size=auto
+---
+Of the 128 characters only about 100 of them can be printed (many are Ctrl characters).  Notice that the ceil(log 100) = 7 so we would need 7 bits to store every possible character.
+
+In general we need ceil(log C) bits to encode any character set of size C.
+---
+However, do all characters appear with the same frequency in a file?  For instance, how often do we see words that have "q" or "z" in them?  How about "`" or "~"?
+
+Probably not that often...
+---
+Let's assume we have a file that only includes the characters *a, e, i, s, t, space, and newline*.
