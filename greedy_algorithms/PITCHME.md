@@ -112,6 +112,7 @@ Probably not that often...
 ---
 Let's assume we have a file that only includes the characters *a, e, i, s, t, space,* and* newline*.  We will assume they occur in the file as such:
 ---?image=./greedy_algorithms/images/huffman_1.png&size=auto auto
+---
 Hopefully you noticed the **Total** line; this file would require 174 bits of space on a disk, or use that much bandwidth in transfer.
 
 Can we do better?
