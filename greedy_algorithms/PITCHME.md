@@ -112,4 +112,4 @@ Probably not that often...
 ---
 Let's assume we have a file that only includes the characters *a, e, i, s, t, space,* and* newline*.  We will assume they occur in the file as such:
 
-![Table](./greedy_algorithms/images/huffman_1.png)
+![Table](./greedy_algorithms/images/huffman_1.png&size=50%)
