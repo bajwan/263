@@ -112,3 +112,44 @@ Probably not that often...
 ---
 Let's assume we have a file that only includes the characters *a, e, i, s, t, space,* and* newline*.  We will assume they occur in the file as such:
 ---?image=./greedy_algorithms/images/huffman_1.png&size=auto auto
+Hopefully you noticed the **Total** line; this file would require 174 bits of space on a disk, or use that much bandwidth in transfer.
+
+Can we do better?
+---
+Huffman Codes can do better; on average about 25% better, but up to 50% or 60% on larger files are possible.
+
+These codes do this by allowing the number of bits required to encode a character to vary.  If we represent the most common characters with the smallest possible encoding we save space.
+---
+Huffman Codes do this by representing each character in the character set in a tree.
+---?image=./greedy_algorithms/images/huffman_2.png&size=auto auto
+---
+Notice how we determine the representation for a character; at each node if we traverse left we add a zero to the representation, if we go right we add a 1.
+
+Before we start using this tree though, we need to make some optimizations.
+---
+We first may notice (or read in the book) that the newline character is the only leaf on that subtree.  Since that is the case we can just remove that subtree and put newline at the root:
+---?image=./greedy_algorithms/images/huffman_3.png&size=auto auto
+---
+This means that the representation for newline is now ```11``` instead of ```110```.  If the character occurs 1000 times in the file we just saved 1000 bits.  Not bad!
+---
+This tree is what we call a **full tree*.  A full tree means that every node is either a leaf or has two children.
+---
+These properties ensure that even though the codes are different lengths that they are unambiguous.  This is a type of **prefix code**, which means that no representation of a character can be contained in the prefix of another character's representation.
+
+An optimal prefix code will always be a full tree (though the inverse is not always true).
+---
+This tree might save us a bit of space, and allows us to have prefix codes.  But it isn't optimal.  What we need to do is be able to create a full binary tree that will give us a smaller total value for our number of bits.
+
+This is exactly what Huffman codes do.
+---
+To compute a Huffman code we are going to create a **forest** of trees.  We will merge trees in this forest together in a greedy way until all trees are merged into one.
+---
+We determine which trees to merge by always selecting the trees with the smallest weight and merging those together:
+---?image=./greedy_algorithms/images/huffman_4.png&size=auto auto
+Continuing on:
+---?image=./greedy_algorithms/images/huffman_5.png&size=auto auto
+---?image=./greedy_algorithms/images/huffman_6.png&size=auto auto
+---?image=./greedy_algorithms/images/huffman_7.png&size=auto auto
+---?image=./greedy_algorithms/images/huffman_8.png&size=auto auto
+Now we have a complete tree.  With this tree we have the following table of characters and the number of bits required to represent them:
+---?image=./greedy_algorithms/images/huffman_9.png&size=auto auto
