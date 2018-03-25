@@ -62,7 +62,7 @@ For each of the sorts listed above run your program 5 times for each of the foll
 - 1000
 - 10000
 - 100000 \*
-- 1000000\ *
+- 1000000 \*
 
 * = not Bubble Sort
 
