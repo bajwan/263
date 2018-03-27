@@ -167,6 +167,7 @@ Let's assume we have a file that contains only colons, spaces, newlines, commas,
 (Exercise from the book if you'd like to look at it there)
 ---?image=./greedy_algorithms/images/huffman_code_exercise.jpg&size=50% auto
 ---
+```
 | Character | Representation | Frequency | Required Bits |
 |:---------:|---------------:|----------:|--------------:|
 |   space   |            110 |       605 |          1815 |
@@ -184,6 +185,6 @@ Let's assume we have a file that contains only colons, spaces, newlines, commas,
 |     8     |           0110 |       205 |           820 |
 |     9     |           0111 |       217 |           868 |
 |   Total   |                |           |         10503 |
-
+```
 Total with 8 bits is 29184.
 ---
