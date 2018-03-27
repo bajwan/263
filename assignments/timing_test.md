@@ -2,7 +2,7 @@
 
 We learned a lot about sorting this past week; we now know how Bubble Sorts (yuck!), Selection Sort, Insertion Sort, Shell Sort, Heap Sort, Merge Sort, and Quick Sort work.  We learned that many algorithms have similar Big-O values, but that doesn't always tell us the whole story.
 
-For this homework assignment we will be running timing tests on the algorithms.  Don't worry - I've already created the algorithms for you.  You can download my [sorts.h](./sorting/code_samples/sorts.h) file and include it in your homework.  It isn't terribly well documented, but all we need to know is that we call each method with a single vector of (probably) unsorted objects.
+For this homework assignment we will be running timing tests on the algorithms.  Don't worry - I've already created the algorithms for you.  You can download my [sorts.h](https://raw.githubusercontent.com/irawoodring/263/master/sorting/code_samples/sorts.h) file and include it in your homework.  It isn't terribly well documented, but all we need to know is that we call each method with a single vector of (probably) unsorted objects.
 
 ## Your Class
 
