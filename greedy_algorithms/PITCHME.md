@@ -165,4 +165,5 @@ Let's practice a bit!
 Let's assume we have a file that contains only colons, spaces, newlines, commas, and digits in the following frequency: colon (100), space (605), newline (100), comma (705), 0 (431), 1 (242), 2 (176), 3 (59), 4 (185), 5 (250), 6 (174), 7 (199), 8 (205), 9 (217). Construct the Huffman code.
 
 (Exercise from the book if you'd like to look at it there)
+---?image=./greedy_algorithms/images/huffman_code_exercise.jpg&size=50% auto
 ---
