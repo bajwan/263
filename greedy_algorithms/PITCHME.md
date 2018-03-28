@@ -198,7 +198,7 @@ The Fractional problem we can solve with a greedy approach though.
 ---
 Consider this scenario:
 
-You are at a candy store.  Your parents give you a bag and say to fill it.  You love candy but can sell some at your school.  You want to make the most money possible.  The bag can hold 3 pounds of candy, and we have the following table of weights/values:
+You are at a candy store.  Your parents give you a bag and say to fill it.  You love candy but can sell some at your school for a profit!  You want to make the most money possible.  The bag can hold 3 pounds of candy, and we have the following table of weights/values:
 ---
 |Candy|Weight|Value|
 |-----|------|-----|
@@ -209,9 +209,9 @@ You are at a candy store.  Your parents give you a bag and say to fill it.  You 
 | Peach Rings  | .7  | .6 |
 | Giant Gobstopper | 1 | 2 |
 
-The candy store is low on candy, and only have one of each of these left.  What combination of candy is the most valuable?
+The candy store is low on candy, and they only have one of each of these left.  What combination of candy is the most valuable?
 ---
-It turns out that this is a very simple if we do a bit of pre-calculation and then follow the greedy approach.  First, we figure out the value to weight ration.
+It turns out that this is very simple if we do a bit of pre-calculation and then follow the greedy approach.  First, we figure out the value to weight ratio.
 ---
 |Candy|Weight|Value|Ratio|
 |-----|------|-----|-----|
@@ -233,3 +233,9 @@ Now, we merely take the candy with the highest ratios until the bag is full.  If
 | Peach Rings | .4 | .34 |
 | Total | 3.0 | 5.95 |
 ---
+For our final problem, let's imagine we are in charge of bringing super-fast fiberoptic cable to some city.  We want to connect every neighborhood, but we need to do so using the smallest amount of cable.  How can we solve this problem?
+---
+For this problem we will first model our connections as an undirected graph:
+---?image=./greedy_algorithms/images/undirected_graph.png&size=auto
+---
+Now, we merely go through each edge from smallest to largest and select any edge that connects two subtrees without creating a cycle, until every vertex can be reached.
