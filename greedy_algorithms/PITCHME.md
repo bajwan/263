@@ -188,3 +188,48 @@ Let's assume we have a file that contains only colons, spaces, newlines, commas,
 ```
 Total with 8 bits is 29184.
 ---
+The Knapsack Problem is a classic problem in Computer Science.  This problem goes something like this:
+
+We have a backpack or bag of some sort and a list of items and their weights and costs.  We want to take some of those items to sell.  What is the maximum value of items we can get in the backpack?
+---
+There are two types of Knapsack problems - the 0/1 Knapsack problem and the Fractional Knapsack problem.  The 0/1 problem says we can't take partial items, only entire items.  It cannot be solved with a greedy approach.
+
+The Fractional problem we can solve with a greedy approach though.
+---
+Consider this scenario:
+
+You are at a candy store.  Your parents give you a bag and say to fill it.  You love candy but can sell some at your school.  You want to make the most money possible.  The bag can hold 3 pounds of candy, and we have the following table of weights/values:
+---
+|Candy|Weight|Value|
+|-----|------|-----|
+| Candy Apples | 1.2 | 3 |
+| Hershey Bar | .3  | .5 |
+| Gummy Worms  | .5  | .2 |
+| Smarties     | .1  | .11 |
+| Peach Rings  | .7  | .6 |
+| Giant Gobstopper | 1 | 2 |
+
+The candy store is low on candy, and only have one of each of these left.  What combination of candy is the most valuable?
+---
+It turns out that this is a very simple if we do a bit of pre-calculation and then follow the greedy approach.  First, we figure out the value to weight ration.
+---
+|Candy|Weight|Value|Ratio|
+|-----|------|-----|-----|
+| Candy Apples | 1.2 | 3 | 2.5 |
+| Hershey Bar | .3  | .5 | 1.7 |
+| Gummy Worms  | .5  | .2 | .4 |
+| Smarties     | .1  | .11 | 1.1 |
+| Peach Rings  | .7  | .6 | .86 |
+| Giant Gobstopper | 1 | 2 | 2 |
+---
+Now, we merely take the candy with the highest ratios until the bag is full.  If we can't fit an entire item into the remaining part of the sack, we split it.
+
+| Candy | Weight | Value |
+|-------|--------|-------|
+| Candy Apples | 1.2 | 3 |
+| Giant Gobstopper | 1 | 2 |
+| Hershey Bar | .3 | .5 |
+| Smarties | .1 | .11 |
+| Peach Rings | .4 | .34 |
+| Total | 3.0 | 5.95 |
+---
