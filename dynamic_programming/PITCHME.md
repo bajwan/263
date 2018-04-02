@@ -102,3 +102,27 @@ It may not be obvious, but this problem has optimal substructure. Let us create 
 |A| 0 |   |   |   |   |   |   |   |
 |T| 0 |   |   |   |   |   |   |   |
 ---
+We now fill the table from left-to-right, top-to-bottom.  This equates to us comparing substrings.  We have two possible cases:
+
+- for element i,j in our LCS table, if X[i] is equal to Y[j], LCS[i,j] = LCS[i-1,j-1] + 1. This means that the last character in our substrings match.
+- if X[i] is not equal to Y[j], LCS[i,j] = maximum of C[i,j-1] or C[i-1, j].  This means that our last characters don't match and we should find the previous maximum matching length.
+---
+Using these rules, complete the table.
+---
+| | 0 | A | C | G | T | A | C | G |
+|-|---|---|---|---|---|---|---|---|
+|0| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+|A| 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+|G| 0 | 1 | 1 | 2 | 2 | 2 | 2 | 2 |
+|G| 0 | 1 | 1 | 2 | 2 | 2 | 2 | 3 |
+|G| 0 | 1 | 1 | 2 | 2 | 2 | 2 | 3 |
+|A| 0 | 1 | 1 | 2 | 2 | 3 | 3 | 3 |
+|A| 0 | 1 | 1 | 2 | 2 | 3 | 3 | 3 |
+|T| 0 | 1 | 1 | 2 | 3 | 3 | 3 | 3 |
+---
+To find our subsequence from this table we have to traceback through it.  Starting at the bottom right, if the current value is greater than the value above or to the left of it, then it was a match.  Choose it and go up-left.
+
+Else, we just follow the current number either up or left.
+---
+In our table, we should have been able to find multiple LCS; AGA, AGG and AGT are three of them.
+---
