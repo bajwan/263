@@ -92,7 +92,7 @@ Y="AGGGAAT"
 It may not be obvious, but this problem has optimal substructure. Let us create a table:
 
 | | 0 | A | C | G | T | A | C | G |
-|=|===|===|===|===|===|===|===|===|
+|-|---|---|---|---|---|---|---|---|
 |0| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 |A| 0 |   |   |   |   |   |   |   |
 |G| 0 |   |   |   |   |   |   |   |
