@@ -168,7 +168,7 @@ For all values of i and w, choose the maximum of these possibilities:
 Note that these are the only two things that can happen.  Taking this item either gives us a better solution or it doesn't.  If it doesn't, we ignore it.
 ---
 We are going to apply a dynamic programming approach to solving this problem.  We will first model our choices in a table, with rows corresponding to number of items and columns to weight:
-
+---
 | | 0 | 1 | 2 | 3 | 4 | 5 |
 |-|---|---|---|---|---|---|
 |0| 0 | 0 | 0 | 0 | 0 | 0 |
@@ -178,7 +178,7 @@ We are going to apply a dynamic programming approach to solving this problem.  W
 |4| 0 |   |   |   |   |   |
 ---
 To calculate our values, we will fill the table from left to right, top to bottom.  First, we calculate V(1,1) - meaning we determine what the maximum value for a single item is, if our maximum weight is 1.
-
+---
 | | 0 | 1 | 2 | 3 | 4 | 5 |
 |-|---|---|---|---|---|---|
 |0| 0 | 0 | 0 | 0 | 0 | 0 |
