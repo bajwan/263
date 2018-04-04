@@ -160,7 +160,7 @@ There must be a better way.
 If we think about this problem for a few minutes, we might notice that it can be solved recursively...
 ---
 Let's assume we have a function V(I,W) that calculates the maximum value we could obtain by choosing up to I items if we had a weight of W.  It would need to work like this:
-
+---
 For all values of i and w, choose the maximum of these possibilities:
 - We don't take this item.  Choose the best value possible from taking i-1 items and this W instead.
 - We do choose this item.  Our bag only holds a weight of W, so we subtract our current item's weight from W and find the maximum value we can get if we had a bag that only held W - current item's weight.
@@ -170,6 +170,7 @@ Note that these are the only two things that can happen.  Taking this item eithe
 We are going to apply a dynamic programming approach to solving this problem.  We will first model our choices in a table, with rows corresponding to number of items and columns to weight:
 
 | | 0 | 1 | 2 | 3 | 4 | 5 |
+|-|---|---|---|---|---|---|
 |0| 0 | 0 | 0 | 0 | 0 | 0 |
 |1| 0 |   |   |   |   |   |
 |2| 0 |   |   |   |   |   |
@@ -179,6 +180,7 @@ We are going to apply a dynamic programming approach to solving this problem.  W
 To calculate our values, we will fill the table from left to right, top to bottom.  First, we calculate V(1,1) - meaning we determine what the maximum value for a single item is, if our maximum weight is 1.
 
 | | 0 | 1 | 2 | 3 | 4 | 5 |
+|-|---|---|---|---|---|---|
 |0| 0 | 0 | 0 | 0 | 0 | 0 |
 |1| 0 | 75|   |   |   |   |
 |2| 0 |   |   |   |   |   |
@@ -188,6 +190,7 @@ To calculate our values, we will fill the table from left to right, top to botto
 What is the best we could do if we could only choose from the first item with a weight limit of 2?
 ---
 | | 0 | 1 | 2 | 3 | 4 | 5 |
+|-|---|---|---|---|---|---|
 |0| 0 | 0 | 0 | 0 | 0 | 0 |
 |1| 0 | 75| 75|   |   |   |
 |2| 0 |   |   |   |   |   |
@@ -197,6 +200,7 @@ What is the best we could do if we could only choose from the first item with a 
 Still 75.
 ---
 | | 0 | 1 | 2 | 3 | 4 | 5 |
+|-|---|---|---|---|---|---|
 |0| 0 | 0 | 0 | 0 | 0 | 0 |
 |1| 0 |75 |75 |75 |75 |75 |
 |2| 0 |75 |75 |75 |75 |   |
@@ -214,6 +218,7 @@ If we do take this item, it is going to take up weight[i] in our backpack.  So w
 Completing the table we get
 
 | | 0 | 1 | 2 | 3 | 4 | 5 |
+|-|---|---|---|---|---|---|
 |0| 0 | 0 | 0 | 0 | 0 | 0 |
 |1| 0 |75 |75 |75 |75 |75 |
 |2| 0 |75 |75 |75 |75 |118 |
