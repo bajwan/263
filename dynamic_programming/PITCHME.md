@@ -208,11 +208,11 @@ Still 75.
 |4| 0 |   |   |   |   |   |
 
 Now we get interesting though; V(2,5) needs to determine the max value we can attain from the first two items if we have a weight limit of 5.
-
-So we need to compute the max of taking the item or not taking the item.
 ---
-If we don't take the item we choose from the row above us; this means we take the previous best value from the choices presented when we had i-1 items at this weight.
+So we need to compute the max of taking the item or not taking the item.
 
+If we don't take the item we choose from the row above us; this means we take the previous best value from the choices presented when we had i-1 items at this weight.
+---
 If we do take this item, it is going to take up weight[i] in our backpack.  So we perform a subtraction of W - weight[i]; this leaves the amount of room in our backpack we have to work with.  Maximize this value by looking up in the table V(i-1,W - weight[i]).
 ---
 Completing the table we get
