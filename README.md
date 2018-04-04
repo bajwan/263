@@ -43,10 +43,10 @@ Data Structures and Algorithms
 | 11-2 | [Sorting](https://gitpitch.com/irawoodring/263/master?p=sorting "Sorting")| | |
 | 11-3 | [Sorting](https://gitpitch.com/irawoodring/263/master?p=sorting "Sorting")| | |
 | 12-1 | [Greedy Algorithms](https://gitpitch.com/irawoodring/263/master?p=greedy_algorithms) | [Timing Test of Sorts](./assignments/timing_test.md) | April 4th, 2018 |
-| 12-2 | Greedy Algorithms | | |
-| 12-3 | Divide and Conquer | | |
-| 13-1 | Dynamic Programming | | |
-| 13-2 | Dynamic Programming | | |
+| 12-2 | [Greedy Algorithms](https://gitpitch.com/irawoodring/263/master?p=greedy_algorithms) | | |
+| 12-3 | [Greedy Algorithms](https://gitpitch.com/irawoodring/263/master?p=greedy_algorithms) | | |
+| 13-1 | [Dynamic Programming](https://gitpitch.com/irawoodring/263/master?p=dynamic_programming) | | |
+| 13-2 | [Dynamic Programming](https://gitpitch.com/irawoodring/263/master?p=dynamic_programming) | | |
 | 13-3 | Backtracking | | |
 | 14-1 | Backtracking | | |
 | 14-2 | | | |
