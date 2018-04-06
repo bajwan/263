@@ -48,8 +48,8 @@ Data Structures and Algorithms
 | 13-1 | [Dynamic Programming](https://gitpitch.com/irawoodring/263/master?p=dynamic_programming) | | |
 | 13-2 | [Dynamic Programming](https://gitpitch.com/irawoodring/263/master?p=dynamic_programming) | | |
 | 13-3 | [Backtracking](https://gitpitch.com/irawoodring/263/master?p=backtracking) | | |
-| 14-1 | [Backtracking](https://gitpitch.com/irawoodring/263/master?p=backtracking) | | |
-| 14-2 | | [Extra Credit for Final](./assignments/01-knapsack.md) | Due 4/9 at 8:00 a.m.  No late submissions accepted. |
+| 14-1 | [Backtracking](https://gitpitch.com/irawoodring/263/master?p=backtracking) | [Extra Credit for Final](./assignments/01-knapsack.md) | Due 4/9 at 8:00 a.m.  No late submissions accepted. |
+| 14-2 | | | |
 | 14-3 | | | |
 | 15-1 | | | |
 | 15-2 | | | |
