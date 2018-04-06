@@ -224,3 +224,6 @@ Completing the table we get
 |2| 0 |75 |75 |75 |75 |118 |
 |3| 0 |75 |75 |112 |112 |118 |
 |4| 0 |75 |75 |112 |165 |165 |
+---
+The final dynamic programming problem we will study is the All-Pairs Shortest Path problem.  This is another classic problem of Computer Science.  The solution we will be looking at is the one published by Floyd.
+---
