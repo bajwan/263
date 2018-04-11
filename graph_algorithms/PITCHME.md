@@ -84,4 +84,57 @@ The first variant of this is the Unweighted Shortest Paths problem.  For this pr
 ---
 It turns out that this is fairly simple; we merely need to perform a Breadth First Search.  Staring at some node we will find all paths of length 0.  Then we will find paths of length 1.  This is fairly simple; we need only examine the paths of length 0 and what they connect to.
 ---
-To find paths of length 2 we start with the paths of length 1, etc., until all paths are calculated.
+To find paths of length 2 we start with the paths of length 1, etc., until all paths are calculated:
+---?image=./graph_algorithms/images/bfs-1.png&size=50% auto
+---?image=./graph_algorithms/images/bfs-2.png&size=50% auto
+---?image=./graph_algorithms/images/bfs-3.png&size=50% auto
+---?image=./graph_algorithms/images/bfs-4.png&size=50% auto
+---
+This is easy to draw, but how do we teach a computer to do it?
+---
+If we have the graph stored as an adjacency list, one easy way is the following algorithm (pseudocode):
+
+```
+void Graph::unweighted( Vertex s ){
+  Queue<Vertex> q;
+
+  for each Vertex v {
+    v.dist = INFINITY;
+  }
+
+  s.dist = 0;
+  q.enqueue( s );
+
+  while( !q.isEmpty() ){
+    Vertex v = q.dequeue();
+
+    for each Vertex w adjacent to v {
+      if( w.dist == INFINITY ){
+        w.dist = v.dist + 1;
+        w.path = v;
+        q.enqueue( w );
+      }
+    }
+  }
+}
+```
+---
+This algorithm relies upon each vertex keeping a distance.  This distance is the shortest distance to this node from where we started.
+
+We put the initial node on a queue, with a distance of 0.
+
+Then we start a loop where we pop the front element from the queue, iterate over its children, give them a distance of the current node + 1 ONLY if they don't already have a smaller number (implying they have a shortest path already), and place them on the queue.  We continue until the queue is empty.
+---
+Let's practice on the board with this graph:
+
+```C
+1: 2, 4
+2: 4, 5
+3: 1, 6
+4: 6, 7
+5: 7
+6:
+7: 6
+```
+
+We will use a queue but also a two dimensional array for some intermediate values (for the purpose of simplification).
