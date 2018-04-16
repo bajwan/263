@@ -11,15 +11,15 @@ There are many, many problems that a computer can solve - given appropriate algo
 ---
 For instance, there are problems that are unsolvable by a computer.  We call these problems **undecidable problems**.  The most famous of these is probably the **halting problem**.
 ---
-The halting problem asks if it is possible to have compiler examine any arbitrary program and determine if the program will finish running.
+The halting problem asks if it is possible to have a compiler examine an arbitrary program and determine if the program will finish running.
 
-For Turing Machines - which our model of computation is built on - the answer to this problem is no, a compiler cannot do this for any program.  Consider:
+For Turing Machines - which our model of computation is built on - the answer to this problem is no, a compiler cannot do this for every program.  Consider:
 ---
 To solve this problem the compiler would need to have a routine that simulates the running of the algorithm in question.  The routine doing the examining would then stop simulating when the algorithm stopped running.  But if the algorithm never stops running, then the routine can never stop running either.
 ---
 These undecidable problems are the hardest problems in computer science.  They exist outside the boundaries of what our (current) computers can do.
 ---
-There are other problems in computer science that *might* be possible.
+There are other problems in computer science that may be possible, but we don't know how long they might  take.
 
 This is a **major** problem in Computer Science (and Mathematics in general).  There are substantial rewards for anyone who can answer this problem; it is called the P vs. NP problem.
 ---
@@ -29,15 +29,33 @@ For instance, we saw that Insertion Sort's runtime can be expressed via the poly
 ---
 There are quite a few problems that cannot be solved in polynomial time (to our knowledge), but can be **verified** in polynomial time.  This means that given a possible solution we can verify the solution is correct in polynomial time.
 ---
-If a problem can be verified in polynomial time we say it is of the class **NP**, which stands for "Non-deterministic polynomial time".
+If a problem can be verified in polynomial time we say it is of the class **NP**, which stands for "Nondeterministic polynomial time".
 ---
-Let us be very clear moving forward that we understand this definition.  We aren't saying these problems can be solved in Non-deterministic polynomial time.  We are saying that a potential solution can be verified.
+Nondeterministic models of computation might seem odd.  A normal computer can take one path of execution at a time, it has no choice as to what to choose next.  When we get to the end of the execution path we may or may not have the right answer.
+---
+A Nondeterministic machine can make choices, and will always make the best choice.  Obviously this doesn't exist, but it is still useful; it might be easier in some cases to model a solution to a problem with nondeterminism and then convert it to a deterministic model.
+---
+So let's get back to NP problems, and let us be very clear moving forward that we understand the definition of them.
+
+We aren't saying these problems can be solved in nondeterministic polynomial time.  We are saying that a potential solution can be verified in polynomial time.
+---
+In general we do this by turning them into a yes/no problem (a decision problem).  Then, if we can prove that some given answer is correct in polynomial time, the problem is in NP.
+---
+For instance, if we had the 0/1 Knapsack problem we might change the problem statement from
+
+>Given a set of n items with values and weights 1 to n, and a knapsack with capacity W, what is the maximum value the of the items we could carry?
+
+To
+---
+>Given the above constraints, can a value of at least V be met without exceeding the weight W?
 ---
 Consider the Sudoku problems we worked with earlier.  We saw that this is an extremely long-running algorithm.  We used backtracking to try and cut down (prune) the number of solutions but that was likely a small optimization.
-
-This algorithm is non polynomial; there are number of empty squares ^ 9 possibilities.
 ---
-So solving a sudoku puzzle is obviously not polynomial.  But verifying one is!  It is trivial to take some solution and check to see if it works.  We merely iterate of each cell and check to see if each the digit there is used in any other row, column, or block.  We can do this in O(n^2) time in fact!
+A sudoku board of 9x9 may not be that bad, but as the size grows, this becomes a truly hard problem.
+
+This algorithm is not polynomial; there are ```(number of possible values per square) ^ (number of empty squares)``` possibilities.
+---
+So solving a sudoku puzzle is obviously not polynomial.  But verifying one is!  It is trivial to take some solution and check to see if it works.  We merely iterate over each cell and check to see if the digit there is used in any other row, column, or block.  We can do this in O(n^2) time in fact!
 ---
 We further divide NP problems though.
 
@@ -85,7 +103,7 @@ Clique problem.
 
 A clique in a graph is a subset of vertices such that every vertex is adjacent to the others.
 
-The clique problem is the problem of finding the minimum sized clique in a graph.
+The clique problem is the problem of finding the a K-sized clique in a graph.
 ---
 Vertex cover problem.
 
