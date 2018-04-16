@@ -37,13 +37,13 @@ A Nondeterministic machine can make choices, and will always make the best choic
 ---
 So let's get back to NP problems, and let us be very clear moving forward that we understand the definition of them.
 
-We aren't saying these problems can be solved in nondeterministic polynomial time.  We are saying that a potential solution can be verified in polynomial time.
+We are saying that a potential solution can be verified in polynomial time.
 ---
 In general we do this by turning them into a yes/no problem (a decision problem).  Then, if we can prove that some given answer is correct in polynomial time, the problem is in NP.
 ---
 For instance, if we had the 0/1 Knapsack problem we might change the problem statement from
 
->Given a set of n items with values and weights 1 to n, and a knapsack with capacity W, what is the maximum value the of the items we could carry?
+>Given a set of n items with values and weights 1 to n, and a knapsack with capacity W, what is the maximum value of the items we could carry?
 
 To
 ---
@@ -103,7 +103,7 @@ Clique problem.
 
 A clique in a graph is a subset of vertices such that every vertex is adjacent to the others.
 
-The clique problem is the problem of finding the a K-sized clique in a graph.
+The clique problem is the problem of finding a K-sized clique in a graph.
 ---
 Vertex cover problem.
 
@@ -117,11 +117,11 @@ Graph Coloring problem.
 
 What is the minimum number of colors we need so that we can color the vertices of a graph such that no connecting vertices have the same color?
 ---
-And others.
-
+And many others.
+---
 We often need to prove that a problem is as hard as another problem, i.e. that we can't find a faster solution.  Since we know that any problem in NP can reduce to an NP-complete problem (since they are the hardest in NP), we can use this for our proof.
 ---
-In order to perform this proof we first need some problem P1 that we already know is an NP-complete problem.  We will assume that P2 is in NP.  If we find some way to map the data from P1 to P2 that completes in polynomial time, we can use P2 to solve P1.
+In order to perform this proof we first need some problem P1 that we already know is an NP-complete problem.  We will assume that P2 is in NP.  If we find some way to map the data from P1 to an input of P2 that completes in polynomial time, we can use P2 to solve P1.
 ---
 Since we know that P1 was NP-complete, we have now shown the P2 is also NP-complete.  This means that every problem in NP can reduce to P2 as well.
 ---
@@ -137,10 +137,16 @@ We know that the Traveling Salesman problem is in NP, since we can check a possi
 
 Given a solution, we merely need to complete the tour and see if our final distance is less than K.
 ---
-To attempt to reduce the Hamiltonian Cycle problem to Traveling Salesman, we first find a polynomial reduction.  Here, we will create a new graph, G'.  G' will have the same vertices as G.  If some edge (v,w) was in G, we will give it a weight of 1 in G'.  If there was not a possible edge in G between some (v,w) we will create an edge in G' with weight 2.
+To attempt to reduce the Hamiltonian Cycle problem to Traveling Salesman, we first find a polynomial reduction.  Here, we will create a new graph, G'.  G' will have the same vertices as G.  If some edge (v,w) was in G, we will give it a weight of 1 in G'.  If there was not an edge in G between some (v,w) we will create an edge in G' with weight 2.
 ---
 We now choose the value of K to be |V|, which is the number of vertices in G.
 
 It should be fairly obvious now that G has a Hamiltonian cycle if and *only if* G' has a traveling salesman path of weight |V|.
 ---?image=./p-np/images/reduction-1.png&size=50% auto
+---
+Notice what we did; we found a way to convert the Hamiltonian cycle graph to a new graph.  This transformation took polynomial time (just cycled through all possible edges).
+
+We then used the new graph as an input to the Traveling Salesman algorithm.  Thus, we used Traveling Salesman to solve the Hamiltonian Cycle.
+---
+Since we are able to reduce Hamiltonian to Traveling Salesman in polynomial time, and we already knew that Hamiltonian Cycle is NP-Complete, we also know that Traveling Salesman is NP-Complete.
 ---

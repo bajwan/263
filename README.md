@@ -50,8 +50,8 @@ Data Structures and Algorithms
 | 13-3 | [Backtracking](https://gitpitch.com/irawoodring/263/master?p=backtracking) | [Backtracking](./assignments/sudoku.md) | |
 | 14-1 | [Graph Algorithms](https://gitpitch.com/irawoodring/263/master?p=graph_algorithms) | [Extra Credit for Final](./assignments/01-knapsack.md) | Due 4/9 at 8:00 a.m.  No late submissions accepted. |
 | 14-2 | [Graph Algorithms](https://gitpitch.com/irawoodring/263/master?p=graph_algorithms) | | |
-| 14-3 | | | |
-| 15-1 | | | |
+| 14-3 | [Graph Algorithms](https://gitpitch.com/irawoodring/263/master?p=graph_algorithms) | | |
+| 15-1 | [P vs. NP](https://gitpitch.com/irawoodring/263/master?p=p-np) | | |
 | 15-2 | | | |
 | 15-3 | Random Numbers | | |
 | 16 | Final Exam (not cumulative). | | |
